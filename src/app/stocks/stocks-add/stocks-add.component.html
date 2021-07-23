@@ -1,0 +1,93 @@
+<form [formGroup] = "productForm">
+<mat-list role="list">
+
+    <div>
+        <h2>ADD STOCKS
+        <button mat-icon-button class="close-button" aria-label="Example icon-button with heart icon" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</h2>
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-list-item class="first-row" role="listitem">
+
+        <mat-form-field class="product-name" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Product Name</mat-label>
+            <input required id=item_name matInput class="input-addstocks" placeholder="Product Name"  formControlName = "item_name"> 
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('item_name').touched && productForm.get('item_name').errors?.required">Product name required</mat-hint>
+  
+       </mat-form-field>
+
+        <mat-form-field class="quantity" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Quantity</mat-label>
+            <input required matInput class="input-addstocks" type="number" placeholder="Quantity"  formControlName = "item_quant" >
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('item_quant').touched && productForm.get('item_quant').errors?.required">Product Quantity required</mat-hint>
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="measurement">
+            <mat-label>Measurement</mat-label>
+            <mat-select formControlName ="measurementType">
+              <mat-option *ngFor="let mt of mt" [value]="mt.value">
+                {{mt.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </mat-list-item>
+
+    <mat-list-item class="second-row" role="listitem">
+
+        <mat-form-field class="description" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Description</mat-label>
+            <input required class="input-addstocks" matInput placeholder="Description" formControlName = "item_desc" >
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('item_desc').touched && productForm.get('item_desc').errors?.required">Product Description required</mat-hint>
+            
+        </mat-form-field>
+
+    </mat-list-item>
+
+    <mat-list-item class="third-row" role="listitem">
+
+        <mat-form-field class="date-expiry" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Date Expiry</mat-label>
+            <input required class="input-addstocks" matInput placeholder="Date Expiry" [matDatepicker]="picker" formControlName = "date_expiry">
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('date_expiry').touched && productForm.get('date_expiry').errors?.required">Product Date Expiry required</mat-hint>
+
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="price" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Price</mat-label>
+            <input required class="input-addstocks" matInput type="number" class="example-right-align" formControlName = "item_price">
+            <span matPrefix>₱&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('item_price').touched && productForm.get('item_price').errors?.required">Product Price required</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="minimum" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Minimum</mat-label>
+            <input required class="input-addstocks" matInput type="number" placeholder="Minimum" formControlName = "item_minimum" >
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('item_minimum').touched && productForm.get('item_minimum').errors?.required">Product Minimum required</mat-hint>
+
+        </mat-form-field>
+
+    </mat-list-item>
+
+    <mat-list-item class="fourth-row" role="listitem" >
+
+        <mat-form-field class="remarks" appearance="outline" hideRequiredMarker>
+            <mat-label class="label-addstocks">Remarks</mat-label>
+            <input required class="input-addstocks" matInput placeholder="Remarks" formControlName = "remarks">
+            <mat-hint style="color: red;" class="alert alert-danger" *ngIf="productForm.get('remarks').touched && productForm.get('remarks').errors?.required">Product Remarks required</mat-hint>
+
+        </mat-form-field>
+
+    </mat-list-item>
+
+    <button class="add-button" [disabled]="productForm.invalid" (click)="addProduct()" mat-flat-button color="warn">Add</button>
+
+</mat-list>
+</form>

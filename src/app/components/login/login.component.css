@@ -1,0 +1,104 @@
+.loginDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url("/../assets/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: #367655;
+  margin-bottom: 5%;
+}
+
+.loginCard {
+  width: 60%;
+  font-family: "Poppins", sans-serif;
+  border-radius: 20px;
+  /* //background-image: url("/../assets/logo.jpg"); */
+  background-size: 100% 100%;
+}
+
+.loginTitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #367655;
+  font-size: 25px;
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 34%;
+  margin-top: 15%;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.input {
+  font-size: 20px;
+  margin-left: 7%;
+  font-family: "Poppins", sans-serif;
+}
+
+mat-form-field {
+  width: 70%;
+}
+
+p {
+  font-size: 16px;
+}
+
+.signup {
+  font-family: "Poppins", sans-serif;
+  color: #367655;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.login-btn {
+  background-color: #367655;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  border-radius: 25px;
+  width: 25%;
+  height: 45px;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

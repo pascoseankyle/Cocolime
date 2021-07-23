@@ -1,0 +1,81 @@
+.close-button {
+  margin-left: -100%;
+  float: right;
+}
+
+.header {
+  margin-bottom: 10px;
+}
+
+table {
+  margin-right: 80px;
+  margin-top: 30px;
+  width: 100%;
+  background-color: #fbfbfb;
+  height: 555px;
+}
+
+.td {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+}
+
+.th {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  width: 170px;
+  height: 50px;
+  font-weight: bold;
+}
+
+.actBtn {
+  width: 100px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #282828;
+  padding: 1%;
+}
+
+.tableSize {
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 76%;
+}
+
+.archive-button {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  padding: 1%;
+  background-color: #f34542;
+  color: #ffffff;
+  width: 110px;
+}
+
+.archive-button:hover {
+  background-color: #fbfbfb;
+  color: #f34542;
+}
+.archiveIcon {
+  font-size: 21px;
+  margin-left: -10%;
+}
+
+.restoreBtn {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+
+  margin-bottom: 5px;
+  background-color: #37a641;
+  color: #ffffff;
+  width: 110px;
+}
+
+.restoreBtn:hover {
+  background-color: #fbfbfb;
+  color: #37a641;
+}

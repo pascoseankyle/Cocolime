@@ -1,0 +1,157 @@
+<!--PRODUCTS TABLE-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
+    <title>Inventory Management System</title>
+</head>
+
+<body>
+    <div class="sidenavbar">
+
+        <mat-sidenav-container autosize>
+            <mat-sidenav class="sidenav" #drawer mode="side" opened="true">
+                <img src="../assets/logo.png" class="inventory-logo">
+
+
+                <button mat-button class="sidebarcontent" routerLink="/main" routerLinkActive="selected"><mat-icon class="dashboard">dashboard</mat-icon> Dashboard</button>
+                <button mat-button class="sidebarcontent" routerLink="/stocks"><mat-icon class="stocks">inventory_2</mat-icon> Stocks</button>
+
+           <button mat-button class="sidebarcontent" routerLink="/itemHistory">	<mat-icon class="itemHistory">print</mat-icon>Generate Report</button>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div>
+                    <mat-toolbar color="primary" class="navbar">
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                          <mat-icon>menu</mat-icon>
+                      </button>
+                        <span>INVENTORY SYSTEM</span>
+                        <span class="example-spacer"></span>
+
+                        <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                          <mat-icon>person</mat-icon>
+                      </button>
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" >
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                    </mat-toolbar>
+                </div>
+
+    <div class="gridSize">
+                
+        <div class="topContent">
+
+            <div [formGroup] = "datePicker">
+            <label style="font-family: Poppins; font-size: 15px; font-weight: bold;">Select</label><br>
+            <mat-form-field appearance="outline" >
+                <mat-label>Month and Year</mat-label>
+                <input id="selectedMy" formControlName= "date1" matInput [matDatepicker]="dp" [formControl]="date" (ngModelChange) ="monthSelected();">
+                <mat-datepicker-toggle  matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker disabled = "{{inputDisable}}" #dp 
+                                startView="multi-year"
+                                (yearSelected)="chosenYearHandler($event)"
+                                (monthSelected)="chosenMonthHandler($event, dp)"
+                                panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+     
+              <button mat-button (click)="clearDate()" class="clearBtn"><mat-icon>refresh</mat-icon>Clear</button> 
+            </div>  
+            <button mat-button (click)="exportIt()" class="exportBtn">EXPORT {{monthYear}} csv</button>    
+        </div>
+         
+  
+    </div>
+
+      
+
+     <!-- TABLE SECTION -->
+
+     <div class="mat-elevation-z8 tableSize">
+        <table id="tableID" mat-table  matTableExporter [dataSource]="productInfoTableDataSource"  matSort  #exporter="matTableExporter">
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="Column1">
+            <th mat-header-cell *matHeaderCellDef hidden> ID </th>
+            <td mat-cell *matCellDef="let element" hidden> {{element.item_id }} </td>
+          </ng-container>
+
+           <!-- Date Added Column -->
+           <ng-container matColumnDef="Column2">
+            <th mat-header-cell *matHeaderCellDef class="th"> Date Added </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.date_acquired  |  date: 'MMM d, y'}} </td>
+          </ng-container>
+      
+          <!-- ITEM_Name Column -->
+          <ng-container matColumnDef="Column3">
+            <th mat-header-cell *matHeaderCellDef class="th"> Product Name </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.item_name}} </td>
+          </ng-container>
+      
+          <!-- Item_desc Column -->
+          <ng-container matColumnDef="Column4">
+            <th mat-header-cell *matHeaderCellDef class="th"> Description </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.item_desc}} </td>
+          </ng-container>
+      
+          <!-- item_quant Column -->
+          <ng-container matColumnDef="Column5">
+            <th mat-header-cell *matHeaderCellDef class="th"> Quantity </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.item_quant}} </td>
+          </ng-container>
+
+          <!-- item_minimum Column -->
+          <ng-container matColumnDef="Column6">
+            <th mat-header-cell *matHeaderCellDef class="th"> Minimum </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.item_minimum}} </td>
+          </ng-container>
+
+           <!-- item_price Column -->
+           <ng-container matColumnDef="Column7">
+            <th mat-header-cell *matHeaderCellDef class="th"> Price </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.item_price}} </td>
+          </ng-container>
+        
+          <!-- date_expiry Column -->
+          <ng-container matColumnDef="Column8">
+            <th mat-header-cell *matHeaderCellDef class="th"> DateExpiry </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.date_expiry  |  date: 'MMM d, y'}}</td>
+          </ng-container>
+
+           <!-- remarks Column -->
+           <ng-container matColumnDef="Column9">
+            <th mat-header-cell *matHeaderCellDef class="th"> Remarks </th>
+            <td mat-cell *matCellDef="let element" class="td"> {{element.remarks}} </td>
+          </ng-container>
+
+          <!-- modifiedBy Column -->
+          <ng-container matColumnDef="Column10">
+            <th mat-header-cell *matHeaderCellDef class="th"> Added By </th>
+            <td mat-cell *matCellDef="let element" class="td" style="text-align: center;">{{element.modifiedBy}} <br> {{element.dateModified  |  date: 'MMM d, y' }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[7, 14, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+      <!-- END OF TABLE CONTENT -->
+
+ 
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+
+      
+
+    </div>
+</body>
+

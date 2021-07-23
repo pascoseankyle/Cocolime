@@ -1,0 +1,150 @@
+<nav id="nav-sidebar">
+  <div class="div-add-item">
+    <button (click)="openModal()">Create Menu &nbsp;<i class="fas fa-plus"></i></button>
+  </div>
+  <div class="div-add-cat">
+    <button (click)="openCatModal()">Create Category &nbsp;<i class="fas fa-plus"></i></button>
+  </div>
+  <div id="nav-sidebar-list">
+  </div>
+  <div *ngIf = "openAddModal" class="modal" (submit)="openModalIng($event)">
+    <div class="modal-content-global">
+      <!-- Onclick close modal -->
+      <button (click)="closeModal()" class="close-modal"><i class="fas fa-times"></i>&nbsp;close</button> 
+        <h2><i class="fas fa-utensils"></i>&nbsp;Create Menu</h2>
+        <hr>
+        <!-- (1) Input added product name -->
+          <div *ngFor="let id of id">
+            <form id="form-add-product" ngNativeValidate>
+              <input type="hidden" id="prod_id" name="prod_id" value="{{ id.product_id}}">
+              <input  id="input_product_name" name="input_product_name" class="modal-input" type="text" placeholder="Name" required>
+              <br>
+              <br>
+              <br>
+              <input id="input_product_price" name="input_product_price" class="modal-input" type="number" placeholder="Price" required>
+              <br>
+              <br>
+              <br>
+                <select id="input_product_type" name="input_product_type" class="modal-input">
+                  <option *ngFor="let category of category" value="{{category.name}}" required>{{ category.name }}</option>
+                </select>
+              <br>
+              <div class="button-mid">
+                <!-- close add Product Modal and Opens Add Ingredient Modal -->
+                <button type="submit" class="modal-button">Next&nbsp; <i class="fas fa-forward"></i></button>
+            </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <div *ngIf = "openAddModalIng" class="modal">
+    <div class="modal-content-global">
+      <div class="content-left">
+        <div class="h-20">
+          <!-- (2) Output the product name from Input added -->
+          <h2>Add {{ inputProductArray.product_name }} Ingredients</h2>
+        </div>
+        <!-- (3) Input an Ingredient -->
+        <form (submit)="addIng($event)">
+          <select name="ingredientString" id="ingredientString" class="modal-input" *ngIf="ingredients != undefined">
+            <option *ngFor="let ingredient of ingredients" value="{{ ingredient.item_name }}"  selected>{{ ingredient.item_name }}</option>
+          </select>
+          <br>
+          <input type="number" name="ingredientQty" id="ingredientQty" class="modal-input" placeholder="Qty" 
+          *ngIf="ingredients != undefined" required>
+          <h3 *ngIf="ingredients == undefined" style="color:red; width: 100%;"> No available ingredients</h3>
+          <br>
+          <br>
+          <div class="button-mid">
+            <!-- (4) Onclick push the Input to an Array -->
+            <button class="modal-button-add" type="submit">Add Ingredient&nbsp; <i class="fas fa-plus"></i></button>
+          </div>
+        </form>
+      </div>
+      <div class="h-20">
+        <h4>{{ inputProductArray.product_name }} Ingredients Added List</h4>
+      </div>
+      <div class="content-right">
+        <table>
+           <!-- (5) Output the Array -->
+          <tr *ngFor="let sample of arraySample; let i = index;">
+             <!-- (6) Output the Array -->
+            <td class="td-10"><div class="li-50">{{ sample }}</div></td>
+            <td><button (click)="removeIng(i)" type="button" class="card-delete-button">Delete </button></td>
+          </tr>
+        </table>
+      </div>
+      <div class="content-full">
+        <div class="button-mid">
+          <br>
+          <br>
+          <button type="button" (click)="backToAdd()" class="modal-button" type="button">Back</button>
+          <button type="submit" (click)="finishAdd()" class="modal-button" type="button" *ngIf="ingredients != undefined">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf = "openAddCat" class="modal" (submit)="addCategory($event)">
+    <div class="modal-content-global">
+      <!-- Onclick close modal -->
+      <button (click)="closeCatModal()" class="close-modal"><i class="fas fa-times"></i>&nbsp;close</button> 
+        <h2><i class="fas fa-indent"></i>&nbsp; Create Category</h2>
+        <hr>
+        <!-- (1) Input added product name -->
+          <div>
+            <form id="form-add-product" ngNativeValidate>
+              <input name="input_category_name" class="modal-input" type="text" 
+              placeholder="Name" required>
+              <br>
+              <br>
+              <br>
+              <div class="button-mid">
+                <!-- close add Product Modal and Opens Add Ingredient Modal -->
+                <button type="submit" class="modal-button-add">Save</button>
+            </div>
+            </form>
+            <div class="modal-div-right">
+                <li *ngFor="let category of category">{{ category.name }} 
+                  &nbsp; <button (click)="openEditCatModal(category)" class="card-edit-button">Edit</button>                
+                  &nbsp; <button (click)="openDeleteCatModal(category)" class="card-delete-button">Delete</button>
+                </li>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="deleteCatModal" class="modal">
+    <div class="modal-content-global">
+      <button type="button" (click)="closeDeleteCatModal()" class="close-modal"><i class="fas fa-times"></i>&nbsp;close</button> 
+      <h2><i class="fas fa-exclamation-triangle" style="color: red"></i>&nbsp; Delete</h2>
+      <hr>
+      <p>Are you sure to delete?</p>
+      <div class="view">
+        <h3>{{ categoryDelete.name }}</h3>
+      </div>
+      <div class="button-mid">
+        <button (click)="closeDeleteCatModal()" class="modal-button">No</button>
+        <button (click)="deleteCategory()" type="submit" class="card-delete-button">Yes</button>
+      </div>
+    </div>
+  </div>
+   <div *ngIf = "openEditCat" class="modal">
+    <div class="modal-content-global">
+      <!-- Onclick close modal -->
+      <button (click)="closeEditCatModal()" class="close-modal"><i class="fas fa-times"></i>&nbsp;close</button> 
+        <h2><i class="fas fa-edit"></i>&nbsp; Edit Category</h2>
+        <hr>
+        <!-- (1) Input added product name -->
+          <div>
+              <h1>{{ editCategory.name }}</h1>
+              <input name="edit_category_name" class="modal-input" type="text" [(ngModel)]="updateCategoryInput" placeholder="Edit Category Name">
+              <br>
+              <br>
+              <br>
+              <div class="button-mid">
+                <!-- close add Product Modal and Opens Add Ingredient Modal -->
+                <button type="submit" (click)="updateCategory()" class="modal-button-add"><i class="fas fa-edit"></i>&nbsp; Save</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</nav>

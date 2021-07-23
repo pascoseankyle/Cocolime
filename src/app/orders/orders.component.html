@@ -1,0 +1,46 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
+    <title>Inventory Management System</title>
+</head>
+
+<body>
+    <div class="sidenavbar">
+
+        <mat-sidenav-container autosize>
+            <mat-sidenav class="sidenav" #drawer mode="side" opened="true">
+                <img src="../assets/logo.png" class="inventory-logo">
+
+                <button mat-button class="sidebarcontent" routerLink="/main"><mat-icon class="dashboard">dashboard</mat-icon> Dashboard</button>
+                <button mat-button class="sidebarcontent" routerLink="/orders"><mat-icon class="orders">shopping_cart</mat-icon> Orders</button>
+                <button mat-button class="sidebarcontent" routerLink="/stocks"><mat-icon class="stocks">inventory_2</mat-icon> Stocks</button>
+                <button mat-button class="sidebarcontent" routerLink="/supply"><mat-icon class="supply">local_shipping</mat-icon> Supply</button>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div>
+                    <mat-toolbar color="primary" class="navbar">
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                          <mat-icon>menu</mat-icon>
+                      </button>
+                        <span>INVENTORY SYSTEM</span>
+                        <span class="example-spacer"></span>
+
+                        <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                          <mat-icon>person</mat-icon>
+                      </button>
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" (click)="logoutFunction();">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                    </mat-toolbar>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+
+</body>

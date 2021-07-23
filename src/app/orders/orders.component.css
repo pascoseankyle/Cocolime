@@ -1,0 +1,80 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.poppins-regular {
+    font-family: 'Poppins', sans-serif;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+    height: 100%;
+    background-color: #FBFBFB;
+}
+
+mat-sidenav {
+    padding: 0px;
+    background-color: whitesmoke;
+    color: #404040;
+}
+
+mat-sidenav {
+    width: 240px;
+}
+
+.admin-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.dashboard {
+    margin-left: -75px;
+    margin-right: 10px;
+}
+
+.orders {
+    margin-left: -100px;
+    margin-right: 10px;
+}
+
+.stocks {
+    margin-left: -100px;
+    margin-right: 10px;
+}
+
+.supply {
+    margin-left: -100px;
+    margin-right: 10px;
+}
+
+.inventory-logo {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 185px;
+    height: 70px;
+}
+
+.sidenavbar {
+    height: 100%;
+}
+
+.sidebarcontent {
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidenav {
+    border-right: 0.75px solid #ECECEC;
+}
+
+.navbar {
+    background-color: #BFBA87;
+    font-size: 23px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}

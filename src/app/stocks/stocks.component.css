@@ -1,0 +1,420 @@
+/* TO ALIGN MAT-ICON TO THE TEXT */
+.aligned-with-icon {
+  margin-top: -4px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.itemHistory {
+  margin-left: -13%;
+  margin-right: 10px;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+  height: 100%;
+  background-color: #fbfbfb;
+}
+
+mat-sidenav {
+  padding: 0px;
+  background-color: whitesmoke;
+  color: #404040;
+}
+
+mat-sidenav {
+  width: 240px;
+}
+
+.logout {
+  margin-right: 5px;
+}
+
+.admin-profile {
+  margin-right: 10px;
+}
+
+th {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+/* TOP CONTENT BUTTONS */
+
+.btns {
+  position: absolute;
+  margin-left: -24%;
+  margin-top: 2%;
+}
+
+.add-button {
+  margin-left: -50%;
+  background-color: #37a641;
+  color: #fbfbfb;
+  float: left;
+  margin-right: 1%;
+}
+
+.add-button:hover {
+  background-color: #fbfbfb;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #37a641;
+  border-width: 0.5px;
+  border-color: #37a641;
+}
+
+.view-archives {
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  float: left;
+  margin-top: -3.6%;
+  margin-left: 600px;
+  font-weight: bold;
+  background-color: #00796b;
+  color: #fbfbfb;
+}
+
+.view-archives:hover {
+  background-color: #fbfbfb;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #00796b;
+  border-width: 0.5px;
+  border-color: #00796b;
+}
+.search {
+  width: 394px;
+  display: inline-block;
+  margin-left: 73.3%;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: -5%;
+}
+
+.searchField {
+  height: 25px;
+}
+.iLabel {
+  position: absolute;
+  margin-top: 7px;
+}
+
+.edit-button {
+  background-color: #426fe2;
+  margin-right: 5px;
+}
+
+.delete-button {
+  background-color: #e01818;
+}
+
+.admin-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.dashboard {
+  margin-left: -75px;
+  margin-right: 10px;
+}
+
+.orders {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.stocks {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.supply {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.inventory-logo {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 185px;
+  height: 70px;
+}
+
+.sidenavbar {
+  height: 100%;
+}
+
+.sidebarcontent {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.selected {
+  background-color: #bababa;
+  color: #000000;
+}
+
+.sidenav {
+  border-right: 0.75px solid #ececec;
+}
+
+.navbar {
+  background-color: #bab583;
+  font-size: 23px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+/* TABLE STYLE */
+
+table {
+  margin-right: 80px;
+  margin-top: 30px;
+  width: 100%;
+  background-color: #fbfbfb;
+}
+
+.tableSize {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.td1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  padding: 1%;
+}
+
+.onStock {
+  background-color: #00ac23;
+  color: #fbfbfb;
+  border-radius: 5rem;
+  width: 75px;
+  margin-left: 15%;
+}
+
+.minStock {
+  background-color: #e9b806;
+  color: #fbfbfb;
+  border-radius: 5rem;
+  width: 120px;
+  margin-left: -2%;
+}
+
+.lowStock {
+  background-color: #f08031;
+  color: #fbfbfb;
+  border-radius: 5rem;
+  width: 85px;
+  margin-left: 15%;
+}
+
+.noStock {
+  background-color: #e32f2f;
+  color: #fbfbfb;
+  border-radius: 5rem;
+  width: 75px;
+  margin-left: 15%;
+}
+
+.td {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  padding: 2%;
+}
+
+.th {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  width: 170px;
+}
+
+.actBtn {
+  width: 100px;
+  margin-left: 0%;
+}
+
+.edit-button {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 5px;
+  background-color: #3e66db;
+  color: #ffffff;
+  width: 110px;
+}
+
+.edit-button:hover {
+  background-color: #fbfbfb;
+  color: #3e66db;
+}
+
+.editIcon {
+  font-size: 21px;
+  margin-right: -3%;
+  margin-left: -6%;
+}
+
+.archive-button {
+  display: inline;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+
+  background-color: #f34542;
+  color: #ffffff;
+  width: 110px;
+}
+
+.archive-button:hover {
+  background-color: #fbfbfb;
+  color: #f34542;
+}
+.archiveIcon {
+  font-size: 21px;
+  margin-left: -10%;
+}
+
+/* EDIT MODAL STYLES */
+
+mat-form-field {
+  margin-top: 10px;
+}
+
+mat-divider {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.close-button {
+  margin-left: 700px;
+  font-size: 15px;
+}
+
+.first-row {
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+
+.second-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.third-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.fourth-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.product-name {
+  width: 260px;
+  margin-right: 25px;
+}
+
+.quantity {
+  width: 215px;
+  margin-right: 3.5%;
+}
+
+.description {
+  width: 100%;
+}
+
+.date-expiry {
+  width: 40%;
+  margin-right: 25px;
+}
+
+.price {
+  width: 30%;
+  margin-right: 25px;
+}
+
+.minimum {
+  width: 30%;
+}
+
+.remarks {
+  width: 100%;
+}
+
+.add-stocks {
+  float: right;
+  margin-right: 2%;
+  margin-bottom: 10px;
+  font-size: 15px;
+  background-color: #37a641;
+}
+
+.add-button {
+  margin-left: 453px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  background-color: #37a641;
+}
+
+.measurement {
+  width: 50%;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.input-editstocks {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.label-editstocks {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: green !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: green !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: green !important;
+}

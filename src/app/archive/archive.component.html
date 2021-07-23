@@ -1,0 +1,83 @@
+<mat-list role="list">
+
+    <div class="header">
+        <h2>ARCHIVE
+        <button mat-icon-button class="close-button" aria-label="Example icon-button with heart icon" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        </button>
+      </h2>
+    </div>
+    <br>
+    <mat-divider style="margin-top: 10px;"></mat-divider>
+    <div class="mat-elevation-z8 tableSize">
+        <table mat-table [dataSource]="productInfoTableDataSource"  matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="Column1">
+            <th mat-header-cell hidden class="th" *matHeaderCellDef > ID </th>
+            <td mat-cell hidden class="td" *matCellDef="let element"> {{element.item_id}} </td>
+          </ng-container>
+      
+          <!-- ITEM_Name Column -->
+          <ng-container matColumnDef="Column2">
+            <th mat-header-cell class="th" *matHeaderCellDef > Product Name </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.item_name}} </td>
+          </ng-container>
+      
+          <!-- Item_desc Column -->
+          <ng-container matColumnDef="Column3">
+            <th mat-header-cell class="th" *matHeaderCellDef > Description </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.item_desc}} </td>
+          </ng-container>
+      
+          <!-- item_quant Column -->
+          <ng-container matColumnDef="Column4">
+            <th mat-header-cell class="th" *matHeaderCellDef > Quantity </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.item_quant}} </td>
+          </ng-container>
+
+          <!-- item_minimum Column -->
+          <ng-container matColumnDef="Column5">
+            <th mat-header-cell class="th" *matHeaderCellDef > Minimum </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.item_minimum}} </td>
+          </ng-container>
+
+           <!-- item_price Column -->
+           <ng-container matColumnDef="Column6">
+            <th mat-header-cell class="th" *matHeaderCellDef > Price </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.item_price}} </td>
+          </ng-container>
+        
+          <!-- date_expiry Column -->
+          <ng-container matColumnDef="Column7">
+            <th mat-header-cell class="th" *matHeaderCellDef > DateExpiry </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.date_expiry}} </td>
+          </ng-container>
+
+           <!-- remarks Column -->
+           <ng-container matColumnDef="Column8">
+            <th mat-header-cell class="th" *matHeaderCellDef > Remarks </th>
+            <td mat-cell class="td" *matCellDef="let element"> {{element.remarks}} </td>
+          </ng-container>
+
+          <!-- remarks Column -->
+          <ng-container matColumnDef="ActionColumn">
+            <th mat-header-cell *matHeaderCellDef class="th" style="text-align: center;"> Action </th>
+            <td mat-cell  *matCellDef="let element">
+                <div class="actBtn">
+                 <button mat-raised-button class="restoreBtn" (click)="recProduct(element.item_id);"><mat-icon>unarchive</mat-icon>Restore</button>
+                 <button  mat-raised-button  class="archive-button"  (click)="delProduct(element.item_id);"><mat-icon>delete_forever</mat-icon>Delete</button>
+                </div>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    <!-- <button class="add-button" (click)="addProduct()" mat-flat-button color="warn">Add</button> -->
+
+</mat-list>

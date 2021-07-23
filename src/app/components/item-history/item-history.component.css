@@ -1,0 +1,219 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+  height: 100%;
+  background-color: #fbfbfb;
+}
+
+mat-sidenav {
+  padding: 0px;
+  background-color: whitesmoke;
+  color: #404040;
+}
+
+mat-sidenav {
+  width: 240px;
+}
+
+.admin-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.dashboard {
+  margin-left: -75px;
+  margin-right: 10px;
+}
+
+.orders {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.stocks {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.itemHistory {
+  margin-left: -13%;
+  margin-right: 10px;
+}
+
+.supply {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.inventory-logo {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 185px;
+  height: 70px;
+}
+
+.sidenavbar {
+  height: 100%;
+}
+
+.sidebarcontent {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidenav {
+  border-right: 0.75px solid #ececec;
+}
+
+.navbar {
+  background-color: #bfba87;
+  font-size: 23px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.roundbtn {
+  border-radius: 7rem;
+}
+
+.btnpad {
+  margin: 1%;
+}
+
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+
+.dark-modal .close {
+  color: white;
+}
+
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+
+/* RADIO BUTTONS STYLES */
+
+.topContent {
+  width: 100%;
+  height: fit-content !important;
+  margin: auto;
+  margin-top: 1%;
+  display: flex;
+  margin-left: 3%;
+
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -2%;
+}
+
+mat-radio-button {
+  padding: 10%;
+  margin-left: 5%;
+}
+
+#radioLabel {
+  text-align: center;
+  margin-right: 30%;
+  font-size: 30px;
+}
+
+:host ::ng-deep .mat-radio-container {
+  height: 20px;
+  width: 20px;
+  margin-right: 10%;
+}
+:host ::ng-deep .mat-radio-outer-circle {
+  height: 20px;
+  width: 20px;
+}
+:host ::ng-deep .mat-radio-inner-circle {
+  height: 20px;
+  width: 20px;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  opacity: 0.1 !important; /*click effect color change*/
+  background-color: #357555 !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #357555 !important; /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: #357555 !important; /*outer ring color change*/
+}
+
+/* DATE PICKER STYLES */
+
+/* TABLE STYLES GOES HERE */
+table {
+  margin-right: 80px;
+  margin-top: 30px;
+  width: 100%;
+  background-color: #fbfbfb;
+}
+
+.tableSize {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.td {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  padding: 1.8%;
+}
+
+.th {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #282828;
+  text-align: center;
+  width: 170px;
+}
+
+.exportBtn {
+  background-color: #37a641;
+  margin-right: 6%;
+  margin-bottom: 0%;
+  color: #fbfbfb;
+  font-family: Poppins;
+}
+
+.exportBtn:hover {
+  background-color: white;
+  color: #37a641;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.clearBtn {
+  background-color: #3e66db;
+  color: #fbfbfb;
+  margin-left: 5px;
+  font-family: Poppins;
+}
+
+.clearBtn:hover {
+  background-color: #fbfbfb;
+  color: #3e66db;
+  font-family: Poppins;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

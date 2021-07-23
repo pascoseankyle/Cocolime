@@ -1,0 +1,95 @@
+mat-form-field {
+  margin-top: 10px;
+}
+
+mat-divider {
+  width: 500px;
+  margin-left: 15px;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close-button {
+  margin-left: 490px;
+}
+
+.first-row {
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+
+.second-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.third-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.fourth-row {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.product-name {
+  width: 260px;
+  margin-right: 25px;
+}
+
+.quantity {
+  width: 215px;
+}
+
+.description {
+  width: 500px;
+}
+
+.date-expiry {
+  width: 170px;
+  margin-right: 25px;
+}
+
+.price {
+  width: 170px;
+  margin-right: 25px;
+}
+
+.minimum {
+  width: 110px;
+}
+
+.remarks {
+  width: 500px;
+}
+
+.add-button {
+  margin-left: 453px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  background-color: #37a641;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
