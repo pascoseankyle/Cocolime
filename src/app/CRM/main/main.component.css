@@ -1,0 +1,179 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+}
+
+.itemHistory {
+  margin-left: -13%;
+  margin-right: 10px;
+}
+
+/* .btns {
+  position: absolute;
+  margin-left: -24%;
+  margin-top: 2%;
+} */
+
+.add-button {
+  /* margin-left: -50%; */
+  background-color: #37a641;
+  color: #fbfbfb;
+  float: left;
+  /* margin-right: 1%; */
+}
+
+.add-button:hover {
+  background-color: #fbfbfb;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #37a641;
+  border-width: 0.5px;
+  border-color: #37a641;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+  height: 100%;
+  background-color: #fbfbfb;
+}
+
+mat-sidenav {
+  padding: 0px;
+  background-color: whitesmoke;
+  color: #404040;
+}
+
+mat-sidenav {
+  width: 240px;
+}
+
+.admin-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.dashboard {
+  margin-left: -75px;
+  margin-right: 10px;
+}
+
+.orders {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.stocks {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.supply {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.inventory-logo {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 185px;
+  height: 70px;
+}
+
+.sidenavbar {
+  height: 100%;
+}
+
+.sidebarcontent {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidenav {
+  border-right: 0.75px solid #ececec;
+}
+
+.navbar {
+  background-color: #bfba87;
+  font-size: 23px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.roundbtn {
+  border-radius: 7rem;
+}
+
+.btnpad {
+  margin: 1%;
+}
+
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+
+.dark-modal .close {
+  color: white;
+}
+
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+
+/* modal animation */
+
+.modalFade {
+  animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  /* Firefox */
+  -webkit-animation: fadeIn 2s;
+  /* Safari and Chrome */
+  -o-animation: fadeIn 2s;
+  /* Opera */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

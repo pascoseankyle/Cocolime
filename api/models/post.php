@@ -390,5 +390,57 @@
 			);
 		}
 
+
+
+                // ----------------------------------------- CRM -------------------------------------------
+
+            //ADD TABLE FUNCTION
+		function addTable($dt) {
+            $payload = $dt;
+
+            $this->sql = "INSERT INTO crm_tables_tb (table_name, table_capacity, status_id) VALUES 
+            ('$dt->table_name', '$dt->table_capacity', '$dt->status_id')"; 
+            
+            $this->conn->query($this->sql);
+
+            $this->data = $payload;
+
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Staff',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
+        }
+        //DELETE A PRODUCT FUNCTION
+
+		function delTable($dt) {
+            $payload = $dt;
+
+            $this->sql = "DELETE FROM crm_tables_tb WHERE table_id = '$dt->table_id'"; 
+            
+            $this->conn->query($this->sql);
+
+            $this->data = $payload;
+
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Admin',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
+        }
+
+		//UPDATE A PRODUCT
+
+		function editTable($dt){
+
+            $payload = $dt;
+            $this->sql = " UPDATE crm_tables_tb SET table_name='$dt->table_name1', table_capacity='$dt->table_capacity1', status_id='$dt->status_id1' WHERE table_id='$dt->table_id1'";
+            $this->conn->query($this->sql);
+            return $this->select('tables', null);
+        }
+
+        //------------------------------------------END OF CRM-------------------------------------------------
 	}
 ?>
