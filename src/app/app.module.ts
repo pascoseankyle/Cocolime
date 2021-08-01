@@ -11,7 +11,7 @@ import { CardpanelComponent } from './index/cardpanel/cardpanel.component';
 import { IndexComponent } from './index/index.component';
 import { NavbarComponent } from './index/navbar/navbar.component';
 
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -70,6 +70,8 @@ import { EditServiceService } from './services/editService/edit-service.service'
 import { ItemHistoryComponent } from './components/item-history/item-history.component';
 import { CdkTableExporterModule, MatTableExporterModule } from 'mat-table-exporter';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CRMmainComponent } from './CRM/main/main.component';
+import { DiningComponent } from './CRM/dining/dining.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -87,13 +89,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
     ArchiveComponent,
     EditStockComponent,
     ItemHistoryComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    CRMmainComponent,
+    DiningComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-  //NgbModule,
+    NgbModule,
     FontAwesomeModule,
     FormsModule,
     BrowserAnimationsModule,

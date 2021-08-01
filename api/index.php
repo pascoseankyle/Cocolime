@@ -143,6 +143,26 @@
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->selectM($d));
 				break;
+				// ------------------- CRM ------------------------
+				case 'tables':
+					echo json_encode($post->generalQuery("SELECT * FROM crm_tables_tb"));
+					
+				break;
+				case 'addTable':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->addTable($d));
+				break;
+
+
+				case 'editTable':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->editTable($d));
+				break;
+
+				case 'delTable':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    echo json_encode($post->delTable($d));
+				break;
 				
 				default:
 					http_response_code(400);

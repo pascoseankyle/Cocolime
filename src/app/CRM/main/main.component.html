@@ -1,0 +1,206 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" /> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>CRM System</title>
+</head>
+
+<body>
+    <div class="sidenavbar">
+
+        <mat-sidenav-container autosize>
+            <mat-sidenav class="sidenav" #drawer mode="side" opened="true">
+                <img src="../assets/logo.png" class="inventory-logo">
+
+                <button mat-button class="sidebarcontent" routerLink="/crm"><mat-icon class="dashboard">dashboard</mat-icon> Tables</button>
+                <button mat-button class="sidebarcontent" routerLink="/dining"><mat-icon class="stocks">event_seat</mat-icon> Dining</button>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div>
+                    <mat-toolbar color="primary" class="navbar">
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                          <mat-icon>menu</mat-icon>
+                      </button>
+                        <span>Customer Reception Management System</span>
+                        <span class="example-spacer"></span>
+
+                        <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                          <mat-icon>person</mat-icon>
+                      </button>
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" routerLink="/welcome">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                    </mat-toolbar>
+                </div>
+
+                <div class="container-fluid">
+                  <h1>Table List</h1>
+
+                    <button class="add-button" (click)="addModal(contentAdd)" mat-flat-button><mat-icon class="aligned-with-icon">add_circle_outline</mat-icon> Add Tables</button><br><br><br>
+
+                <div class="mat-elevation-z8 tableSize">
+                     
+                      <br>
+
+                                          
+                          <div class="table-responsive">
+                      
+                              <table class="table table-striped">
+                      
+                              <thead class="thead-dark">
+                                  <tr class="text-primary">
+                                  <th scope="col">Table No.</th>
+                                  <th scope="col">Table Name</th>
+                                  <th scope="col">No. of Seats</th>
+                                  <th scope="col">Availability</th>
+                                  <th scope="col">Action</th>
+                                  </tr>
+                              </thead>
+                      
+                              <tbody>
+                      
+                                  <tr *ngFor="let tables of tables">
+                      
+                                  <th class=" align-middle" scope="row">{{ tables?.table_id}}</th>
+                                  <td class=" align-middle">{{ tables?.table_name }}</td>
+                                  <td class=" align-middle">{{ tables?.table_capacity }}</td>
+                                 <td class=" align-middle">
+                                  <div *ngIf="tables?.status_id==1">Available</div>
+                                  <div *ngIf="tables?.status_id==2">Occupied</div>
+                                  <div *ngIf="tables?.status_id==3">Reserved</div>
+                                  </td>
+                                  <td class=" align-middle">
+                                      <button type="button" class="btnpad btn btn-warning" (click)="editForm(tables); editModal(contentEdit);">
+                                          <fa-icon [icon]="faEdit"></fa-icon>
+                                      </button>
+                      
+                                      <button type="button" class="btnpad btn btn-danger" (click)="delTable(tables.table_id);">
+                                          <fa-icon [icon]="faTrash"></fa-icon>
+                                      </button>
+                                  </td>
+                      
+                                  </tr>
+                              </tbody>
+                      
+                              </table>
+                      
+                          </div>
+                      
+                      </div>
+                </div>
+
+                
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+        
+    </div>
+
+    <!--MODALS-->
+
+<!--ADD MODAL-->
+<ng-template #contentAdd let-modal class=" modalFade">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h4 class="modal-title"><b>Add Table</b></h4>
+      <button type="button" class="close" aria-label="Close" mat-dialog-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group" hidden >
+          <label for="item_id">ID</label>
+          <input type="text" class="form-control" id="table_id" hidden>
+          <input type="text" class="form-control" value="{{username}}" id="modifiedBy" name="modifiedBy" [(ngModel)] = "modifiedBy" hidden>
+        </div> 
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="table_name">Table Name</label>
+            <input name="table_name" type="text" class="form-control" id="item_name" placeholder="Name" [(ngModel)]="table_name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="table_capacity">Table Capacity</label>
+            <input name="table_capacity" type="number" class="form-control" id="item_quant" placeholder="Quantity" [(ngModel)]="table_capacity">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="status_id">Table Availability</label>
+          <select id="status_id" name="status_id" class="form-control" [(ngModel)]="status_id">
+            <option value="1">Available</option>
+            <option value="2">Occupied</option>
+            <option value="3">Reserved</option>
+          </select>
+        </div>
+
+      </form>
+    </div>
+    </mat-dialog-content>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" mat-dialog-close>Close</button>
+      <button type="submit" class="btn btn-primary" (click)="addTable()" mat-dialog-close>Confirm</button>
+    </div>
+  </ng-template>
+
+  <!--EDIT MODAL-->
+
+<ng-template #contentEdit let-modal class=" modalFade">
+  <mat-dialog-content>
+  <div class="modal-header">
+    <h4 class="modal-title"><b>Edit Table</b></h4>
+    <button type="button" class="close" aria-label="Close" mat-dialog-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group" hidden >
+        <label for="table_id">ID</label>
+        <input name="table_id" type="text" class="form-control" id="table_id" [(ngModel)]="tblInfo.table_id1" hidden>
+        <input type="text" class="form-control" value="{{username1}}" id="modifiedBy1" name="modifiedBy1" [(ngModel)] = "modifiedBy1" disabled>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="table_name1">Table Name</label>
+          <input name="table_name1" type="text" class="form-control" id="table_name1" placeholder="NAME" [(ngModel)]="tblInfo.table_name1">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="table_capacity">Table Capacity</label>
+          <input name="table_capacity1" type="number" class="form-control" id="table_capacity1" placeholder="CAPACITY" [(ngModel)]="tblInfo.table_capacity1">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="table_status1">Table Availability</label>
+          <select id="table_status1" name="table_status1" class="form-control" [(ngModel)]="tblInfo.status_id1">
+            <option value="1">Available</option>
+            <option value="2">Occupied</option>
+            <option value="3">Reserved</option>
+          </select>
+        </div>
+      </div>      
+    </form>
+  </div>
+</mat-dialog-content>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" mat-dialog-close>Close</button>
+    <button type="submit" class="btn btn-success" (click)="editTable($event);" mat-dialog-close>Confirm</button>
+  </div>
+</ng-template>
+
+</body>
+
+

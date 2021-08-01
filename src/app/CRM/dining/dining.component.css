@@ -1,0 +1,154 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .itemHistory {
+    margin-left: -13%;
+    margin-right: 10px;
+  }
+  mat-dialog-content{
+    width:350px;
+    
+  }
+  mat-sidenav-container,
+  mat-sidenav-content {
+    height: 100%;
+    background-color: #fbfbfb;
+  }
+  
+  mat-sidenav {
+    padding: 0px;
+    background-color: whitesmoke;
+    color: #404040;
+  }
+  
+  mat-sidenav {
+    width: 240px;
+  }
+  
+  .admin-name {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+  }
+  
+  .dashboard {
+    margin-left: -75px;
+    margin-right: 10px;
+  }
+  
+  .orders {
+    margin-left: -100px;
+    margin-right: 10px;
+  }
+  
+  .stocks {
+    margin-left: -100px;
+    margin-right: 10px;
+  }
+  
+  .supply {
+    margin-left: -100px;
+    margin-right: 10px;
+  }
+  
+  .inventory-logo {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 185px;
+    height: 70px;
+  }
+  
+  .sidenavbar {
+    height: 100%;
+  }
+  
+  .sidebarcontent {
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .sidenav {
+    border-right: 0.75px solid #ececec;
+  }
+  
+  .navbar {
+    background-color: #bfba87;
+    font-size: 23px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+  }
+  
+/* DINING PAGE CSS */
+
+.btn{
+  margin:5px;
+}
+.btn-table{	
+    border-style: dotted;     
+    border-radius: 20px 20px 20px 20px;
+	margin: 5px;
+	width: 150px;
+	height: 150px;	
+    font-size: 18px;	
+    text-decoration: none;
+    white-space: normal;
+    word-wrap: break-word;  
+    position: relative;
+    float: left; 
+}
+.btn-table:hover{
+	width: 150px;
+	height: 150px;	
+    font-size: 20px;	
+    text-decoration: none;
+    white-space: normal;
+    word-wrap: break-word; 	   
+    transition-duration: 0.4s; 
+}
+/* AVAILABLE */
+#btn-table-1{	        
+    background-color: #00fa03;
+	color: #ffffff;
+}
+/* Occupied */
+#btn-table-2{	        
+    background-color: #FFA500;
+	color: #ffffff;
+}
+/* Unavailable */
+#btn-table-3{	        
+    background-color: #808080;
+	color: #ffffff;
+}
+
+#status1{
+    content:"Available";
+}
+#status2{
+    content:"Occupied";
+}
+#status3{
+    content:"Unavailable";
+}
+
+ul#horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+	ul#horizontal-list li {
+		display: inline;
+	}
+.table {
+    display: table;   /* Allow the centering to work */
+    margin: 0 auto;
+}

@@ -18,4 +18,7 @@ toMenu():void {
 toInventory():void {
   this.router.navigate(['main']);
 }
+toCRM():void {
+  this.router.navigate(['crm']);
+}
 }

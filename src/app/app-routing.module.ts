@@ -9,6 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItemHistoryComponent } from './components/item-history/item-history.component';
 import { IndexComponent } from './index/index.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CRMmainComponent } from './CRM/main/main.component';
+import { DiningComponent } from './CRM/dining/dining.component';
 
 
 const routes: Routes = [
@@ -46,6 +48,15 @@ const routes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
+  },
+  {
+    path: 'crm',
+    component: CRMmainComponent,
+  }
+  ,
+  {
+    path: 'dining',
+    component: DiningComponent,
   }
   ,{ 
     path: '',   
