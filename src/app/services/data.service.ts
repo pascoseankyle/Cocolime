@@ -10,8 +10,8 @@ export class DataService {
 
   // apiURL = "http://localhost:8080/COCOLIME1/api/";
   // URL = 'http://localhost:8080/COCOLIME1/api/';
-  apiURL = "http://localhost/COCOLIME1/api/";
-  URL = 'http://localhost/COCOLIME1/api/';
+  apiURL = "http://localhost/COCOLIME/api/";
+  URL = 'http://localhost/COCOLIME/api/';
   sendApiRequest(method, data) {
     return <any>(
       this.http.post(this.apiURL + method, btoa(JSON.stringify(data)))

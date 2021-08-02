@@ -84,11 +84,33 @@ export class EditStockComponent implements OnInit {
   }
   async editProduct(e){
     e.preventDefault();
-    this.prodInfo.modifiedBy1 = this.modifiedBy1
-    console.log(this.prodInfo.modifiedBy1);
-    await this.ds.sendApiRequest("editProduct", this.prodInfo).subscribe(res => {
-      this.pullProducts();
-    })
+    console.log("HELLo EDIT");
+    if(this.prodInfo.item_minimum < this.prodInfo.item_quant || this.prodInfo.item_quant > this.prodInfo.item_minimum )
+    {
+      console.log("On Stock");
+
+    }
+    else if(this.prodInfo.item_minimum == this.prodInfo.item_quant || this.prodInfo.item_quant == this.prodInfo.item_minimum)
+    {
+      console.log("Minimum Stock");
+
+    }
+
+    else if(this.prodInfo.item_quant < this.prodInfo.item_minimum && this.prodInfo.item_quant > 0)
+    {
+      console.log("Low Stock");
+      
+    }
+
+    else if(this.prodInfo.item_quant == 0)
+    {
+      console.log("No Stock");
+    }
+    // this.prodInfo.modifiedBy1 = this.modifiedBy1
+    // console.log(this.prodInfo.modifiedBy1);
+    // await this.ds.sendApiRequest("editProduct", this.prodInfo).subscribe(res => {
+    //   this.pullProducts();
+    // })
   }
 
 }

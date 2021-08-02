@@ -67,17 +67,14 @@
                       <!-- ID Column -->
                       <ng-container matColumnDef="statusCol" >
                         <th mat-header-cell class="th" *matHeaderCellDef  > <span style="margin-right: 20% !important;">Status</span> </th>
-                        <ng-container *matCellDef="let status">
-                        <td mat-cell class="td1" *ngIf="status.item_quant > status.item_minimum || status.item_quant > 99 && status.item_quant != status.item_minimum; else min"  style="border-right: 2px solid #00AC23;"><p class="onStock">  On stock  </p></td>
-                        <ng-template #min>
-                          <td mat-cell class="td1"  style="white-space:nowrap;" style=" border-right: 2px solid #FFD334;" *ngIf="(status.item_quant == status.item_minimum); else low"><p class="minStock"> Minimum stock</p> </td>
-                        </ng-template>
-                        <ng-template #low>
-                          <td mat-cell class="td1"  style="white-space:nowrap;" style=" border-right: 2px solid #F08031;"*ngIf="status.item_quant != 0  && status.item_quant < status.item_minimum; else noS"> <p class="lowStock">Low stock</p></td>
-                        </ng-template>
-                        <ng-template #noS>
-                          <td mat-cell class="td1"  style="white-space:nowrap;" *ngIf="(status.item_quant == 0) " style=" border-right: 2px solid #E32F2F;"> <p class="noStock">No Stock</p> </td>
-                        </ng-template>
+                        <ng-container *matCellDef="let element">
+                        <td mat-cell class="td1" *ngIf="element.item_quant > element.item_minimum || element.item_quant > 99;"  style="border-right: 2px solid #00AC23;"><p class="onStock">  On stock  </p></td>
+    
+                          <td mat-cell class="td1"  style="white-space:nowrap;" style=" border-right: 2px solid #FFD334;" *ngIf="(element.item_quant == element.item_minimum) || element.item_quant <= element.item_minimum && element.item_quant != 0;"><p class="minStock"> Minimum stock</p> </td>
+                        
+                       
+                          <td mat-cell class="td1"  style="white-space:nowrap;" *ngIf="element.item_quant == 0 " style=" border-right: 2px solid #E32F2F;"> <p class="noStock">No Stock</p> </td>
+                       
                         </ng-container>
                       </ng-container>
                   
