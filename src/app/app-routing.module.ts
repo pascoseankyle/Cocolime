@@ -11,7 +11,12 @@ import { IndexComponent } from './index/index.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CRMmainComponent } from './CRM/main/main.component';
 import { DiningComponent } from './CRM/dining/dining.component';
+import { POSComponent } from './POS/pos/pos.component';
 
+import { OrderComponent } from './POS/index/order/order.component';
+
+
+import { ReceiptComponent } from './POS/receipt/receipt.component';
 
 const routes: Routes = [
   
@@ -57,7 +62,23 @@ const routes: Routes = [
   {
     path: 'dining',
     component: DiningComponent,
+  },
+
+  {
+    path: 'pos',
+    component: POSComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
+  },
+  {
+    path: 'receipt/:code/:cash',
+    component: ReceiptComponent
   }
+
+
+
   ,{ 
     path: '',   
     redirectTo: 'welcome', 

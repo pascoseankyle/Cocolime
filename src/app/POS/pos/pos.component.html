@@ -1,0 +1,232 @@
+
+
+       <!--       <div class="search-input">
+        <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+      </div>
+  
+       -->
+<div class="pos">
+  <div class="sidenavbar">
+
+    <mat-sidenav-container autosize>
+        <mat-sidenav class="sidenav" #drawer mode="side" opened="false">
+            <img src="../assets/logo.png" class="inventory-logo">
+
+            <button mat-button class="sidebarcontent" routerLink="/order" ><mat-icon class="dashboard">dashboard</mat-icon> Orders</button>
+           <!--  <button mat-button style="margin-left: 33px;" class="sidebarcontent" routerLink="" ><mat-icon class="stocks">inventory_2</mat-icon> Point Of Sale</button> -->
+           <!--  <button mat-button style="margin-left: 7px;" class="sidebarcontent" >	<mat-icon class="itemHistory">print</mat-icon>Generate Report</button> -->
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div>
+                <mat-toolbar color="primary" class="navbar">
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                      <mat-icon>menu</mat-icon>
+                  </button>
+                    <span>POINT OF SALE</span>
+                    <span class="example-spacer"></span>
+
+                    <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                      <mat-icon>person</mat-icon>
+                  </button>
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" >
+                    <mat-icon>logout</mat-icon>
+                </button>
+                </mat-toolbar>
+          
+  <div class="pos-content">
+    
+  <div class="leftpane">
+    
+    <div class="orderContainer">
+      
+      <table  *ngFor="let pre of preOrder">
+          
+            
+          
+        <tr ><mat-accordion >
+         <mat-expansion-panel hideToggle style="margin-bottom: 10px ; ">
+            <mat-expansion-panel-header >
+              <mat-panel-title> 
+                 <td> 
+                    {{pre.quantity}}
+                </td>
+               
+                  <td style="margin-left: 20px;">
+                    {{pre.product_name}}
+                  </td>
+                 
+                 <td style="margin-left: auto; margin-right: 0;"> 
+                   
+                     {{pre.price | currency : 'PHP': 'symbol-narrow'}}
+                  </td> 
+              </mat-panel-title>
+                
+            </mat-expansion-panel-header>
+              <mat-grid-list cols="3" rowHeight="2:1">
+  
+                <mat-grid-tile>
+                  Qty: {{pre.quantity}}
+                  
+                </mat-grid-tile>
+  
+                <mat-grid-tile>
+                  Price: {{pre.price | currency : 'PHP': 'symbol-narrow'}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-icon style="color: red; cursor: pointer;" (click)="delPre(pre.order_ID);">delete</mat-icon>&nbsp;
+                </mat-grid-tile>
+                
+              </mat-grid-list>
+            </mat-expansion-panel>
+           
+          </mat-accordion>
+       
+         </tr>
+        
+      </table>
+     
+    </div>
+      <div class="sticky" >
+        <mat-list>
+          <!-- <mat-list-item>
+            <button>Add Discount</button>
+            <button (click)="countUp">Add Quantity</button>
+            <button (click)="countDown">decrease Discount</button>
+          </mat-list-item> -->
+          <mat-list-item> <strong>SubTotal</strong>   <span name="total" ngDefaultControl class="summary1"> {{subtotal - subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
+          <mat-list-item > <strong>Tax</strong> <span name="Tax" ngDefaultControl class="summary"> {{subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
+          <mat-list-item > <strong>Total</strong> <span name="subtotal" ngDefaultControl class="summary"> {{subtotal | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
+          <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" [(ngModel)]="cashInput" style="width: 20%; text-align: right;"></span> </mat-list-item>
+         </mat-list>
+        <mat-grid-list cols="2" rowHeight="2:1">
+
+         <!-- <mat-grid-tile>
+          <button class="gridBttn" style="height: 100%; width: 100%; ">Warn</button>
+            Qty: <span name="inputText" ngDefaultControl id="inputText">{{inputText}}</span>
+         </mat-grid-tile> -->
+ 
+         <!--  <mat-grid-tile>
+            <button class="gridBttn"  style="height: 100%; width: 100%; ">Primary</button>
+          </mat-grid-tile> -->
+          <mat-grid-tile>
+            
+            <button class="gridBttn"  (click)="btnSubmit()" style="height: 100%; width: 100%; "><img src="../assets/submit.png"  style="width: 70px; height: 70px;"></button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button class="gridBttn" (click)="clearOrder()" style="height: 100%; width: 100%;"><img src="../assets/clear1.png"  style="width: 70px; height: 70px;"><br><span ></span></button>
+          </mat-grid-tile>
+        
+        </mat-grid-list>
+      </div>
+  </div>
+ 
+  <!--     <div class="input" style="display: block;">
+        
+      </div> 
+      
+        -->
+          
+      
+     
+       
+       <!-- Menu Table-->
+      <div class="rightpane">
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs ">
+          <mat-tab label="For Starters" >  
+           
+            <ng-template mat-tab-label>
+              <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;">
+              <span style="margin-left: 40px;">For Starters</span>
+          </ng-template>
+          
+           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product of product" >
+            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'For Starters'">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
+                  <p > {{product.product_name}}</p>
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <p>Enter Quantity:</p> 
+                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                
+                   <button   (click)="addPreOrder(product)" >Confirm</button>
+            </mat-expansion-panel>
+        
+          </mat-accordion>
+          </mat-tab>
+         
+          <mat-tab label="From The Grill">  
+            <ng-template mat-tab-label>
+              <img src="assets/faveIcon/Grill.png" style="height: 60px; width: 70px;">
+              <span style="margin-left: 40px;" >From The Grill</span>
+          </ng-template>
+          <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px;" *ngFor="let product of product" >
+            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'From The Grill'">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
+                  <p > {{product.product_name}}</p>
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <p>Enter Quantity:</p> 
+                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                
+                   <button   (click)="addPreOrder(product)" >Confirm</button>
+            </mat-expansion-panel>
+        
+          </mat-accordion>
+          </mat-tab>
+  
+          <mat-tab label="Oodles Of Noodles">  
+            <ng-template mat-tab-label>
+              <img src="assets/faveIcon/Noodles.png" >
+              <span style="margin-left: 40px;" >For Starters</span>
+          </ng-template>
+          <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product of product" >
+            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'Oodles Of Noodles'">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
+                  <p > {{product.product_name}}</p>
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <p>Enter Quantity:</p> 
+                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                
+                   <button   (click)="addPreOrder(product)" >Confirm</button>
+            </mat-expansion-panel>
+        
+          </mat-accordion>
+          </mat-tab>
+  
+          <mat-tab label="Soup For The Soul" >   
+            <ng-template mat-tab-label >
+              <img src="assets/faveIcon/Soup.png" style="height: 65px; width: 80px; " >
+              <span style="margin-left: 40px;" >Soup For The Soul</span>
+          </ng-template>
+          <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px;" *ngFor="let product of product" >
+            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'Soup For The Soul'">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
+                  <p > {{product.product_name}}</p>
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <p>Enter Quantity:</p> 
+                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                
+                   <button  closeAll (click)="addPreOrder(product)" >Confirm</button>
+                   
+            </mat-expansion-panel>
+        
+          </mat-accordion>
+          </mat-tab>
+          
+        </mat-tab-group>
+        
+      </div>
+    </div>
+  </div>

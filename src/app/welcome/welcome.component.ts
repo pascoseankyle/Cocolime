@@ -16,9 +16,15 @@ toMenu():void {
   this.router.navigate(['menu']);
 }
 toInventory():void {
-  this.router.navigate(['main']);
+  this.router.navigate(['stocks']);
 }
 toCRM():void {
   this.router.navigate(['crm']);
 }
+
+toPOS():void
+{
+  this.router.navigate(['pos'])
+}
+
 }

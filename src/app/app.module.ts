@@ -72,6 +72,16 @@ import { CdkTableExporterModule, MatTableExporterModule } from 'mat-table-export
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CRMmainComponent } from './CRM/main/main.component';
 import { DiningComponent } from './CRM/dining/dining.component';
+
+
+// POS COMPONENTS
+
+import { OrderComponent } from './POS/index/order/order.component';
+import { POSComponent } from './POS/pos/pos.component'; 
+import { ReceiptComponent } from './POS/receipt/receipt.component';
+import {NgxPrintModule} from 'ngx-print';
+
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -91,7 +101,13 @@ import { DiningComponent } from './CRM/dining/dining.component';
     ItemHistoryComponent,
     WelcomeComponent,
     CRMmainComponent,
-    DiningComponent
+    DiningComponent,
+
+    // POS COMPONENTS
+    OrderComponent,
+    POSComponent,
+    ReceiptComponent
+
   ],
   imports: [
     BrowserModule,
@@ -146,7 +162,8 @@ import { DiningComponent } from './CRM/dining/dining.component';
     MatTableExporterModule,
     CdkTableExporterModule,
        // HTTP
-       HttpClientModule
+       HttpClientModule,
+      NgxPrintModule
   ],
   exports: [MatFormFieldModule,
     MatInputModule,

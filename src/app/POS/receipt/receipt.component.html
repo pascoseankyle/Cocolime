@@ -1,0 +1,153 @@
+
+<!--PRODUCTS TABLE-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
+    <title>Inventory Management System</title>
+</head>
+
+<body>
+    <div class="sidenavbar">
+
+        <mat-sidenav-container autosize>
+            <mat-sidenav class="sidenav" #drawer mode="side" opened="false">
+                <img src="../assets/logo.png" class="inventory-logo">
+
+                <button mat-button class="sidebarcontent" routerLink="/order"><mat-icon class="dashboard">dashboard</mat-icon> Orders</button>
+                <button mat-button style="margin-left: 34px;" class="sidebarcontent" routerLink="/pos" ><mat-icon class="stocks">inventory_2</mat-icon> Point Of Sale</button>
+               <!--  <button mat-button class="sidebarcontent" >	<mat-icon class="itemHistory">print</mat-icon>Generate Report</button> -->
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div>
+                    <mat-toolbar color="primary" class="navbar">
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                          <mat-icon>menu</mat-icon>
+                      </button>
+                        <span>POINT OF SALE</span>
+                        <span class="example-spacer"></span>
+
+                        <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                          <mat-icon>person</mat-icon>
+                      </button>
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" >
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                    </mat-toolbar>
+                </div>
+                
+                
+                 
+                <div class="receipt-content">
+                      <mat-card class="invoice" id="print-section" >
+                        <img src="../assets/logo.png" class="inventory-logo">
+                        <div class="cocolimeInfo">
+                          Along Rizal Hiway, Across Times Square Cinema<br>
+                           Subic Bay, Rizal Hwy, Olongapo,<br>
+                            2200 Zambales<br>
+                            (047) 252 2412
+                        </div>
+                        <mat-list  *ngFor="let pre of preOrder">
+                          <!--  <mat-list-item > <strong class="total1">Order Name</strong> </mat-list-item>
+                           <hr class="hr">
+                           <mat-list-item > <strong class="total1">OrderQuantity</strong> <span class="inv1">0.0</span></mat-list-item>
+                           <hr class="hr"> -->
+                           <mat-list-item class="lineH t"  > 
+                             <p class="total"> {{pre.quantity}} {{pre.product_name}} </p>
+                             <span class="inv1"> {{pre.price | currency : 'PHP': 'symbol-narrow'}}</span>
+                            </mat-list-item>
+                          
+            
+                         </mat-list>
+                         <hr>
+                        <mat-list class="footer">
+                          
+                         <!--  <mat-list-item > <strong class="total1">Order Name</strong> </mat-list-item>
+                          <hr class="hr">
+                          <mat-list-item > <strong class="total1">OrderQuantity</strong> <span class="inv1">0.0</span></mat-list-item>
+                          <hr class="hr"> -->
+                          <mat-list-item class="lineH" > <strong class="total">SubTotal</strong> <span class="inv1">{{subtotal - subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
+                        
+                          <mat-list-item class="lineH"> <strong class="total">VAT</strong> <span class="inv1">{{subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
+              
+                          <mat-list-item class="lineH"> <strong class="total">Cash</strong> <span class="inv1"> {{cash | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
+
+                          <mat-list-item class="lineH" > <strong class="total1">TOTAL</strong> <strong class="inv"> {{subtotal | currency : 'PHP': 'symbol-narrow' : ''}}</strong></mat-list-item>
+          
+                          <div class="info" *ngFor="let code of code">
+                            <span class="inv1">Order Code #: {{code.list_order_code}} </span>
+                            <br>
+                            <span class="inv1">Date and Time: {{code.list_order_date  | date: 'MMM dd, yyyy'}}</span>
+                          </div>
+                          
+                        </mat-list>
+
+                        
+                        
+                        
+                        
+                      </mat-card>
+                      <div class="btnCnt">
+                        <button  [useExistingCss]="true" printTitle="MyTitle" style="width: 50vh; border-radius: 5px; margin-top: 1px;"  printSectionId="print-section"  ngxPrint><img src="../assets/print.png"  style=" display: flex; margin: auto;"></button>
+                      </div>
+                </div>
+                      
+
+
+
+
+                    
+
+
+          
+                  
+          
+                  
+          
+    
+
+            
+
+
+
+
+      <!--  <div class="div-print-item">
+        <button onclick="window.print();"><i class="fas fa-print"></i>&nbsp; Print</button>
+      </div> -->
+    
+    <!-- <div>
+      <div class="search-input">
+        <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+      </div>
+      <div class="div-print-item">
+        <button><i class="fas fa-print"></i>&nbsp; Print</button>
+      </div>
+    </div> -->
+  <!-- </div> -->
+  
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+
+    
+<!--invoice table -->
+
+  <!--order table -->
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+
+  
+  
+  
+  
