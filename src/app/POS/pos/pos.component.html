@@ -101,10 +101,10 @@
           <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" [(ngModel)]="cashInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
           <mat-list-item > <strong>Table</strong> 
             <span name="subtotal" ngDefaultControl class="summary"> 
-                <select name="tables" id="tables" [(ngModel)]="tableSelected">
+                <select class="selectTable" name="tables" id="tables" [(ngModel)]="tableSelected">
                 
-                  <option option value="" disabled selected>Select Table</option>
-                  <option *ngFor="let tables of tables">{{tables.table_name}}</option>
+                  <option disabled selected value="" >Select Table</option>
+                  <option *ngFor="let tables of tables" >{{tables.table_name}}</option>
                 </select>
             </span> 
             </mat-list-item>
