@@ -51,6 +51,34 @@ public function addOrderlist($dt)
 }
 
 
+public function tableOccupied($dt)
+{
+
+    $code = 401;
+    $payload = null;
+    $remarks = "failed";
+    $message = "Unable to retrieve data";
+
+
+
+    $sql = "UPDATE `crm_tables_tb` SET `status_id` = '2' WHERE table_name = '$dt->table_name'";
+    $res = $this->gm->generalQuery1($sql, "");
+
+    if($res['code']!=200) {
+  
+        $code = 200;
+        $payload = $res;
+        $remarks = "success";
+        $message = "Successfully retrieved data";
+    }
+        
+    
+    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+}
+
+
+
 public function submittedOrder($dt)
 {
     

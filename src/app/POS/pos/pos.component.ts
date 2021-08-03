@@ -33,6 +33,9 @@ export class POSComponent implements OnInit, AfterContentInit {
   orderList: any = {};
   orderSubmitted: any = {};
 
+  tableSelected: any;
+  tableOccupied: any = {};
+
   constructor(
     public dialog: MatDialog,
     private ds: DataService,
@@ -60,6 +63,18 @@ export class POSComponent implements OnInit, AfterContentInit {
         
       })  
     }
+
+    else if(this.tableSelected == "" || this.tableSelected == null){  
+      Swal.fire({  
+        icon: 'error',  
+        title: 'Oops...',  
+        text: 'Please Select a table',  
+        
+      })  
+    }
+
+    
+
     else{
 
       this.cashEntered = this.cashInput;
@@ -74,7 +89,7 @@ export class POSComponent implements OnInit, AfterContentInit {
           this.orderList.list_order_code = this.reciptCode;
           this.orderList.list_order_total = this.subtotal;
           this.orderList.cashChange = this.cashEntered - this.subtotal;
-          
+          this.orderList.table_name = this.tableSelected;
 
           this.ds.apiReqPos("addOrderlist", this.orderList).subscribe((data1: any) => {
 
@@ -84,10 +99,24 @@ export class POSComponent implements OnInit, AfterContentInit {
               this.orderSubmitted.order_code = this.reciptCode;
 
               this.ds.apiReqPos("submittedOrder", this.orderSubmitted).subscribe((data2: any) => {
+
               console.log(data2);
               if(data2.status.remarks == "success")
               {
-                this.route.navigate(['/receipt', this.reciptCode, this.cashEntered]);
+                this.tableOccupied.table_name = this.tableSelected;
+                this.ds.apiReqPos("tableOccupied", JSON.parse(JSON.stringify(this.tableOccupied))).subscribe((data3: any) => {
+                  
+                  if(data3.status.remarks == "success")
+                  {
+
+                    this.route.navigate(['/receipt', this.reciptCode, this.cashEntered, this.tableSelected]);
+
+                  }
+
+                });
+
+
+             
               }
               });
             }
@@ -114,8 +143,7 @@ export class POSComponent implements OnInit, AfterContentInit {
     this.pullProduct();
     this.pullPreOrder();
     this.pullOrder();
-    this.getSubTotal();
-
+    this.availableTables();
 
   }
 
@@ -329,6 +357,14 @@ export class POSComponent implements OnInit, AfterContentInit {
 
   }
 
+  tables: any = {};
+  availableTables()
+  {
+    this.ds.apiReqPos("availableTables", null).subscribe((data: any) => {
+      this.tables = data.payload;
+      console.log(this.tables);
+    })
 
+  }
 
 }

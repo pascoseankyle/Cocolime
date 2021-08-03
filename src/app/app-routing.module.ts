@@ -73,7 +73,7 @@ const routes: Routes = [
     component: OrderComponent
   },
   {
-    path: 'receipt/:code/:cash',
+    path: 'receipt/:code/:cash/:table',
     component: ReceiptComponent
   }
 

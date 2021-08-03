@@ -120,6 +120,19 @@
 								$d = json_decode(base64_decode(file_get_contents("php://input")));
 								echo json_encode($get->pullDateAndCode($d), JSON_PRETTY_PRINT);
 							break;
+
+
+							// PULLING OF AVAILABLE TABLES
+
+							case 'availableTables':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($get->availableTables($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'tableOccupied':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->tableOccupied($d), JSON_PRETTY_PRINT);
+							break;
 								
 			}
 		break;

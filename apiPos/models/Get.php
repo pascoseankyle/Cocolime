@@ -9,6 +9,29 @@ class Get{
         $this->gm = new GlobalMethods($pdo);
     }
 
+	
+
+	public function availableTables($d)
+	{
+
+		$sql = "SELECT * FROM `crm_tables_tb` WHERE `status_id` = '1'";
+
+		
+		$res = $this->gm->generalQuery($sql, "No records found");
+		if ($res['code'] == 200) {
+			$payload = $res['data'];
+			$remarks = "success";
+			$message = "Successfully retrieved requested data";
+		} else {
+			$payload = null;
+			$remarks = "failed";
+			$message = $res['errmsg'];
+		}
+		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
+
+	}
+
+
 
 	public function pullPreOrderReceipt($d)
 	{
@@ -74,6 +97,10 @@ class Get{
 		}
 		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
 	}
+
+
+
+
 
 	
 

@@ -16,6 +16,7 @@ export class ReceiptComponent implements OnInit {
   code: any={};
   receiptID: any;
   cash: any;
+  table: any;
   receiptInfo: any = {};
   dateAndCode: any = {};
   constructor( 
@@ -70,7 +71,8 @@ export class ReceiptComponent implements OnInit {
   ngOnInit(): void {
     this.aRoute.params.subscribe(params => {
       this.receiptID = params['code'];
-      this.cash = params['cash']
+      this.cash = params['cash'];
+      this.table = params['table'];
     });
 
 
