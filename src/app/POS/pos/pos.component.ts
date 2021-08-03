@@ -33,7 +33,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   orderList: any = {};
   orderSubmitted: any = {};
 
-  tableSelected: any;
+  tableSelected = "";
   tableOccupied: any = {};
 
   constructor(

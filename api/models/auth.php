@@ -103,7 +103,8 @@ function loginUser($dt){
                 http_response_code(200);
                 $this->data = array(
                     'uname'=>$res['uname'],
-                    'fname'=>$res['fname']
+                    'fname'=>$res['fname'],
+                    'role'=>$res['acct_role']
                 );
                 $this->status = array(
                     'remarks'=>'success',

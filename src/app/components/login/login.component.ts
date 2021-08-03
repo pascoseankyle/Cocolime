@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
   //   })
   // }
 
+
+  role: any;
+
   async loginUser(){
     this.userInfo.uname = this.logUname;
     this.userInfo.pword = this.logPword;
@@ -46,13 +49,36 @@ export class LoginComponent implements OnInit {
     await this.ds.sendApiRequest("loginUser", this.userInfo).subscribe(res => {
       console.log(res);
 
-      if (res.payload.length == 0) {
-        alert("Incorrect Credentials");
+    localStorage.setItem("ROLE", res.payload.role);
+    this.role = localStorage.getItem("ROLE"); 
+      if(this.role == 1)
+      {
+        // username: ToCRM password: 1234
+        console.log("TO CRM");
+        this.route.navigate(['crm']);
       }
-      else{
-        localStorage.setItem("Fullname", res.payload.fname);
-        this.route.navigate(['/main']);
+      else if(this.role == 2)
+      {
+        // username: ToMenu password: 123
+        console.log("TO MENU");
+        this.route.navigate(['menu']);
       }
+      else if(this.role == 3)
+      {
+        // username: ToInventory password: asdasdasd
+        console.log("TO Inventory");
+        this.route.navigate(['stocks']);
+      }
+      else if(this.role == 4)
+      {
+        // username: ToPOS password: 123
+        console.log("TO POS"); 
+        this.route.navigate(['pos'])
+
+      }
+
+
+
     });
   }
    
