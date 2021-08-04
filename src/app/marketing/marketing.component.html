@@ -43,7 +43,7 @@
    <div class="navLeft" style="display: flex; flex-direction: row;">
     <div class="navbar-header">
    
-        <a class="navbar-brand page-scroll" href="#page-top">Cocolime</a> </div>
+        <a class="navbar-brand page-scroll" (click)="onClick('page-top')" >Cocolime</a> </div>
       
    </div>   
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,9 +52,9 @@
   <div style="float: right;"> 
       <ul class="nav navbar-nav navbar-right" style="display: flex; flex-direction: row;">
         <li><a (click)="onClick('about')" class="page-scroll">About</a></li>
-        <li><a (click)="onClick('restaurant-menut')"class="page-scroll">Promos</a></li>
+        <li><a (click)="onClick('restaurant-menu')"class="page-scroll">Promos</a></li>
         <li><a (click)="onClick('portfolio')" class="page-scroll">Menu</a></li>
-        <li><a (click)="onClick('call-reservation')" class="page-scroll">Contact</a></li>
+        <li><a (click)="onClick('call-reservation')" class="page-scroll">Tables</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse --> 
@@ -463,8 +463,8 @@ Seafood Rice Noodle.............................................................
 <div id="contact" class="text-center">
   <div class="container">
     <div class="section-title text-center" >
-      <h2>Tables</h2>
-      <hr>
+      <h2 style="color: #222; margin-top: 6%;">Tables</h2>
+      <hr style="margin-top: -2%;">
       
      
     </div>
@@ -476,39 +476,53 @@ Seafood Rice Noodle.............................................................
  
   </div>
 </div>
-<div class="tables">
-    <div *ngFor="let tables of tables" style="display: block;" disabled>
-               
-        <div *ngIf="tables?.status_id == 1 || tables?.status_id == 3">
-        <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table"  >
-            {{ tables?.table_name }}
-             Availability: 
-            <div *ngIf="tables?.status_id == 1">
-                Available
-            </div>
-            <div *ngIf="tables?.status_id == 3">
-                Reserved
-            </div>
-            <p id="status{{ tables?.status_id }}"></p>
-        </button>
-        </div>
-        <div *ngIf="tables?.status_id == 2">
-            <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table">
-                {{ tables?.table_name }}
-                 Availability: 
-                    Occupied
+
+<div class="tablesCon">
+   
+    <div class="tables">
+
+        <div *ngFor="let tables of tables" style="display: block;" disabled>
+
+
+                   
+            <div *ngIf="tables?.status_id == 1 || tables?.status_id == 3">
+            <div id ="box-{{ tables?.status_id }}" class = "box"  >
+            <h2>    {{ tables?.table_name }} </h2>
+                
+                <div *ngIf="tables?.status_id == 1">
+                  <p>  Availability:  <span class="av"> Available </span></p>
+                </div>
+                <div *ngIf="tables?.status_id == 3">
+                  <p>  Availability:  <span class="res">  Reserved </span> </p>
+
+                </div>
+                <p>Capacity: {{tables?.table_capacity}}</p>
                 <p id="status{{ tables?.status_id }}"></p>
-            </button>
             </div>
-       
-    </div> 
+            </div>
+            <div *ngIf="tables?.status_id == 2">
+                <div id ="box-{{ tables?.status_id }}" class = "box">
+                   <h2> {{ tables?.table_name }} </h2>
+              
+                     <p>  Availability: <span class="oc"> Occupied </span></p>
+                    <p id="status{{ tables?.status_id }}"></p>
+                    <p>Capacity: {{tables?.table_capacity}}</p>
+                </div>
+                </div>
+           
+        </div> 
+    </div>
+
+</div>
+
+
 </div>
 
 <br>
-
+</div>
 <div id="footer">
    
-  <div class="container text-center" style="display: flex; flex-direction: row;">
+  <div class="text-center" style="display: flex; flex-direction: row;">
     <div class="col-md-4">
       <h3>Address</h3>
       <div class="contact-item">
@@ -531,14 +545,14 @@ Seafood Rice Noodle.............................................................
       </div>
     </div>
   </div>
-  <div class="container-fluid text-center copyrights">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="social">
-        <ul>
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-        </ul>
+  <div class="fluid text-center copyrights">
+    <div class="">
+      <div class="social" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+       
       </div>
       <p>&copy; 2016 Touché. All rights reserved. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
     </div>
@@ -552,4 +566,4 @@ Seafood Rice Noodle.............................................................
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
 <script type="text/javascript" src="js/contact_me.js"></script> 
 <script type="text/javascript" src="js/main.js"></script>
-</div>
+
