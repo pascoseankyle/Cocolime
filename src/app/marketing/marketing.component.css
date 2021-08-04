@@ -141,7 +141,7 @@ ul#horizontal-list li {
 }
 
 #box-3 {
-  border-top: 3px solid var(--orange);
+  border-top: 3px solid hsl(34, 97%, 64%);
 }
 
 h2 {
@@ -156,7 +156,7 @@ h2 {
 }
 
 .res {
-  color: var(--orange);
+  color: orange;
   font-weight: 450;
 }
 

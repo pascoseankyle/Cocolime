@@ -56,38 +56,57 @@
                 
                 </div>
                 
-                <div class="container-fluid" >
-                <div class="card">
-                    <div class="table">
-                        <ul id="horizontal-list">
-                                <div *ngFor="let tables of tables">
-                                    <li>
-                                    <div *ngIf="tables?.status_id == 1 || tables?.status_id == 3">
-                                    <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table" (click)="editForm(tables); orderReserveModal(contentOrderReserve);">
-                                        {{ tables?.table_name }}
-                                         Availability: 
-                                        <div *ngIf="tables?.status_id == 1">
-                                            Available
-                                        </div>
-                                        <div *ngIf="tables?.status_id == 3">
-                                            Reserved
-                                        </div>
-                                        <p id="status{{ tables?.status_id }}"></p>
-                                    </button>
+                <div class="tablesCon">
+   
+                    <div class="tables">
+                
+                        <div *ngFor="let tables of tables" style="display: block;" disabled>
+                
+                
+                                   
+                            <div *ngIf="tables?.status_id == 1 ">
+                            <div id ="box-{{ tables?.status_id }}" class = "box"  >
+                            <h2>    {{ tables?.table_name }} </h2>
+                                
+                                <div *ngIf="tables?.status_id == 1">
+                                  <p>  Availability:  <span class="av"> Available </span></p>
+                                </div>
+                               
+                                <p>Capacity: {{tables?.table_capacity}}</p>
+                                <p id="status{{ tables?.status_id }}"></p>
+                            </div>
+                            </div>
+
+                            <div *ngIf=" tables?.status_id == 3">
+                                <div id ="box-{{ tables?.status_id }}" class = "box" style="border-top: 3px solid hsl(34, 97%, 64%);" >
+                                <h2>    {{ tables?.table_name }} </h2>
+                                    
+                                 
+                                    <div *ngIf="tables?.status_id == 3">
+                                      <p>  Availability:  <span style="color: hsl(0, 78%, 62%);
+                                        font-weight: 450;">  Reserved </span> </p>
+                    
                                     </div>
-                                    <div *ngIf="tables?.status_id == 2">
-                                        <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table" (click)="editForm(tables); checkoutModal(contentCheckout);">
-                                            {{ tables?.table_name }}
-                                             Availability: 
-                                                Occupied
-                                            <p id="status{{ tables?.status_id }}"></p>
-                                        </button>
-                                        </div>
-                                    </li>
-                                </div> 
-                        </ul>
+                                    <p>Capacity: {{tables?.table_capacity}}</p>
+                                    <p id="status{{ tables?.status_id }}"></p>
+                                </div>
+                                </div>
+
+
+
+                            <div *ngIf="tables?.status_id == 2">
+                                <div id ="box-{{ tables?.status_id }}" class = "box">
+                                   <h2> {{ tables?.table_name }} </h2>
+                              
+                                     <p>  Availability: <span class="oc"> Occupied </span></p>
+                                    <p id="status{{ tables?.status_id }}"></p>
+                                    <p>Capacity: {{tables?.table_capacity}}</p>
+                                </div>
+                                </div>
+                           
+                        </div> 
                     </div>
-                </div>
+                
                 </div>
 
             </mat-sidenav-content>
