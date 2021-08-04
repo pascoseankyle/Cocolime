@@ -17,6 +17,10 @@ import { OrderComponent } from './POS/index/order/order.component';
 
 
 import { ReceiptComponent } from './POS/receipt/receipt.component';
+import { MarketingComponent } from './marketing/marketing.component';
+
+
+
 
 const routes: Routes = [
   
@@ -73,6 +77,10 @@ const routes: Routes = [
     component: OrderComponent
   },
   {
+    path: 'marketing',
+    component: MarketingComponent
+  },
+  {
     path: 'receipt/:code/:cash/:table',
     component: ReceiptComponent
   }
@@ -90,7 +98,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

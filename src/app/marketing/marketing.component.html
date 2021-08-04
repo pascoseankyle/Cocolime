@@ -1,0 +1,555 @@
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cocolime Asian Cuisine</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Stylesheet
+    ================================================== -->
+<!-- <link rel="stylesheet" type="text/css"  href="css/style.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/nivo-lightbox/nivo-lightbox.css">
+<link rel="stylesheet" type="text/css" href="css/nivo-lightbox/default.css"> -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<div id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top" style=" z-index:999999; background-color: #222; width: 100%; position: fixed; display: flex; flex-direction: row; justify-content: center;">
+  <div class="container"> 
+   <div class="navLeft" style="display: flex; flex-direction: row;">
+    <div class="navbar-header">
+   
+        <a class="navbar-brand page-scroll" href="#page-top">Cocolime</a> </div>
+      
+   </div>   
+    <!-- Brand and toggle get grouped for better mobile display -->
+   
+    <!-- Collect the nav links, forms, and other content for toggling -->
+  <div style="float: right;"> 
+      <ul class="nav navbar-nav navbar-right" style="display: flex; flex-direction: row;">
+        <li><a (click)="onClick('about')" class="page-scroll">About</a></li>
+        <li><a (click)="onClick('restaurant-menut')"class="page-scroll">Promos</a></li>
+        <li><a (click)="onClick('portfolio')" class="page-scroll">Menu</a></li>
+        <li><a (click)="onClick('call-reservation')" class="page-scroll">Contact</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+</nav>
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="overlay">
+      <div class="container">
+
+          <div class="intro-text">
+              
+            <h1>Cocolime</h1>
+            <br>
+            <br>
+            <br>
+            <p>Asian Cuisine Restaurant</p>
+            <a (click)="onClick('about')"  class="btn btn-custom btn-lg page-scroll" style="width: 30%; color: white;">Welcome</a> </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- About Section -->
+<div id="about">
+  <div class="container">
+   
+      
+      
+        <div class="about-text">
+          <h2>Our Restaurant</h2>
+          <hr>
+          <p>For several times I already had lunch with friends in Cocolime Specialty Asian Cuisine. This restaurant is located in Subic Bay Freeport Zone near Rizal Highway, and is almost attached to Harbor point Mall.</p>
+          <p>Cocolime in Subic Bay is really a nice place to be and apart from the nice ambiance, good food and excellent service the prices are very affordable, something that is important as well. Rightly Cocolime is rated 4 stars as I saw on some sites. Oh by the way, Cocolime is open at 10AM - 2PM and 5PM - 10PM daily.</p>
+        </div>
+ 
+   
+  </div>
+</div>
+<!-- Restaurant Menu Section -->
+<div id="restaurant-menu">
+  <div class="section-title text-center center">
+    <div class="overlay">
+      <h2>Set Menu For Ten</h2>
+      <hr>
+      <p>These are Cocolime's Specialty for the whole family.</p>
+    </div>
+  </div>
+    
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="menu-section">
+          <h2 class="menu-section-title">SET A - P3,550</h2>
+          <hr>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Pochero Beef Soup </div>
+            </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Sizzling Pork Sisig </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Pinakbet </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Grilled Squid </div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-name"> 2 Seafood Pancit Canton </div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-name"> 10 Plain Rice </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="menu-section">
+          <h2 class="menu-section-title">SET B - P4,300</h2>
+          <hr>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Fried Spring Rolls </div>
+            </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Poochero Beef Soup </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 3 Pineapple Rice </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Thai BBQ Chicken </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Shrimp Tempura </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Grilled Squid </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Seafood Rice Noodle </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="menu-section">
+          <h2 class="menu-section-title">SET C - P4,750</h2>
+          <hr>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Fried Spring Rolls </div>
+            </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Poochero Beef Soup </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Sizzling Pork Sisig </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Kare - Kare </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Crispy Pata (Regular) </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Grilled Squid </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Pinakbet / Chopsuey </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 10 Plain Rice </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="menu-section">
+          <h2 class="menu-section-title">SET D - P5,000</h2>
+          <hr>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Fried Spring Rolls </div>
+            </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Poochero Beef Soup </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Sweet & Sour Fish Fillet </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Humba </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Mixed Vegetable Oyster </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Shrimp Tempura </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 2 Crispy Pata (Regular) </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name"> 10 Plain Rice </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="menu-section">
+          <h2 class="menu-section-title">ADD-ONS</h2>
+          <hr>
+          <div class="menu-item">
+            <div class="menu-item-name"> Buko Pandan - P550 </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Portfolio Section -->
+<div id="portfolio">
+  <div class="section-title text-center center">
+    <div class="overlay">
+      <h2>Main Menu</h2>
+      <hr>
+      <p>Indulge yourselves with our Asian Cuisine Specialty Dishes</p>
+    </div>
+  </div>
+  <div class="container">
+  
+    <div class="row">
+      <div class="portfolio-items">
+        <div class="breakfast">
+          <div >
+         <div style="display: flex; flex-direction: row;">
+        
+            <div style="display: flex; flex-direction: column; white-space: nowrap; padding: 10%;">
+                <div class="hover-text">
+                    <h4>Rice Suprise</h4>
+          Bagoong Rice .............................................................. 180
+          <br>
+          (Rice cooked in Shrimp Paste topped with <br>
+          Sweet Pork, green mangoes 5 egg strips.)
+          <br>
+          <br>
+          Pineapple Rice ............................................................ 240
+          <br>
+          (Flavored with sweetness of pineapple 5 <br>
+          succulent shrimps. Truly a Tropical delight!)
+          <br>
+          Nasi Goreng ................................................................ 180
+          <br>
+    
+          <h3>Per cup order</h3>
+          Japanese Fried Rice .................................................... 65
+          <br>
+          Plain Rice ................................................................... 180
+          <br>
+          Half Plain Rice ........................................................... 180
+          <br>
+          Garlic Rice .................................................................. 180
+          <br>
+          <br>
+          <br>
+          
+          <h4>From the Grill</h4>
+          <h5>(please allow 10-15 mins)</h5>
+Thai BBQ Chicken............................................................................  290
+<br>
+Oriental Liempo ................................................................................ 295
+<br> 
+Thai BBQ $ Liempo) .......................................................................295
+<br>
+inihaw na Liempo ........................................................................... 295
+<br>
+Chicken Inasal(3pcs) .................................................................... 295
+<br>
+Grilled Assorted Seafoods ..................................................... 390
+<br>
+Grilled Tuna Panga ........................................................................ 360
+<br>
+Griled Tuna Belly ............................................................................. 420
+<br>
+Grilled Squid ....................................................................................... 275
+<br>
+Grilled Boneless Bangus ......................................................... 260
+<br>
+<br>
+<br>
+<br>
+
+<h4>For Starters</h4>
+     
+Fried Spring Rolls ............................................................................ 170
+           <br>
+           Chilli Cheese Sticks ....................................................................... 140
+           <br>
+           Chilli Chicken Wings(4pcs) ...................................................... 210
+           <br>
+           Kani Salad ............................................................................................... 150
+           <br>
+           Fresh Garden Salad ....................................................................... 150
+           <br>
+           Oriental Beef Salad ......................................................................... 220
+           <br>
+           Chicharon Bulaklak ..........................................................................175
+<br>
+<br>
+<br>
+<br>
+           <h4>FSoup for a soul</h4>
+           Pochero Beef Soup ............................................................... 420
+           <br>
+           Tiyan ng Bangus Sinigang .............................................. 280
+           <br>
+           Chicken Binakol ....................................................................... 280
+           <br>
+           Sinigang na Baboy.................................................................. 295
+           <br>
+           Squash Soup (good for 2) ................................................ 120
+           <br>
+           Kani Corn Soup (good for 2) .......................................... 120  
+           <br>
+          <br>
+          
+           
+
+
+                  </div>
+            </div>
+            <div style="display: flex; flex-direction: column; white-space: nowrap; padding: 10%;">
+            <div class="hover-text">
+                <h4>Meal Platter</h4>
+        Beef tenderloin  ........................................................................... 375
+        <br>
+        Sizzling Bulalo Steak ............................................................. 395
+        <br> 
+        Asian Beef Ribs .......................................................................... 320
+        <br>
+                  
+        <br>
+        Coriander Prawns ..................................................................... 380
+        <br>
+        Shrimp Tempura ........................................................................ 440
+        <br>
+        Shrimp Roll .................................................................................... 390
+        <br>(5pcs, Contains Pork)
+        <br>
+        Nilasing na Hipon .......................................................................330
+        <br>
+        Pinakbet Stew ................................................................................220
+        <br>
+        Mixed Vegetable Oyster.........................................................220
+        <br>
+        Beef Kare kare ..............................................................................420
+        <br>
+        Sea Food Kare kare .................................................................330
+        <br>
+        Vegetable Kare kare ...............................................................260
+        <br>
+        Shrimp Fu Yong ...........................................................................240
+        <br>
+        <br>
+        Laing...... ..........................................................................................170
+        <br>
+        Adobong Kangkong...........................................................170
+        <br>
+        Bicol Express ............................................................................220
+        <br>
+        Sweet & Sour fish Fillet  .................................................. 290
+        <br>
+        Calamares ................................................................................ 240
+        <br> 
+        Sizzling Tiyan ng Bangus ............................................. 240   
+        <br>
+        Fish Tausi ................................................................................... 280
+        <br>
+        Crispy Fried Tilapia ........................................................... 160
+        <br>
+        Daing na Bangus .................................................................250
+        <br>
+        Fish Tofu Black Bean .......................................................270
+        <br>
+        Tofu Steak ..................................................................................180
+        <br>
+        Tofu w/ Shiitake Mushroom........................................180
+        <br>
+        <br>
+              
+        <h3>Asian Flavors</h3>
+Crispy Binagoongan  .................................................................... 280
+<br>
+Crispy Lechon Kawali ................................................................. 295
+<br>
+Sizzling Pork Sisig ......................................................................... 200
+<br>
+Humba (Sweet Pork) .................................................................. 295
+<br>
+Crispy Pata Regular (1kilo) ..................................................... 549
+<br>
+Garlic Chicken Basil  .................................................................... 210
+<br>
+Fried Chicken Chinese Style .............................................. 310
+<br>
+Yellow Chicken Curry ............................................................... 240
+<br>
+Chicken Lollipop (4pcs) .......................................................... 220
+<br>
+Sizzling Chicken Sisig ............................................................... 210
+<br>
+Fried Chicken Fingers ............................................................... 220
+<br>
+<br>
+<br>
+
+<h4>Oodle of Noodle</h4>
+Sea Food Pancit Canton ..................................................... 145
+<br>
+Pancit Canton with asstd. Meat .................................... 130
+<br>
+Pancit Bihon Guisado ............................................................ 130
+<br>
+Seafood Rice Noodle............................................................. 160
+<br>
+ 
+      
+                </div>
+                
+        </div>
+        </div>   
+              
+          </div>
+        </div>
+       
+
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call Reservation Section -->
+<div id="call-reservation" class="text-center" style="position: relative; margin-top: -10%;">
+  <div class="container">
+    <h2>Want to make a reservation? Call <strong>(047) 252 2412</strong></h2>
+  </div>
+</div>
+<!-- Contact Section -->
+<div id="contact" class="text-center">
+  <div class="container">
+    <div class="section-title text-center" >
+      <h2>Tables</h2>
+      <hr>
+      
+     
+    </div>
+
+
+     
+        
+        
+ 
+  </div>
+</div>
+<div class="tables">
+    <div *ngFor="let tables of tables" style="display: block;" disabled>
+               
+        <div *ngIf="tables?.status_id == 1 || tables?.status_id == 3">
+        <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table"  >
+            {{ tables?.table_name }}
+             Availability: 
+            <div *ngIf="tables?.status_id == 1">
+                Available
+            </div>
+            <div *ngIf="tables?.status_id == 3">
+                Reserved
+            </div>
+            <p id="status{{ tables?.status_id }}"></p>
+        </button>
+        </div>
+        <div *ngIf="tables?.status_id == 2">
+            <button id ="btn-table-{{ tables?.status_id }}" class = "btn-table">
+                {{ tables?.table_name }}
+                 Availability: 
+                    Occupied
+                <p id="status{{ tables?.status_id }}"></p>
+            </button>
+            </div>
+       
+    </div> 
+</div>
+
+<br>
+
+<div id="footer">
+   
+  <div class="container text-center" style="display: flex; flex-direction: row;">
+    <div class="col-md-4">
+      <h3>Address</h3>
+      <div class="contact-item">
+        <p>Rizal Hwy 2222</p>
+        <p>SSubic, Philippines</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Opening Hours</h3>
+      <div class="contact-item">
+        <p>Mon-Sun: 11:00 AM - 2:00 PM</p>
+        <p>Mon-Sun: 5:00 PM - 10:00 PM</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Contact Info</h3>
+      <div class="contact-item">
+        <p>Phone: (047) 252 2412</p>
+        <p>Email: cocolimerestaurant@gmail.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center copyrights">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="social">
+        <ul>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+      </div>
+      <p>&copy; 2016 Touché. All rights reserved. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
+<script type="text/javascript" src="js/jquery.isotope.js"></script> 
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="js/contact_me.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
+</div>

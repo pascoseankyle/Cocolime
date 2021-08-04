@@ -80,6 +80,7 @@ import { OrderComponent } from './POS/index/order/order.component';
 import { POSComponent } from './POS/pos/pos.component'; 
 import { ReceiptComponent } from './POS/receipt/receipt.component';
 import {NgxPrintModule} from 'ngx-print';
+import { MarketingComponent } from './marketing/marketing.component';
 
 
 @NgModule({
@@ -106,7 +107,8 @@ import {NgxPrintModule} from 'ngx-print';
     // POS COMPONENTS
     OrderComponent,
     POSComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    MarketingComponent
 
   ],
   imports: [
