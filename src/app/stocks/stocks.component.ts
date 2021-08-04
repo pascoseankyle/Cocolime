@@ -79,7 +79,7 @@ export class StocksComponent implements OnInit, AfterViewInit {
   
   ];
 
-  router: any;
+  
   
   // displayedColumns: string[] = ['position', 'name', 'description', 'quantity','date_acquired','date_expiry','price','minimum','remarks','date_modified','modified_by','action'];
   // dataSource = ELEMENT_DATA;
@@ -115,7 +115,7 @@ export class StocksComponent implements OnInit, AfterViewInit {
 
   archiveCounter = 0;
 
-  constructor(private fb: FormBuilder, private et: EventTriggerService,public dialog: MatDialog, private ds: DataService) {
+  constructor(private fb: FormBuilder, private et: EventTriggerService,public dialog: MatDialog, private ds: DataService, public router: Router) {
 
     this.clickEvent = this.et.getClickEvent().subscribe(()=> {
       this.pullProducts();
@@ -226,11 +226,13 @@ export class StocksComponent implements OnInit, AfterViewInit {
       }
 
    
-  
-  logoutFunction(){
-    localStorage.clear();
-    this.router.navigate(['/welcome']);
-  }
+
+      logout()
+      {
+        localStorage.clear();
+        this.router.navigate(['']);
+      }
+    
   
 
 

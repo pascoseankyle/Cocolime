@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
 
 export interface orderCodes {
   list_id: any;
@@ -25,7 +26,10 @@ export interface orderCodes {
 })
 export class OrderComponent implements OnInit, AfterViewInit {
 
-
+  logout(){
+    localStorage.clear();
+  this.router.navigate(['']);
+  }
   
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
@@ -93,6 +97,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,  
     private ds: DataService,
     /* private ngx: NgxPrintModule */
+    public router: Router
     ) { }
 
   openOrder(){

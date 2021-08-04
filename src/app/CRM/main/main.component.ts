@@ -152,7 +152,7 @@ export class CRMmainComponent implements OnInit {
   }
 
   
-logoutFunction(){
+logout(){
   localStorage.clear();
   this.router.navigate(['']);
 }

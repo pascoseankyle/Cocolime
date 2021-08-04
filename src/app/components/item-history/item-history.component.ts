@@ -22,6 +22,9 @@ import { Key } from 'protractor';
 import { CdkTableExporterModule } from 'cdk-table-exporter';
 import { stringify } from '@angular/compiler/src/util';
 import { MatTableExporterDirective } from 'mat-table-exporter';
+import { Router } from '@angular/router';
+
+
 
 const moment = _rollupMoment || _moment;
 
@@ -153,9 +156,23 @@ exportIt() {
   filterBy: string[] = ['All', 'Specific Month And Year'];
 
 
-  constructor(private ds: DataService) {
+
+
+
+  constructor(public router: Router,private ds: DataService) {
     super();
+
   }
+
+    
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
+
+
+
 
   ngOnInit(): void {
     this.datePicker.controls['date1'].disable();
@@ -244,6 +261,7 @@ exportIt() {
     this.selectedFilter={};
     this.monthSelected();
   }
+
 
 
 }

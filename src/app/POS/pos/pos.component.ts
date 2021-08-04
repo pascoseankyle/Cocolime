@@ -44,6 +44,12 @@ export class POSComponent implements OnInit, AfterContentInit {
   ) { 
 
   }
+
+  logout()
+  {
+    localStorage.clear();
+  this.route.navigate(['']);
+  }
   
   btnSubmit(){
     if (this.cashInput < this.subtotal ){

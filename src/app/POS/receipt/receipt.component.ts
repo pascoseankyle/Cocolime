@@ -3,6 +3,7 @@ import { NgxPrintModule } from 'ngx-print';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { Route } from '@angular/compiler/src/core';
 
 
 
@@ -23,6 +24,7 @@ export class ReceiptComponent implements OnInit {
     public ngx: NgxPrintModule,
     private ds: DataService,
     public aRoute: ActivatedRoute
+    , public router: Router
     ) {
 
      }
@@ -80,6 +82,12 @@ export class ReceiptComponent implements OnInit {
     this.pullDateAndCode();
     this.getSubTotal();
     this.pullPreOrder();
+  }
+
+  logout()
+  {
+    localStorage.clear();
+  this.router.navigate(['']);
   }
 
 }

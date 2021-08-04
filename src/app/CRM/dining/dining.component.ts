@@ -119,7 +119,7 @@ export class DiningComponent implements OnInit {
   back(){
     this.router.navigate(['/main']);
   }
-  logoutFunction(){
+  logout(){
     localStorage.clear();
     this.router.navigate(['']);
   }

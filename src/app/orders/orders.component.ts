@@ -41,7 +41,7 @@ export class OrdersComponent implements OnInit {
 
   logoutFunction(){
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
   
 
