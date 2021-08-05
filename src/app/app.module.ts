@@ -81,10 +81,31 @@ import { POSComponent } from './POS/pos/pos.component';
 import { ReceiptComponent } from './POS/receipt/receipt.component';
 import {NgxPrintModule} from 'ngx-print';
 import { MarketingComponent } from './marketing/marketing.component';
+import { IndeComponent } from './DTR/inde/inde.component';
+import { DashboardpageComponent } from './DTR/inde/pages/dashboardpage/dashboardpage.component';
 
+import { DatePipe } from '@angular/common';
+import { LowerCasePipe } from '@angular/common';
+import { EmployeepageComponent } from './DTR/inde/pages/employeepage/employeepage.component';
+import { TimekeepingpageComponent } from './DTR/inde/pages/timekeepingpage/timekeepingpage.component';
+import { AttendancepageComponent } from './DTR/inde/pages/attendancepage/attendancepage.component';
+import { DailytimerecordpageComponent } from './DTR/inde/pages/dailytimerecordpage/dailytimerecordpage.component';
+import { TimeinComponent } from './DTR/timein/timein.component';
+import { AdditionpageComponent } from './DTR/inde/pages/additionpage/additionpage.component';
+import { DeductionpageComponent } from './DTR/inde/pages/deductionpage/deductionpage.component';
+import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.component';
 
 @NgModule({
   declarations: [
+    AdditionpageComponent,
+    DeductionpageComponent,
+    WagespageComponent,
+    DailytimerecordpageComponent,
+    TimeinComponent,
+    AttendancepageComponent,
+    TimekeepingpageComponent,
+    EmployeepageComponent,
+    DashboardpageComponent,
     NavbarComponent,
     IndexComponent,
     LoginComponent,
@@ -108,7 +129,8 @@ import { MarketingComponent } from './marketing/marketing.component';
     OrderComponent,
     POSComponent,
     ReceiptComponent,
-    MarketingComponent
+    MarketingComponent,
+    IndeComponent
 
   ],
   imports: [
@@ -170,7 +192,7 @@ import { MarketingComponent } from './marketing/marketing.component';
   exports: [MatFormFieldModule,
     MatInputModule,
     MatSortModule,],
-  providers: [EditServiceService],
+  providers: [EditServiceService, DatePipe, LowerCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

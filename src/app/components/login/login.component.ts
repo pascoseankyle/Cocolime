@@ -123,6 +123,15 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['pos'])
   
         }
+
+        else if(this.role == 5)
+        {
+          // username: ToPOS password: 123
+          console.log("TO POS"); 
+          this.route.navigate(['home'])
+  
+        }
+  
   
 
     }

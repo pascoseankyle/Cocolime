@@ -1,0 +1,71 @@
+/*.searchbar {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.delbutton {
+  background-color: darkred;
+}
+
+.mat-cell {
+  margin: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 2px solid rgba(0, 0, 0, 0.12);
+}*/
+
+
+mat-header-cell {
+  border: dotted 1px;
+  justify-content: left;
+}
+
+mat-cell {
+  font-size: 14px;
+  border: dotted 1px;
+  border-collapse: collapse !important;
+  border-color: grey;
+  justify-content: center;
+  padding: 0px;
+  border: dotted 1px !important;
+}
+
+.mat-column-emp_name {
+  flex: 10% !important;
+  max-width: 160px;
+  background-color: #d1d4ce;
+  justify-content: left;
+}
+
+.mat-column-total {
+  flex: 5% !important;
+  max-width: 100px;
+  background-color: #d1d4ce;
+  justify-content: center;
+}
+
+.attendance-cell {
+  font-size: 14px;
+}
+
+
+/**/
+/*.empManagement{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.toolbar-buttons{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.searchBar{
+  height: 100% !important; 
+  width: 25%; 
+  padding: 0px !important; 
+  color: white; 
+  background-color: #706e5a;
+  font-family: Arial, Helvetica, sans-serif;
+}*/
