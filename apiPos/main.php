@@ -121,6 +121,18 @@
 								echo json_encode($get->pullDateAndCode($d), JSON_PRETTY_PRINT);
 							break;
 
+							case 'posCateg':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($get->categories($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'pullByCateg':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($get->pullByCateg($d), JSON_PRETTY_PRINT);
+							break;
+
+
+
 
 							// PULLING OF AVAILABLE TABLES
 
@@ -132,6 +144,28 @@
 							case 'tableOccupied':
 								$d = json_decode(base64_decode(file_get_contents("php://input")));
 								echo json_encode($post->tableOccupied($d), JSON_PRETTY_PRINT);
+							break;
+
+
+							// MENU SUBSYSTEM REQUEST (NEW)
+							case 'categories':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($get->categories($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'add_categories':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->add_categories($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'edit_categories':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->edit_categories($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'del_categories':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->del_categories($d), JSON_PRETTY_PRINT);
 							break;
 								
 			}

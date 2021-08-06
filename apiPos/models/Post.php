@@ -23,6 +23,83 @@ public function checkPreOrderItem($product_name, $existingItem)
 }
 
 
+public function add_categories($dt)
+{
+
+    $code = 401;
+    $payload = null;
+    $remarks = "failed";
+    $message = "Unable to retrieve data";
+    // $isSubmitted = $dt->isSubmitted;
+    // $order_code = $dt->order_code;
+
+    $res = $this->gm->insert('menu_category_tb', $dt);
+
+    if($res['code']==200) {
+        // $res = $this->gm->update('pos_order_tb', $isSubmitted, "order_code = '$order_code'");
+        // if ($res['code'] == 200) {
+        $code = 200;
+        $payload = $res;
+        $remarks = "success";
+        $message = "Successfully retrieved data";
+        // }
+        
+    
+    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+}
+}
+
+
+public function edit_categories($dt)
+{
+
+    $code = 401;
+    $payload = null;
+    $remarks = "failed";
+    $message = "Unable to retrieve data";
+    $catId = $dt->id;
+    $catName = $dt->name;
+
+
+    $sql = "UPDATE `menu_category_tb` SET `name` = '$catName' WHERE id = '$catId'";
+    $res = $this->gm->generalQuery1($sql, "");
+
+    if($res['code']!=200) {
+  
+        $code = 200;
+        $payload = $res;
+        $remarks = "success";
+        $message = "Successfully retrieved data";
+    }
+        
+    
+    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+}
+
+
+public function del_categories($d) { 
+    $catId = $d->id;
+     $res = $this->gm->delete('menu_category_tb', $d, "id = '$catId'"); 
+     
+     
+     if ($res['code'] == 200) 
+     {  
+        $payload = $res['data'];            
+        $remarks = "success";            
+        $message = "Successfully retrieved requested data";        
+    } 
+    else
+     {            
+         $payload = null;            
+         $remarks = "failed";            
+         $message = $res['errmsg'];        
+        } 
+    }
+
+
+
 public function addOrderlist($dt)
 {
 

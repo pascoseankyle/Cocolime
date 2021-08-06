@@ -9,6 +9,9 @@ class Get{
         $this->gm = new GlobalMethods($pdo);
     }
 
+
+
+
 	
 
 	public function availableTables($d)
@@ -174,8 +177,52 @@ class Get{
 		  }        
 			 return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);  
 	   }
-	 }
+	 
+
+
+	   public function pullByCateg ($d) {  
+		$category = $d->product_type;   
+		$sql = "SELECT * FROM menu_tb WHERE product_type = '$category'";            
+			
+		$res = $this->gm->generalQuery($sql, "No records found");        
+		if ($res['code'] == 200) {            
+			$payload = $res['data'];            
+			$remarks = "success";            
+			$message = "Successfully retrieved requested data";        
+		 } 
+		 else {            
+			 $payload = null;            
+			 $remarks = "failed";            
+			 $message = $res['errmsg'];       
+		  }        
+			 return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);  
+	   }
+
+
+	//  MENU SUBSYSTEM REQUESTS
+
 	
+	public function categories($d)
+	{
+
+		$sql = "SELECT * FROM `menu_category_tb`";
+
+		
+		$res = $this->gm->generalQuery($sql, "No records found");
+		if ($res['code'] == 200) {
+			$payload = $res['data'];
+			$remarks = "success";
+			$message = "Successfully retrieved requested data";
+		} else {
+			$payload = null;
+			$remarks = "failed";
+			$message = $res['errmsg'];
+		}
+		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
+
+	}
+
+}
 	
 	
 ?>

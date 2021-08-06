@@ -163,6 +163,11 @@
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
                     echo json_encode($post->delTable($d));
 				break;
+
+				case 'selectCat':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    echo json_encode($post->selectCateg($d));
+				break;
 				
 				default:
 					http_response_code(400);

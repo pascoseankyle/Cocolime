@@ -60,7 +60,7 @@
    
                     <div class="tables">
                 
-                        <div *ngFor="let tables of tables" style="display: block;" disabled>
+                        <div *ngFor="let tables of tables" style="display: block;"(click)="editForm(tables); orderReserveModal(contentOrderReserve);" >
                 
                 
                                    

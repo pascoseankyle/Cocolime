@@ -7,6 +7,13 @@
   </div>
   <div id="nav-sidebar-list">
   </div>
+
+
+
+
+
+
+
   <div *ngIf = "openAddModal" class="modal" (submit)="openModalIng($event)">
     <div class="modal-content-global">
       <!-- Onclick close modal -->
@@ -37,6 +44,14 @@
         </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
   <div *ngIf = "openAddModalIng" class="modal">
     <div class="modal-content-global">
       <div class="content-left">
@@ -84,6 +99,11 @@
       </div>
     </div>
   </div>
+
+
+
+
+
   <div *ngIf = "openAddCat" class="modal" (submit)="addCategory($event)">
     <div class="modal-content-global">
       <!-- Onclick close modal -->
@@ -104,14 +124,34 @@
             </div>
             </form>
             <div class="modal-div-right">
-                <li *ngFor="let category of category">{{ category.name }} 
-                  &nbsp; <button (click)="openEditCatModal(category)" class="card-edit-button">Edit</button>                
-                  &nbsp; <button (click)="openDeleteCatModal(category)" class="card-delete-button">Delete</button>
-                </li>
+              <div class="listCateg">
+                <br>
+             
+                <h1 style="margin-bottom: -5%;">List of Categories</h1>
+                <div class="listRow" *ngFor="let category of category">
+                 
+                    {{ category.name }} 
+               
+                
+                  <div class="listBtn">
+                    &nbsp;  <button (click)="openEditCatModal(category)" class="card-edit-button">Edit</button>                
+                    &nbsp; <button (click)="openDeleteCatModal(category)" class="card-delete-button">Delete</button>
+                  </div>
+       
+                </div>
+                
+          
+              </div>
+                
             </div>
         </div>
     </div>
   </div>
+
+
+
+
+
   <div *ngIf="deleteCatModal" class="modal">
     <div class="modal-content-global">
       <button type="button" (click)="closeDeleteCatModal()" class="close-modal"><i class="fas fa-times"></i>&nbsp;close</button> 

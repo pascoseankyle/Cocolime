@@ -17,7 +17,30 @@
 			$this->conn = $db;
 		}
         
-        // Fuctions ----------------------------------------------------------		
+        // Fuctions ----------------------------------------------------------	
+        
+        
+        function selectCateg($table, $filter_data) {
+			$this->sql = "SELECT * FROM $table";	
+			if($result = $this->conn->query($this->sql)){
+				if($result->num_rows>0){
+					while($res = $result->fetch_assoc()){
+						array_push($this->data, $res);
+					}
+					$this->status = $this->success_stat;
+					http_response_code(200);
+				}
+			}
+			return array(
+				'status'=>$this->status,
+				'payload'=>$this->data,
+				'prepared_by'=>'Inventory bois',
+				'timestamp'=>date('D M j, Y G:i:s T')
+			);
+		}
+
+
+
 
 		function select($table, $filter_data){
 			$this->sql = "SELECT * FROM $table";
