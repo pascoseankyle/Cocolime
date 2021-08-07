@@ -85,7 +85,7 @@ class Get{
 
 	public function pullPreOrders($d)
 	{
-		$sql = "SELECT * FROM `pos_order_tb` WHERE `isSubmitted` = '0'";
+		$sql = "SELECT * FROM `pos_order_tb` WHERE `isSubmitted` = '0' AND `isDeleted` = '0'";
 
 		
 		$res = $this->gm->generalQuery($sql, "No records found");

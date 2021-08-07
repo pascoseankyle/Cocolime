@@ -79,6 +79,12 @@
 								echo json_encode($gm->clearOrder($d));
 							break;
 
+
+							case 'clearAll':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->clearAll($d));
+							break;
+
 				// UPDATED FUNCTIONS
 
 							case 'pushCode':

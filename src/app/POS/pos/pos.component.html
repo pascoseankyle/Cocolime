@@ -75,7 +75,7 @@
                   Price: {{pre.price | currency : 'PHP': 'symbol-narrow'}}
                 </mat-grid-tile>
                 <mat-grid-tile>
-                  <mat-icon style="color: red; cursor: pointer;" (click)="delPre(pre.order_ID);">delete</mat-icon>&nbsp;
+                  <mat-icon style="color: red; cursor: pointer;" (click)="delPre(pre.order_code);">delete</mat-icon>&nbsp;
                 </mat-grid-tile>
                 
               </mat-grid-list>
@@ -143,7 +143,7 @@
        <!-- Menu Table-->
       <div class="rightpane">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs " (selectedTabChange)="categMenu($event)">
-          <mat-tab label="{{categ.name}}"  *ngFor="let categ of categ" >  
+          <mat-tab label="{{categ.name}}"  *ngFor="let categ of categ; index as i" >  
            
             <ng-template mat-tab-label>
               <!-- <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;"> -->
@@ -151,20 +151,32 @@
           </ng-template>
           
            <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product  of  categoryMenu1" >
-            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; ">
+            <mat-expansion-panel hideToggle   class="menuCard" style="  margin-top: 10px; margin-left:20px; background-color: #fbfbfb; ">
               <mat-expansion-panel-header>
-                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
-                  <p > {{product.product_name}}</p>
+                <mat-panel-title style="text-align: center; text-decoration: none; ">
+                  <p style="font-size: 16px; font-weight: 600;"> {{product.product_name}}</p>
                 </mat-panel-title>
                 
               </mat-expansion-panel-header>
+              <div style="display: flex; flex-direction: column; width: 100%; justify-content: center; align-items: center;">
               <p>Enter Quantity:</p> 
-                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                   <!-- <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" > -->
                 
-                   <button   (click)="addPreOrder(product)" >Confirm</button>
+                   <div class="wrapper">
+                    <button class="plusminus" (click)="handleMinus()">-</button>
+                    <input type="number" class="num" value="0" [(ngModel)]="inputText" />
+                    <button class="plusminus" (click)="handlePlus()">+</button>
+                  </div>
+                  <button mat-stroked-button class="conBtn" (click)="addPreOrder(product); ">Confirm</button>
+         
+
+              </div>
             </mat-expansion-panel>
         
           </mat-accordion>
+
+          
+        
           </mat-tab>
          
           <!-- <mat-tab label="From The Grill">  

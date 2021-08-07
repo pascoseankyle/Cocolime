@@ -99,6 +99,8 @@ public function del_categories($d) {
     }
 
 
+ 
+
 
 public function addOrderlist($dt)
 {
@@ -379,21 +381,53 @@ public function updatePreOrder($data) {
             } 
         }
 
+        public function clearAll($d) { 
+       
+            $code = 401;
+            $payload = null;
+            $remarks = "failed";
+            $message = "Unable to retrieve data";
+            $order_code = $d->order_code;
+            $sql=" UPDATE `pos_order_tb` 
+                    SET   isDeleted = '1'
+                    WHERE `order_code` = '$order_code' "; 
+            
+            $res = $this->gm->generalQuery($sql, "");
+        
+            if($res['code']!=200) {
+                $code = 200;
+                $payload = $res;
+                $remarks = "success";
+                $message = "Successfully retrieved data";
+                
+            }
+            return $this->gm->sendPayload($payload, $remarks, $message, $code);
+           }
+   
+
+
         public function delPre($d) { 
-            $data = $d; 
-            $order_ID = $data->order_ID;
-             $res = $this->gm->delete('pos_order_tb', $data, "order_ID = '$order_ID'"); if ($res['code'] == 200) 
-             {  
-                $payload = $res['data'];            
-                $remarks = "success";            
-                $message = "Successfully retrieved requested data";        
-            } 
-            else
-             {            
-                 $payload = null;            
-                 $remarks = "failed";            
-                 $message = $res['errmsg'];        
-                } 
+            
+
+            $code = 401;
+            $payload = null;
+            $remarks = "failed";
+            $message = "Unable to retrieve data";
+            $order_code = $d->order_code;
+            $sql=" UPDATE `pos_order_tb` 
+                    SET   isDeleted = '1'
+                    WHERE `order_code` = '$order_code' "; 
+            
+            $res = $this->gm->generalQuery($sql, "");
+        
+            if($res['code']!=200) {
+                $code = 200;
+                $payload = $res;
+                $remarks = "success";
+                $message = "Successfully retrieved data";
+                
+            }
+            return $this->gm->sendPayload($payload, $remarks, $message, $code);
             }
 
 

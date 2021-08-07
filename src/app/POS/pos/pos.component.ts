@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { NgxPrintModule } from 'ngx-print';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
 import { DataService } from 'src/app/services/data.service';
+import { MatAccordion } from '@angular/material/expansion';
 
 
 
@@ -216,7 +217,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   
   products: any = {};
   cardInfo: any = {};
-  inputText: number = 1;
+  inputText= 0;
   cashInput: number = 0;
   cashEntered: number = 0;
   q: any;
@@ -301,13 +302,13 @@ export class POSComponent implements OnInit, AfterContentInit {
 
   }
 
-
+deleteIdentifier: any;
   preOrder: any;
   pullPreOrder() {
     this.ds.apiReqPos("pre", null).subscribe((data: any) => {
       this.preOrder = data.payload;
       
-
+      this.deleteIdentifier = this.preOrder[0].order_code;
     
       this.getSubTotal();
 
@@ -325,7 +326,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   //delete function order
 
   async delPre(e: any) {
-    this.orderInfo.order_ID = e;
+    this.orderInfo.order_code = e;
     Swal.fire({
       title: 'Remove item?',
       icon: 'warning',
@@ -342,14 +343,17 @@ export class POSComponent implements OnInit, AfterContentInit {
       }
     })
   }
+
+
+  defInfo: any = {};
   clearOrder() {
     
+    this.defInfo.order_code = this.deleteIdentifier;
 
-
-    this.ds.apiReqPos("clearOrder", this.orderInfo).subscribe((res: any) => {
+    this.ds.apiReqPos("clearAll", this.defInfo).subscribe((res: any) => {
 
       this.pullPreOrder();
-
+      this.subtotal = 0;
 
     });
   }
@@ -399,4 +403,33 @@ export class POSComponent implements OnInit, AfterContentInit {
   console.log(this.categCon);
 }
 
+
+value = 0;
+
+  handleMinus() {
+    if(this.inputText != 0){
+      this.inputText--;  
+    }
+
+ 
+  }
+  handlePlus() {
+    this.inputText++;    
+  }
+
+  step = 0;
+
+
+
+  
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 }
+
+export class YourClass {
+  isOpen: boolean;
+}
+
