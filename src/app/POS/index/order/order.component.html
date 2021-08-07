@@ -28,6 +28,25 @@
                           <mat-icon>menu</mat-icon>
                       </button>
                         <span>POINT OF SALE</span>
+                        
+            <div [formGroup] = "datePicker">
+              <label style="font-family: Poppins; font-size: 15px; font-weight: bold;">Select</label><br>
+              <mat-form-field appearance="outline" >
+                  <mat-label>Month and Year</mat-label>
+                  <input id="selectedMy" formControlName= "date1" matInput [matDatepicker]="dp" [formControl]="date" (ngModelChange) ="monthSelected();">
+                  <mat-datepicker-toggle  matSuffix [for]="dp"></mat-datepicker-toggle>
+                  <mat-datepicker disabled = "{{inputDisable}}" #dp 
+                                  startView="multi-year"
+                                  (yearSelected)="chosenYearHandler($event)"
+                                  (monthSelected)="chosenMonthHandler($event, dp)"
+                                  panelClass="example-month-picker">
+                  </mat-datepicker>
+                </mat-form-field>
+       
+                <button mat-button (click)="clearDate()" class="clearBtn"><mat-icon>refresh</mat-icon>Clear</button> 
+              </div>  
+
+              
                         <span class="example-spacer"></span>
 
                         <h3 class="admin-name">Hello! <span id="name"></span></h3>

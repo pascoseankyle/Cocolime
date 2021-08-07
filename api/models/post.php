@@ -464,6 +464,34 @@
             return $this->select('tables', null);
         }
 
+
+
         //------------------------------------------END OF CRM-------------------------------------------------
+
+
+
+// POS NEW PULL FUNCTION
+        function selectMYpos($data){
+        
+			$this->sql = "SELECT * FROM pos_preorder_tb WHERE MONTH(list_order_date) = '$data->selectedMonth' AND YEAR(list_order_date) = '$data->selectedYear'";
+			if($result = $this->conn->query($this->sql)){
+				if($result->num_rows>0){
+					while($res = $result->fetch_assoc()){
+						array_push($this->data, $res);
+					}
+					$this->status = $this->success_stat;
+					http_response_code(200);
+				}
+			}
+			return array(
+				'status'=>$this->status,
+				'payload'=>$this->data,
+				'prepared_by'=>'Inventory bois',
+				'timestamp'=>date('D M j, Y G:i:s T')
+			);
+		}
+
+
 	}
 ?>
+
