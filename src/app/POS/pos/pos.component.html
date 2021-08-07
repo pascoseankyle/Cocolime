@@ -142,16 +142,16 @@
        
        <!-- Menu Table-->
       <div class="rightpane">
-        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs ">
-          <mat-tab label="For Starters" >  
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs " (selectedTabChange)="categMenu($event)">
+          <mat-tab label="{{categ.name}}"  *ngFor="let categ of categ" >  
            
             <ng-template mat-tab-label>
-              <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;">
-              <span style="margin-left: 40px;">For Starters</span>
+              <!-- <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;"> -->
+              <span style="margin-left: 40px;">{{categ.name}}</span>
           </ng-template>
           
-           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product of product" >
-            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'For Starters'">
+           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product  of  categoryMenu1" >
+            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; ">
               <mat-expansion-panel-header>
                 <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
                   <p > {{product.product_name}}</p>
@@ -167,7 +167,7 @@
           </mat-accordion>
           </mat-tab>
          
-          <mat-tab label="From The Grill">  
+          <!-- <mat-tab label="From The Grill">  
             <ng-template mat-tab-label>
               <img src="assets/faveIcon/Grill.png" style="height: 60px; width: 70px;">
               <span style="margin-left: 40px;" >From The Grill</span>
@@ -233,7 +233,7 @@
         
           </mat-accordion>
           </mat-tab>
-          
+           -->
         </mat-tab-group>
         
       </div>

@@ -106,7 +106,7 @@ export class POSComponent implements OnInit, AfterContentInit {
 
               this.ds.apiReqPos("submittedOrder", this.orderSubmitted).subscribe((data2: any) => {
 
-              console.log(data2);
+            
               if(data2.status.remarks == "success")
               {
                 this.tableOccupied.table_name = this.tableSelected;
@@ -150,6 +150,7 @@ export class POSComponent implements OnInit, AfterContentInit {
     this.pullPreOrder();
     this.pullOrder();
     this.availableTables();
+    this.pullCategories();
 
   }
 
@@ -262,7 +263,8 @@ export class POSComponent implements OnInit, AfterContentInit {
 
         this.q = this.inputText;
 
-        console.log(this.orderInfo);
+  
+
         this.ds.apiReqPos("addPreOrderNew", this.orderInfo).subscribe((data: any) => {
     
        if(data.status.remarks == "success"){
@@ -316,7 +318,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   pullProduct() {
     this.ds.apiReqPos("prod", null).subscribe((data: any) => {
       this.product = data.payload;
-      console.log(this.product);
+  
     })
 
   }
@@ -355,8 +357,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   getSubTotal() {
     this.subtotal = 0;
     for (var i = 0; this.preOrder.length > i; i++) {
-      console.log(i)
-      console.log(this.preOrder[i].price);
+ 
       this.subtotal = this.subtotal + this.preOrder[i].price;
     }
 
@@ -368,9 +369,34 @@ export class POSComponent implements OnInit, AfterContentInit {
   {
     this.ds.apiReqPos("availableTables", null).subscribe((data: any) => {
       this.tables = data.payload;
-      console.log(this.tables);
+ 
     })
 
   }
+
+  categCon: any;
+  categ: any = {};
+  categInfo: any = {};
+  categoryMenu1: any;
+  pullCategories(){
+    this.ds.apiReqPos("posCateg", null).subscribe((data: any) => {
+      this.categ = data.payload;
+
+    })
+  }
+
+
+
+ categMenu(categoryMenu) {
+  this.categInfo.product_type =categoryMenu.tab.textLabel;
+  this.categCon = categoryMenu.tab.textLabel;
+  this.ds.apiReqPos("pullByCateg", this.categInfo).subscribe((data: any) => {
+    this.categoryMenu1 = data.payload;
+ 
+   
+  });
+
+  console.log(this.categCon);
+}
 
 }
