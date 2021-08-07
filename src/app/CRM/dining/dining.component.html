@@ -60,12 +60,12 @@
    
                     <div class="tables">
                 
-                        <div *ngFor="let tables of tables" style="display: block;"(click)="editForm(tables); orderReserveModal(contentOrderReserve);" >
+                        <div *ngFor="let tables of tables" style="display: block;">
                 
                 
                                    
                             <div *ngIf="tables?.status_id == 1 ">
-                            <div id ="box-{{ tables?.status_id }}" class = "box"  >
+                            <div id ="box-{{ tables?.status_id }}" class = "box"  (click)="editForm(tables); orderReserveModal(contentOrderReserve);" >
                             <h2>    {{ tables?.table_name }} </h2>
                                 
                                 <div *ngIf="tables?.status_id == 1">
@@ -78,7 +78,7 @@
                             </div>
 
                             <div *ngIf=" tables?.status_id == 3">
-                                <div id ="box-{{ tables?.status_id }}" class = "box" style="border-top: 3px solid hsl(34, 97%, 64%);" >
+                                <div id ="box-{{ tables?.status_id }}" class = "box" style="border-top: 3px solid hsl(34, 97%, 64%);" (click)="editForm(tables); orderReserveModal(contentOrderReserve);" >
                                 <h2>    {{ tables?.table_name }} </h2>
                                     
                                  
@@ -95,7 +95,7 @@
 
 
                             <div *ngIf="tables?.status_id == 2">
-                                <div id ="box-{{ tables?.status_id }}" class = "box">
+                                <div id ="box-{{ tables?.status_id }}" class = "box" (click)="editForm(tables); checkoutModal(contentCheckout);" >
                                    <h2> {{ tables?.table_name }} </h2>
                               
                                      <p>  Availability: <span class="oc"> Occupied </span></p>
@@ -159,7 +159,7 @@
     <button type="button" class="close" aria-label="Close" mat-dialog-close>
         <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">Checkout {{ tblInfo.table_name1 }}?</h4>
+    <h4 class="modal-title">Checkout {{ tblInfo.table_name1 }}</h4>
     </div>
     <div class="modal-footer">
     <form>
