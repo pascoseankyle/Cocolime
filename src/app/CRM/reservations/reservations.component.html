@@ -1,0 +1,160 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" /> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>CRM System</title>
+</head>
+
+<body>
+    <div class="sidenavbar">
+
+        <mat-sidenav-container autosize>
+            <mat-sidenav class="sidenav" #drawer mode="side" opened="true">
+                <img src="../assets/logo.png" class="inventory-logo">
+
+                <button mat-button class="sidebarcontent" routerLink="/crm"><mat-icon class="dashboard">dashboard</mat-icon> Tables</button>
+                <button mat-button class="sidebarcontent" routerLink="/dining"><mat-icon class="stocks">event_seat</mat-icon> Dining</button>
+                <button mat-button class="sidebarcontent" routerLink="/reservations"><mat-icon class="dashboard">book_online</mat-icon>Reservations</button>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div>
+                    <mat-toolbar color="primary" class="navbar">
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                          <mat-icon>menu</mat-icon>
+                      </button>
+                        <span>Customer Reception Management System</span>
+                        <span class="example-spacer"></span>
+
+                        <h3 class="admin-name">Hello! <span id="name"></span></h3>
+
+                        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                          <mat-icon>person</mat-icon>
+                      </button>
+                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" type="button" routerLink="/welcome">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                    </mat-toolbar>
+                </div>
+
+
+                <div class="mat-elevation-z8 tableSize">
+                    <div class="container-fluid">
+                      <h1>Reservation List</h1>
+                        
+                      <br>
+                                          
+                    <div class="table-responsive">
+                      
+                              <table class="table table-striped">
+                      
+                              <thead class="thead-dark">
+                                  <tr class="text-primary">
+                                  <th scope="col">Reservation No.</th>
+                                  <th scope="col">Table Name</th>
+                                  <th scope="col">First Name</th>
+                                  <th scope="col">Last Name</th>
+                                  <th scope="col">Reservation Date</th>
+                                  <th scope="col">Reservation Time</th>
+                                  <th scope="col">Phone No.</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Action</th>
+                                  <th scope="col">View</th>
+                                  </tr>
+                              </thead>
+                      
+                              <tbody>
+                      
+                                  <tr *ngFor="let reservations of reservations">
+                      
+                                  <th class=" align-middle" scope="row">{{ reservations?.reservation_no}}</th>
+                                  <th class=" align-middle" scope="row">{{ reservations?.table_name}}</th>
+                                  <td class=" align-middle">{{ reservations?.first_name }}</td>
+                                  <td class=" align-middle">{{ reservations?.last_name }}</td>
+                                  <td class=" align-middle">{{ reservations?.reservation_date }}</td>
+                                  <td class=" align-middle">{{ reservations?.reservation_time }}</td>
+                                  <td class=" align-middle">{{ reservations?.phone_no }}</td>
+                                  <td class=" align-middle">
+                                    <div *ngIf="reservations?.status_id == '1'" class="accepted">Accepted</div>
+                                    <div *ngIf="reservations?.status_id == '2'" class="pending">Pending</div>
+                                    <div *ngIf="reservations?.status_id == '3'" class="rejected">Rejected</div>
+                                  </td>
+                                  
+                                  <td class=" align-middle">
+                                      <button *ngIf="reservations?.status_id == '2'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.id)">
+                                        Accept
+                                      </button>
+                                      <button *ngIf="reservations?.status_id == '3'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.id)">
+                                        Accept
+                                    </button>
+                                    <button *ngIf="reservations?.status_id == '1'" type="button" class="btnpad btn btn-danger" (click)="rejectReservation(reservations.id)">
+                                        Reject
+                                    </button>
+
+                                  </td>
+                                  <td class=" align-middle">
+                                    <button type="button" class="btnpad btn btn-info" (click)="viewReservation(contentViewReservation); getReservationInfo(reservations);">
+                                        View
+                                    </button>
+                                  </td>
+                      
+                                  </tr>
+                              </tbody>
+                      
+                              </table>
+                      
+                          </div>
+                      
+                      </div>
+                </div>
+
+                
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+        
+    </div>
+      <!--VIEW RESERVATION MODAL-->
+<ng-template #contentViewReservation let-modal class=" modalFade" >
+    <mat-dialog-content>
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" mat-dialog-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+      <h4 class="modal-title"><b>Reservation Details</b></h4>
+    </div>
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-sm-6">
+    <p><b>Reservation No:</b></p>
+    <p>{{reservationInfo?.reservation_no}}</p>
+    <p><b>Table Name:</b></p>
+    <p>{{reservationInfo?.table_name}}</p>
+    <p><b>Customer Name:</b></p>
+    <p>{{reservationInfo?.firstname}}&nbsp;{{reservationInfo?.lastname}}</p>
+    <p><b>Phone No:</b></p>
+    <p>{{reservationInfo?.phone_no}}</p>
+    </div>  
+    <div class="col-sm"><b>Reservation Date:</b> {{reservationInfo?.reservation_date}}<br><br>
+        <b>Reservation Time:</b> {{reservationInfo?.reservation_time}}
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" mat-dialog-close>OK</button>
+    </div>
+    </mat-dialog-content>
+  </ng-template>
+</body>

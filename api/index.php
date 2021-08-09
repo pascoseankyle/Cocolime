@@ -148,22 +148,38 @@
 					echo json_encode($post->generalQuery("SELECT * FROM crm_tables_tb"));
 					
 				break;
+				// case 'reservations':
+				// 	echo json_encode($post->generalQuery("SELECT * FROM crm_reservations_tb"));
+					
+				// break;
+				case 'reservations':
+					echo json_encode($post->generalQuery("SELECT crm_reservations_tb.id,crm_reservations_tb.reservation_no,crm_tables_tb.table_name,
+														crm_reservations_tb.first_name,crm_reservations_tb.last_name,
+														crm_reservations_tb.reservation_date,crm_reservations_tb.reservation_time,
+														crm_reservations_tb.status_id,crm_reservations_tb.phone_no 
+														FROM crm_reservations_tb
+														INNER JOIN crm_tables_tb on crm_reservations_tb.table_id = crm_tables_tb.table_id"));
+				break;
 				case 'addTable':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->addTable($d));
 				break;
-
-
 				case 'editTable':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->editTable($d));
 				break;
-
 				case 'delTable':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
                     echo json_encode($post->delTable($d));
 				break;
-
+				case 'addReservation':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->addReservation($d));
+				break;	
+				case 'actionReservation':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->actionReservation($d));
+				break;
 				case 'selectCat':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
                     echo json_encode($post->selectCateg($d));

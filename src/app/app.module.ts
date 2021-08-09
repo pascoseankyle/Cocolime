@@ -72,6 +72,7 @@ import { CdkTableExporterModule, MatTableExporterModule } from 'mat-table-export
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CRMmainComponent } from './CRM/main/main.component';
 import { DiningComponent } from './CRM/dining/dining.component';
+import { ReservationsComponent } from './CRM/reservations/reservations.component';
 
 
 // POS COMPONENTS
@@ -124,6 +125,7 @@ import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.compone
     WelcomeComponent,
     CRMmainComponent,
     DiningComponent,
+    ReservationsComponent,
 
     // POS COMPONENTS
     OrderComponent,

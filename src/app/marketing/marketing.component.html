@@ -456,7 +456,7 @@ Seafood Rice Noodle.............................................................
 <!-- Call Reservation Section -->
 <div id="call-reservation" class="text-center" style="position: relative; margin-top: -10%;">
   <div class="container">
-    <h2>Want to make a reservation? Call <strong>(047) 252 2412</strong></h2>
+    <h2>Reserve Available Tables</h2>
   </div>
 </div>
 <!-- Contact Section -->
@@ -481,27 +481,34 @@ Seafood Rice Noodle.............................................................
    
     <div class="tables">
 
-        <div *ngFor="let tables of tables" style="display: block;" disabled>
+        <div *ngFor="let tables of tables" style="display: block;">
 
 
                    
-            <div *ngIf="tables?.status_id == 1 || tables?.status_id == 3">
-            <div id ="box-{{ tables?.status_id }}" class = "box"  >
+            <div *ngIf="tables?.status_id == 1 ">
+            <div id ="box-{{ tables?.status_id }}" class = "box" (click)="reserveForm(tables); reserveModal(contentReserve);">
             <h2>    {{ tables?.table_name }} </h2>
-                
+              
                 <div *ngIf="tables?.status_id == 1">
                   <p>  Availability:  <span class="av"> Available </span></p>
-                </div>
-                <div *ngIf="tables?.status_id == 3">
-                  <p>  Availability:  <span class="res">  Reserved </span> </p>
-
                 </div>
                 <p>Capacity: {{tables?.table_capacity}}</p>
                 <p id="status{{ tables?.status_id }}"></p>
             </div>
             </div>
+            <div *ngIf="tables?.status_id == 3 ">
+              <div id ="box-{{ tables?.status_id }}" class = "box" disabled>
+              <h2>    {{ tables?.table_name }} </h2>
+                
+                  <div *ngIf="tables?.status_id == 1">
+                    <p>  Availability:  <span class="res"> Reserved </span></p>
+                  </div>
+                  <p>Capacity: {{tables?.table_capacity}}</p>
+                  <p id="status{{ tables?.status_id }}"></p>
+              </div>
+              </div>
             <div *ngIf="tables?.status_id == 2">
-                <div id ="box-{{ tables?.status_id }}" class = "box">
+                <div id ="box-{{ tables?.status_id }}" class = "box" disabled>
                    <h2> {{ tables?.table_name }} </h2>
               
                      <p>  Availability: <span class="oc"> Occupied </span></p>
@@ -567,3 +574,37 @@ Seafood Rice Noodle.............................................................
 <script type="text/javascript" src="js/contact_me.js"></script> 
 <script type="text/javascript" src="js/main.js"></script>
 
+<!--REQUEST RESERVATION MODAL-->
+<ng-template #contentReserve let-modal class=" modalFade">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h4 class="modal-title"><b>Reserve a Table</b></h4>
+      <button type="button" class="close" aria-label="Close" mat-dialog-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="table_name">First Name</label>
+            <input name="table_name" type="text" class="form-control" id="first_name" placeholder="First Name" [(ngModel)]="first_name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="table_name">Last Name</label>
+            <input name="table_name" type="text" class="form-control" id="last_name" placeholder=" Last Name" [(ngModel)]="last_name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="table_name">Phone Number</label>
+            <input name="table_name" type="text" class="form-control" id="phone_no" placeholder="Phone Number" [(ngModel)]="phone_no">
+          </div>
+        </div>
+
+      </form>
+    </div>
+    </mat-dialog-content>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" mat-dialog-close>Close</button>
+      <button type="submit" class="btn btn-primary" (click)="addReservation()" mat-dialog-close>Confirm</button>
+    </div>
+  </ng-template>

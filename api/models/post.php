@@ -435,7 +435,7 @@
                 'timestamp'=>date('D M j, Y h:i:s e')
             );
         }
-        //DELETE A PRODUCT FUNCTION
+        //DELETE A TABLE FUNCTION
 
 		function delTable($dt) {
             $payload = $dt;
@@ -454,7 +454,7 @@
             );
         }
 
-		//UPDATE A PRODUCT
+		//UPDATE A TABLE
 
 		function editTable($dt){
 
@@ -464,6 +464,30 @@
             return $this->select('tables', null);
         }
 
+                    //ADD RESERVATION FUNCTION
+		function addReservation($dt) {
+            $payload = $dt;
+
+            $this->sql = "INSERT INTO crm_reservations_tb (reservation_no, table_id,first_name,last_name,reservation_date,reservation_time, status_id,phone_no) VALUES 
+            ('$dt->reservation_no', '$dt->table_id','$dt->first_name','$dt->last_name','$dt->reservation_date','$dt->reservation_time', '$dt->status_id','$dt->phone_no')"; 
+            
+            $this->conn->query($this->sql);
+
+            $this->data = $payload;
+
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Staff',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
+        }
+
+        function actionReservation($d){
+            $sql = "UPDATE crm_reservations_tb SET status_id='$d->status_id' WHERE id = '$d->id'";
+            $this->conn->query($sql);
+            return $this->select('reservations', null);
+        }
 
 
         //------------------------------------------END OF CRM-------------------------------------------------
