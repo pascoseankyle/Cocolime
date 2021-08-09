@@ -3,8 +3,8 @@
 
 .invoice {
   margin-top: 10%;
-  height: 65vh;
-  width: 50vh;
+  height: auto;
+  width: 55vh;
   position: relative;
   margin: auto;
   justify-content: center;
