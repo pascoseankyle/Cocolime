@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 export interface empTable {
+  emp_no: any;
   emp_id: string;
   emp_firstname: string;
   emp_lastname: string;
@@ -106,7 +107,7 @@ export class TimeinComponent implements OnInit {
   monthintText: any;
   month_year: any;
 
-  
+
 
   //Sets Date Variables
   getDate() {
@@ -156,19 +157,19 @@ export class TimeinComponent implements OnInit {
   //Pull DTR Contents
   jsonData: any;
 
-  onClickEditDTR(emp_id: string, value: any, argument: any) {
-    console.log(emp_id + '_' + this.month_year + ' From DTR Page: Method pullDTRContents');
+  onClickEditDTR(emp_no: string, value: any, argument: any) {
+    console.log(emp_no + '_' + this.month_year + ' From DTR Page: Method pullDTRContents');
     this.dtrJSONTable = [];
 
     for (let dtrInfoTable of this.dtrInfoTable) {
-      console.log(emp_id + '_' + this.month_year);
-      if (dtrInfoTable.dtr_id === emp_id + '_' + this.month_year) {
+      console.log(emp_no + '_' + this.month_year);
+      if (dtrInfoTable.dtr_id === emp_no + '_' + this.month_year) {
         console.log('MAAAAAAAAATCH' + dtrInfoTable.dtr_id)
         this.jsonData = dtrInfoTable.dtr_content;
         this.dtrJSONTable = JSON.parse(this.jsonData);
         console.log(this.dtrJSONTable + ' From DTR Page: Method pullDTRContents');
         this.updateList(dtrInfoTable.dtr_id, value, argument, this.datepipe.transform(this.currentDate, 'yyyy-MM-dd'));
-        ;break
+        ; break
       } else {
         console.log('NO MAAAAAAAAATCH' + dtrInfoTable.dtr_id)
       }
@@ -177,9 +178,9 @@ export class TimeinComponent implements OnInit {
 
   //onTimeClick
 
-  onTimeClick(input_emp_id: any, argument : any) {
+  onTimeClick(input_emp_id: any, argument: any) {
     console.log(input_emp_id)
-    this.openSnackBar(input_emp_id + 'has been entred', 'ok');
+    
     var time = this.datepipe.transform(this.time, 'h:mm');
     var isAMorPM = this.datepipe.transform(this.time, 'a');
     console.log(isAMorPM);
@@ -195,13 +196,14 @@ export class TimeinComponent implements OnInit {
 
     var argString = mString + '_' + argument;
 
-    console.log(mString+'_'+argument)
+    console.log(mString + '_' + argument)
 
     for (let empInfoTable of this.empInfoTable) {
       if (empInfoTable.emp_id === input_emp_id) {
+        this.openSnackBar('Match Found' + input_emp_id + 'has been entered', 'ok');
         console.log('Match Found');
-        this.onClickEditDTR(input_emp_id, time, argString);
-        
+        this.onClickEditDTR(empInfoTable.emp_no, time, argString);
+
 
         ; break
       }
@@ -268,6 +270,6 @@ export class TimeinComponent implements OnInit {
     this.editDTR(this.dtrJSONTable, dtr_id);
   }
 
-  
+
 
 }

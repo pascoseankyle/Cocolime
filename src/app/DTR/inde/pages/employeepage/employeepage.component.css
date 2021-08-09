@@ -3548,106 +3548,158 @@ mat-form-field {
   margin-top: 13px;
 }*/
 
+/*#spacing {
+  margin-top: 13px;
+}*/
+
 mat-cell {
   font-size: 12px;
   border: dotted 1px;
   border-collapse: collapse !important;
   border-color: grey;
   text-align: left;
+  max-width: 250px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 mat-header-cell {
   border: dotted 1px;
   justify-content: left;
+  border-color: grey;
+  max-width: 250px;
+  font-size: 100px;
 }
 
 .mat-column-emp_firstname {
   flex: 10% !important;
-  max-width: 160px;
+  max-width: 150px;
   background-color: #d1d4ce;
+  font-size: 20px;
+  color: black;
 }
+
+
 
 .mat-column-emp_lastname {
   flex: 10% !important;
   max-width: 160px;
   background-color: #d1d4ce;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_no {
   font-size: 12px;
   max-width: 80px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_id {
-  max-width: 80px;
+  max-width: 120px;
+  min-width: 120px;
   font-size: 12px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_status {
-  max-width: 150px;
+  max-width: 100px;
+  min-width: 100px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_address {
   flex: 15% !important;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_sex {
-  max-width: 60px;
+  max-width: 100px;
+  min-width: 100px;
+  font-size: 20px;
+  color: black;
 }
+
 
 .mat-column-emp_datebirth {
   justify-content: center !important;
-  max-width: 200px;
-  min-width: 180px;
-}
-
-.mat-column-emp_contact {
-  max-width: 200px;
-}
-
-.mat-column-emp_position {
-  max-width: 200px;
-}
-
-.mat-column-emp_department {
-  max-width: 200px;
-}
-
-.mat-column-emp_rate {
-  max-width: 80px;
+  max-width: 180px;
+  min-width: 200px;
+  font-size: 12px;
+  color: black;
 }
 
 .mat-column-emp_start_date {
   justify-content: center !important;
   min-width: 180px;
   max-width: 200px;
+  font-size: 12px;
+  color: black;
 }
 
+.mat-column-emp_contact {
+  max-width: 200px;
+  font-size: 20px;
+  color: black;
+}
+
+.mat-column-emp_position {
+  max-width: 200px;
+  font-size: 20px;
+  color: black;
+}
+
+.mat-column-emp_department {
+  max-width: 220px;
+  font-size: 20px;
+  color: black;
+}
+
+.mat-column-emp_rate {
+  max-width: 90px;
+  min-width: 90px;
+  font-size: 20px;
+  color: black;
+}
+
+
+
 .mat-column-emp_time_in {
-  max-width: 100px;
+  max-width: 130px;
+  min-width: 130px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_time_out {
-  max-width: 100px;
+  max-width: 130px;
+  min-width: 130px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_last_mod_date {
-  max-width: 200px;
+  max-width: 220px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-emp_last_mod_by {
   max-width: 200px;
+  font-size: 20px;
+  color: black;
 }
 
 .mat-column-actions {
-  color: white;
-
-  min-width: 300px;
-
-  max-width: 350px;
+  color:black ;
+  min-width: 200px;
+  max-width: 300px;
   align-content: center;
   justify-content: center;
-  background-color: #706e5a;
+  background-color: #d1d4ce;
 }
 
 mat-form-field {
@@ -3665,4 +3717,30 @@ mat-form-field {
 
 .toolbar-buttons {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.DTR-card > table, tr, th, td {
+  border: .5px solid;
+  padding: 2px;
+  table-layout: auto;
+  font-size: 20px;
+}
+
+.content {
+  table-layout: auto;
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+}
+
+.modalprint {
+  width: 10%;
+  float: right;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }

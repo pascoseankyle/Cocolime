@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef,  ViewChild, Inject, AfterViewInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject, AfterViewInit, TemplateRef } from '@angular/core';
 import { DataService } from 'src/app/DTR/service/data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,10 +7,9 @@ import { DatePipe, LowerCasePipe, Time } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import jspdf from 'jspdf';
-// import jsPDF from 'jspdf';
-// import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { MatDialog } from '@angular/material/dialog';
-
 
 //INTERFACE
 
@@ -28,6 +27,7 @@ export interface empTable {
   emp_department: any;
   emp_is_archived: any;
   emp_sex: any;
+  emp_rate: any;
   emp_position: any;
   emp_start_date: any;
   emp_status: any;
@@ -47,11 +47,16 @@ export interface empTableColumnProp {
   styleUrls: ['./employeepage.component.css']
 })
 
-export class EmployeepageComponent implements OnInit{
+export class EmployeepageComponent implements OnInit {
 
+  showMe: boolean = true
+
+  toogleTag() {
+    this.showMe = !this.showMe
+  }
   //Constructors Here
 
-  constructor(private data: DataService, private datepipe: DatePipe, private snackbar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private data: DataService, private datepipe: DatePipe, private snackbar: MatSnackBar, public dialog: MatDialog) { }
 
   //View Child Goes Here
 
@@ -59,13 +64,25 @@ export class EmployeepageComponent implements OnInit{
 
   downloadPDF() {
     let pdf = new jspdf('p', 'px', [1500, 2000]);
-    pdf.html(this.es.nativeElement,{
-      callback: (pdf)=> {
-        pdf.save("employees.pdf");
+    pdf.html(this.es.nativeElement, {
+      callback: (pdf) => {
+        pdf.save("listofemployees.pdf");
       }
     });
-  }  
-  
+  }
+
+
+  @ViewChild('modalcontent', { static: false }) as!: ElementRef;
+
+  download() {
+    let pdf = new jspdf('p', 'mm', [2000, 1500]);
+    pdf.html(this.as.nativeElement, {
+      callback: (pdf) => {
+        pdf.save("individualemployee.pdf");
+      }
+    });
+  }
+
   @ViewChild(MatSort) sort!: MatSort;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -74,7 +91,7 @@ export class EmployeepageComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUser();
-    this.pullAllEmp();      
+    this.pullAllEmp();
   }
 
   ngAfterViewInit() {
@@ -113,25 +130,25 @@ export class EmployeepageComponent implements OnInit{
 
   empInfoTableColumnsJSON: empTableColumnProp[] = [
     { "columnName": "emp_name", "columnPrettyName": "Employee Name", "columnisSticky": true, },
-    { "columnName": "emp_firstname", "columnPrettyName": "Firstname", "columnisSticky": true, },
-    { "columnName": "emp_lastname", "columnPrettyName": "Lastname", "columnisSticky": true, },
-    { "columnName": "emp_no", "columnPrettyName": "Emp no", "columnisSticky": false, },
-    { "columnName": "emp_id", "columnPrettyName": "Emp ID", "columnisSticky": false, },
-    { "columnName": "emp_middle", "columnPrettyName": "MI", "columnisSticky": false, },
-    { "columnName": "emp_address", "columnPrettyName": "Address", "columnisSticky": false, },
-    { "columnName": "emp_sex", "columnPrettyName": "Sex", "columnisSticky": false, },
-    { "columnName": "emp_datebirth", "columnPrettyName": "Date of Birth", "columnisSticky": false, },
-    { "columnName": "emp_contact", "columnPrettyName": "Contact Info", "columnisSticky": false, },
-    { "columnName": "emp_time_in", "columnPrettyName": "Time-in", "columnisSticky": false, },
-    { "columnName": "emp_time_out", "columnPrettyName": "Time-out", "columnisSticky": false, },
-    { "columnName": "emp_department", "columnPrettyName": "Department", "columnisSticky": false, },
-    { "columnName": "emp_rate", "columnPrettyName": "Rate", "columnisSticky": false, },
-    { "columnName": "emp_start_date", "columnPrettyName": "Date Started", "columnisSticky": false, },
-    { "columnName": "emp_status", "columnPrettyName": "Status", "columnisSticky": false, },
-    { "columnName": "emp_position", "columnPrettyName": "Position", "columnisSticky": false, },
-    { "columnName": "emp_last_mod_date", "columnPrettyName": "Date Last Modified", "columnisSticky": false, },
-    { "columnName": "emp_last_mod_by", "columnPrettyName": "Last Modified By", "columnisSticky": false, },
-    { "columnName": "emp_is_archived", "columnPrettyName": "Archive Status", "columnisSticky": false, },
+    { "columnName": "emp_firstname", "columnPrettyName": "FIRST NAME", "columnisSticky": true, },
+    { "columnName": "emp_lastname", "columnPrettyName": "LAST NAME", "columnisSticky": true, },
+    { "columnName": "emp_no", "columnPrettyName": "EMP NO", "columnisSticky": false, },
+    { "columnName": "emp_id", "columnPrettyName": "EMP ID", "columnisSticky": false, },
+    { "columnName": "emp_middle", "columnPrettyName": "MIDDLE", "columnisSticky": false, },
+    { "columnName": "emp_address", "columnPrettyName": "ADDRESS", "columnisSticky": false, },
+    { "columnName": "emp_sex", "columnPrettyName": "SEX", "columnisSticky": false, },
+    { "columnName": "emp_datebirth", "columnPrettyName": "DATE OF BIRTH", "columnisSticky": false, },
+    { "columnName": "emp_contact", "columnPrettyName": "CONTACT INFO", "columnisSticky": false, },
+    { "columnName": "emp_time_in", "columnPrettyName": "TIME-IN", "columnisSticky": false, },
+    { "columnName": "emp_time_out", "columnPrettyName": "TIME-OUT", "columnisSticky": false, },
+    { "columnName": "emp_department", "columnPrettyName": "DEPARTMENT", "columnisSticky": false, },
+    { "columnName": "emp_rate", "columnPrettyName": "RATE", "columnisSticky": false, },
+    { "columnName": "emp_start_date", "columnPrettyName": "DATE STARTED", "columnisSticky": false, },
+    { "columnName": "emp_status", "columnPrettyName": "STATUS", "columnisSticky": false, },
+    { "columnName": "emp_position", "columnPrettyName": "POSITION", "columnisSticky": false, },
+    { "columnName": "emp_last_mod_date", "columnPrettyName": "DATE LAST MODIFIED", "columnisSticky": false, },
+    { "columnName": "emp_last_mod_by", "columnPrettyName": "LAST MODIFIED BY", "columnisSticky": false, },
+    { "columnName": "emp_is_archived", "columnPrettyName": "ARCHIVE STATUS", "columnisSticky": false, },
   ]
 
   //Table Columns
@@ -220,7 +237,7 @@ export class EmployeepageComponent implements OnInit{
 
 
   //EMPLOYEE OPERATION
-  
+
   //////////////////////////////////// DO NOT COPY ////////////////////////////////////////////////
   //////////////////////////////////// DO NOT COPY ////////////////////////////////////////////////
   //////////////////////////////////// DO NOT COPY ////////////////////////////////////////////////
@@ -239,7 +256,7 @@ export class EmployeepageComponent implements OnInit{
     console.log(this.empInfo + ' From Employee Page: Method addEmp');
     this.data.sendApiRequest("addEmp", this.empInfo).subscribe((data: any) => {
       this.ngOnInit();
-      this.notify('Added Blank Employee', 'Ok')
+      this.notify('BLANK ENTRY ADDED', 'OK')
     });
   }
 
@@ -331,6 +348,16 @@ export class EmployeepageComponent implements OnInit{
               this.editEmp(this.empInfo);
               break;
             }
+            case "emp_position": {
+              console.log(event.target.value + 'From Employees Page: Method updateList');
+              console.log('Arguments:' + property + 'From Employees Page: Method updateList');
+              this.empInfo = {};
+              this.empInfo.emp_no = no;
+              this.empInfo.emp_position = event.target.value;
+              console.log(this.empInfo + 'From Employees Page: Method updateList');
+              this.editEmp(this.empInfo);
+              break;
+            }
             case "emp_start_date": {
               console.log(event.target.value + 'From Employees Page: Method updateList');
               console.log('Arguments:' + property + 'From Employees Page: Method updateList');
@@ -390,20 +417,20 @@ export class EmployeepageComponent implements OnInit{
       }
     }
   }
-  
+
   //Edit Employees
 
   async editEmp(editEmpInfo: any) {
     this.empInfo.emp_last_mod_by = this.user
     console.log(editEmpInfo + ' From Emp Page: Method editEmp');
     this.data.sendApiRequest("editEmp", editEmpInfo).subscribe((data: any) => {
-        //this.empInfoTable = data.payload;
-        //console.log(this.empInfoTable);
-        //this.empInfoTableDataSource.data = this.empInfoTable;
-        //console.log(this.empInfoTableDataSource + ' From Emp Page: Method editEmdddddddddddddddddp');
-      });
+      //this.empInfoTable = data.payload;
+      //console.log(this.empInfoTable);
+      //this.empInfoTableDataSource.data = this.empInfoTable;
+      //console.log(this.empInfoTableDataSource + ' From Emp Page: Method editEmdddddddddddddddddp');
+    });
   }
-  
+
   //Del Employees
 
   async delEmp(emp_no: any) {
@@ -412,9 +439,9 @@ export class EmployeepageComponent implements OnInit{
     this.empInfo.emp_no = emp_no;
     this.data.sendApiRequest("delEmp", this.empInfo).subscribe((data: any) => {
       this.ngOnInit();
-      this.notify('Deleted Employee:' + emp_no, 'Ok' )
+      this.notify('DELETED EMPLOYEE:' + emp_no, 'OK')
     });
-  }  
+  }
 
   //Filter Employees
 
@@ -442,7 +469,7 @@ export class EmployeepageComponent implements OnInit{
       this.tableMaxWidth = 150;
       this.tableWidth = 150;
       this.isMin = false;
-    }    
+    }
   }
 
   maxTable() {
@@ -457,7 +484,7 @@ export class EmployeepageComponent implements OnInit{
       this.tableMaxWidth = 150;
       this.tableWidth = 150;
       this.isMax = false;
-    }    
+    }
   }
 
   //TabIndex FunctionS
@@ -474,76 +501,74 @@ export class EmployeepageComponent implements OnInit{
     else {
       this.tabIndex = this.tabIndex + 1;
     }
-    return<number>this.tabIndex;
-  }  
+    return <number>this.tabIndex;
+  }
 
   //SnackBar
 
   notify(message: string, action: string) {
-    this.snackbar.open(message, action,{duration: 3000});
+    this.snackbar.open(message, action, { duration: 3000 });
   }
 
 
+  // modal
 
-// modal
-
-fname: any;
-lname: any;
-empId: any;
-status: any;
-address: any;
-sex: any;
-dob: any;
-contact: any;
-position: any;
-department: any;
-rate: any;
-datestarted: any;
-timeIn: any;
-timeOut: any;
-
+  fname: any;
+  lname: any;
+  empId: any;
+  status: any;
+  address: any;
+  sex: any;
+  dob: any;
+  contact: any;
+  position: any;
+  department: any;
+  rate: any;
+  datestarted: any;
+  timeIn: any;
+  timeOut: any;
 
 
-@ViewChild('ViewDialog', { static: true }) ViewDialog!: TemplateRef<any>;
 
-viewModal = (i:any) => {
-    
-  this.dialog.open(this.ViewDialog);
-  this.fname = i.emp_firstname;
-  this.lname = i.emp_lastname;
-  this.empId = i.emp_id;
-  this.status = i.emp_status;
-  this.address = i.emp_address;
-  this.sex = i.emp_sex;
-  this.dob = i.emp_datebirth;
-  this.contact = i.emp_contact;
-  this.position = i.emp_position;
-  this.department = i.emp_department;
-  this.rate = i.emp_rate;
-  this.datestarted = i.emp_start_date;
-  this.timeIn = i.emp_time_in;
-  this.timeOut = i.emp_time_out
+  @ViewChild('ViewDialog', { static: true }) ViewDialog!: TemplateRef<any>;
 
-  console.log(this.fname+ "\n" +this.lname+ "\n" +this.empId+ "\n" +this.status+ "\n" +this.address+ "\n" +this.sex+ "\n" +this.dob+ "\n" +this.contact+ "\n" +this.position+ "\n" +this.department+ "\n" +this.rate+ "\n" +this.datestarted+ "\n" +this.timeIn+ "\n" +this.timeOut);
+  viewModal = (i: any) => {
+
+    this.dialog.open(this.ViewDialog);
+    this.fname = i.emp_firstname;
+    this.lname = i.emp_lastname;
+    this.empId = i.emp_id;
+    this.status = i.emp_status;
+    this.address = i.emp_address;
+    this.sex = i.emp_sex;
+    this.dob = i.emp_datebirth;
+    this.contact = i.emp_contact;
+    this.position = i.emp_position;
+    this.department = i.emp_department;
+    this.rate = i.emp_rate;
+    this.datestarted = i.emp_start_date;
+    this.timeIn = i.emp_time_in;
+    this.timeOut = i.emp_time_out
+
+    console.log(this.fname + "\n" + this.lname + "\n" + this.empId + "\n" + this.status + "\n" + this.address + "\n" + this.sex + "\n" + this.dob + "\n" + this.contact + "\n" + this.position + "\n" + this.department + "\n" + this.rate + "\n" + this.datestarted + "\n" + this.timeIn + "\n" + this.timeOut);
 
 
-  // this.productForm.patchValue({
-  //   item_id: i.item_id,
-  //   item_name: i.item_name,
-  //   item_desc: i.item_desc,
-  //   item_quant: i.item_quant,
-  //   item_price: i.item_price,
-  //   item_minimum: i.item_minimum,
-  //   remarks: i.remarks,
-  //   date_expiry: i.date_expiry,
-  //   measurementType: i.measurementType
-  // })
+    // this.productForm.patchValue({
+    //   item_id: i.item_id,
+    //   item_name: i.item_name,
+    //   item_desc: i.item_desc,
+    //   item_quant: i.item_quant,
+    //   item_price: i.item_price,
+    //   item_minimum: i.item_minimum,
+    //   remarks: i.remarks,
+    //   date_expiry: i.date_expiry,
+    //   measurementType: i.measurementType
+    // })
+  }
+
+
 }
 
-
-
-  //End of Methods
-}
 
 
 

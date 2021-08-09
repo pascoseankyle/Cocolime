@@ -10,21 +10,21 @@ import jspdf from 'jspdf';
 //INTERFACES
 
 export interface empTable {
-  emp_id: string;
-  emp_firstname: string;
-  emp_lastname: string;
-  emp_address: string;
-  emp_datebirth: Date;
-  emp_contact: string;
-  emp_time_in: Time;
-  emp_time_out: Time;
-  emp_department: string;
-  emp_is_archived: string;
-  emp_sex: string;
-  emp_position: string;
-  emp_start_date: Date;
-  emp_status: string;
-  emp_last_mod_date: Date;
+  emp_id: any;
+  emp_firstname: any;
+  emp_lastname: any;
+  emp_address: any;
+  emp_datebirth: any;
+  emp_contact: any;
+  emp_time_in: any;
+  emp_time_out: any;
+  emp_department: any;
+  emp_is_archived: any;
+  emp_sex: any;
+  emp_position: any;
+  emp_start_date: any;
+  emp_status: any;
+  emp_last_mod_date: any;
   emp_last_mod_by: any;
 }
 
@@ -44,8 +44,8 @@ export interface dtrJSON {
   pm_time_out: any;
   ot_time_in: any;
   ot_time_out: any;
-  mhrs: number;
-  remarks: string;
+  mhrs: any;
+  remarks: any;
 }
 
 @Component({
@@ -201,18 +201,7 @@ export class DailytimerecordpageComponent implements OnInit {
   
 
   //Methods
-
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-  /////STILL HAS MOTHERFUCKING ISSUES
-
-  
-
-  
+    
 
   //Generate DTR
   async addemptyDTR(emp_id: any, month_year: any) {
@@ -264,8 +253,7 @@ export class DailytimerecordpageComponent implements OnInit {
     console.log(filterValue);
     this.empInfoTable = this.empInfoTable.filter((emp_name) => { filterValue })
   }
-
-  
+    
 
   tabClick(event: any) {
 
