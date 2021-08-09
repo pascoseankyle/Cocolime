@@ -11,6 +11,7 @@ import { IndexComponent } from './index/index.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CRMmainComponent } from './CRM/main/main.component';
 import { DiningComponent } from './CRM/dining/dining.component';
+import { ReservationsComponent } from './CRM/reservations/reservations.component';
 import { POSComponent } from './POS/pos/pos.component';
 
 import { OrderComponent } from './POS/index/order/order.component';
@@ -132,6 +133,10 @@ const routes: Routes = [
   {
     path: 'dining',
     component: DiningComponent,
+  },
+  {
+    path: 'reservations',
+    component: ReservationsComponent,
   },
 
   {
