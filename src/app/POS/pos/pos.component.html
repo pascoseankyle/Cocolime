@@ -75,7 +75,7 @@
                   Price: {{pre.price | currency : 'PHP': 'symbol-narrow'}}
                 </mat-grid-tile>
                 <mat-grid-tile>
-                  <mat-icon style="color: red; cursor: pointer;" (click)="delPre(pre.order_ID);">delete</mat-icon>&nbsp;
+                  <mat-icon style="color: red; cursor: pointer;" (click)="delPre(pre.order_code);">delete</mat-icon>&nbsp;
                 </mat-grid-tile>
                 
               </mat-grid-list>
@@ -98,7 +98,8 @@
           <mat-list-item> <strong>SubTotal</strong>   <span name="total" ngDefaultControl class="summary1"> {{subtotal - subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
           <mat-list-item > <strong>Tax</strong> <span name="Tax" ngDefaultControl class="summary"> {{subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
           <mat-list-item > <strong>Total</strong> <span name="subtotal" ngDefaultControl class="summary"> {{subtotal | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
-          <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" [(ngModel)]="cashInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
+          <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" placeholder="Amount" [(ngModel)]="cashInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
+          <mat-list-item > <strong>Name</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" placeholder="Name" [(ngModel)]="nameInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
           <mat-list-item > <strong>Table</strong> 
             <span name="subtotal" ngDefaultControl class="summary"> 
                 <select class="selectTable" name="tables" id="tables" [(ngModel)]="tableSelected">
@@ -108,6 +109,7 @@
                 </select>
             </span> 
             </mat-list-item>
+           
          </mat-list>
         <mat-grid-list cols="2" rowHeight="2:1">
 
@@ -142,32 +144,44 @@
        
        <!-- Menu Table-->
       <div class="rightpane">
-        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs ">
-          <mat-tab label="For Starters" >  
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs " (selectedTabChange)="categMenu($event)">
+          <mat-tab label="{{categ.name}}"  *ngFor="let categ of categ; index as i" >  
            
             <ng-template mat-tab-label>
-              <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;">
-              <span style="margin-left: 40px;">For Starters</span>
+              <!-- <img src="assets/faveIcon/SpringR.png" style="height: 60px; width: 70px;"> -->
+              <span style="margin-left: 40px;">{{categ.name}}</span>
           </ng-template>
           
-           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product of product" >
-            <mat-expansion-panel hideToggle style="  margin-top: 10px; margin-left:20px; background-color: #FF5722; " *ngIf="product.product_type == 'For Starters'">
+           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px; " *ngFor="let product  of  categoryMenu1" >
+            <mat-expansion-panel hideToggle   class="menuCard" style="  margin-top: 10px; margin-left:20px; background-color: #fbfbfb; ">
               <mat-expansion-panel-header>
-                <mat-panel-title style="text-align: center; text-decoration: none; color: white;">
-                  <p > {{product.product_name}}</p>
+                <mat-panel-title style="text-align: center; text-decoration: none; ">
+                  <p style="font-size: 16px; font-weight: 600;"> {{product.product_name}}</p>
                 </mat-panel-title>
                 
               </mat-expansion-panel-header>
+              <div style="display: flex; flex-direction: column; width: 100%; justify-content: center; align-items: center;">
               <p>Enter Quantity:</p> 
-                   <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" >
+                   <!-- <input matInput type="number" [(ngModel)]="inputText" style="color: black; font-size: inherit;" > -->
                 
-                   <button   (click)="addPreOrder(product)" >Confirm</button>
+                   <div class="wrapper">
+                    <button class="plusminus" (click)="handleMinus()">-</button>
+                    <input type="number" class="num" value="0" [(ngModel)]="inputText" />
+                    <button class="plusminus" (click)="handlePlus()">+</button>
+                  </div>
+                  <button mat-stroked-button class="conBtn" (click)="addPreOrder(product); ">Confirm</button>
+         
+
+              </div>
             </mat-expansion-panel>
         
           </mat-accordion>
+
+          
+        
           </mat-tab>
          
-          <mat-tab label="From The Grill">  
+          <!-- <mat-tab label="From The Grill">  
             <ng-template mat-tab-label>
               <img src="assets/faveIcon/Grill.png" style="height: 60px; width: 70px;">
               <span style="margin-left: 40px;" >From The Grill</span>
@@ -233,7 +247,7 @@
         
           </mat-accordion>
           </mat-tab>
-          
+           -->
         </mat-tab-group>
         
       </div>

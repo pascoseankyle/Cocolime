@@ -28,6 +28,9 @@
                           <mat-icon>menu</mat-icon>
                       </button>
                         <span>POINT OF SALE</span>
+           
+
+              
                         <span class="example-spacer"></span>
 
                         <h3 class="admin-name">Hello! <span id="name"></span></h3>
@@ -41,16 +44,33 @@
                     </mat-toolbar>
                 </div>
                 
-                   <!-- <div class="btns"> -->
-                        <!-- <button class="add-button"  onclick="window.print();" mat-flat-button><mat-icon class="aligned-with-icon">add_circle_outline</mat-icon> Print Orders</button> -->
-                        <!-- <button class="view-archives"   matBadgeColor="warn"   mat-flat-button><mat-icon class="aligned-with-icon">folder_open</mat-icon><span class="aligned-with-icon"> Archives </span></button> -->
-                        
-                      <!-- </div>     -->
-                <mat-form-field class="search"autocomplete="off">
-                  
-                    <mat-label search><mat-icon class="aligned-with-icon1"  style="font-size: 25px;">search</mat-icon><span class="iLabel">Search</span></mat-label>
-                    <input  autocomplete="off" matInput class="searchField"  (keyup)="applyFilter($event)" >
-                </mat-form-field>
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: center; align-items: center; margin-bottom: -2rem;">
+              <div [formGroup] = "datePicker"  class="search1" >
+                <label style="font-family: Poppins; font-size: 15px; font-weight: bold; margin-right: 1rem;">Select</label>
+                <mat-form-field appearance="outline">
+                    <mat-label>Month and Year</mat-label>
+                    <input id="selectedMy" formControlName= "date1" matInput [matDatepicker]="dp" [formControl]="date" (ngModelChange) ="monthSelected();">
+                    <mat-datepicker-toggle  matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker disabled = "{{inputDisable}}" #dp 
+                                    startView="multi-year"
+                                    (yearSelected)="chosenYearHandler($event)"
+                                    (monthSelected)="chosenMonthHandler($event, dp)"
+                                    panelClass="example-month-picker">
+                    </mat-datepicker>
+                  </mat-form-field>
+         
+                  <button mat-button (click)="clearDate()" class="clearBtn"><mat-icon>refresh</mat-icon>Clear</button> 
+                </div>  
+
+
+              <mat-form-field class="search"autocomplete="off">
+                
+                
+                  <mat-label search><mat-icon class="aligned-with-icon1"  style="font-size: 25px;">search</mat-icon><span class="iLabel">Search</span></mat-label>
+                  <input  autocomplete="off" matInput class="searchField"  (keyup)="applyFilter($event)" >
+              </mat-form-field>
+            </div> 
+                
 
                 <div class="card-main" >  
                   
@@ -62,16 +82,22 @@
   <table class="" mat-table [dataSource]="codeTableDataSource">
 
     <!-- ID -->
-    <ng-container matColumnDef="Column1" hidden class="thead">
+    <!-- <ng-container matColumnDef="Column1" hidden class="thead">
       <th class="th" mat-header-cell *matHeaderCellDef> No. </th>
       <td  class="td" mat-cell *matCellDef="let element"> {{element.list_id}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- CODE -->
-    <ng-container matColumnDef="Column2" class="thead">
+    <ng-container matColumnDef="Column1" class="thead">
       <th class="th" mat-header-cell *matHeaderCellDef> Receipt Code </th>
       <td class="td" mat-cell *matCellDef="let element"> {{element.list_order_code}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="Column2" class="thead">
+      <th class="th" mat-header-cell *matHeaderCellDef> Customer Name </th>
+      <td class="td" mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+    </ng-container>
+
 
     <!-- AMOUNT-->
     <ng-container matColumnDef="Column3" class="thead">

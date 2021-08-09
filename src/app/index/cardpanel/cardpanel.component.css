@@ -10,7 +10,11 @@
   display: flex;
   justify-content: center;
   background: var(--color_background);
-  background-image: linear-gradient(to top, rgba(173, 110, 81, .1), rgb(173, 156, 81, .5));
+  background-image: linear-gradient(
+    to top,
+    rgba(173, 110, 81, 0.1),
+    rgb(173, 156, 81, 0.5)
+  );
 }
 #content-container {
   margin-top: 20px;
@@ -24,7 +28,7 @@
   justify-content: center;
 }
 #header {
-  background: rgba(128, 128, 150, .5);
+  background: rgba(128, 128, 150, 0.5);
   color: var(--black);
   padding: 10px;
   font-size: 20px;
@@ -33,51 +37,68 @@ a {
   color: black;
   text-decoration: none !important;
 }
-a:hover{
+a:hover {
   font-weight: bold;
 }
-table{
+table {
   float: left;
   width: 100%;
-  padding: 20px;
+
   border-collapse: collapse;
+  position: relative;
 }
-th{
-  padding: 10px;
-  border-bottom: 1px solid rgb(207, 207, 207);
+
+thead {
+  background: white;
 }
-td{
+
+th {
+  margin-top: -5%;
+  height: 3rem;
+  background-color: white;
+  border-bottom: 1px solid rgb(126, 126, 126);
+  position: sticky;
+  top: -2%; /* Don't forget this, required for the stickiness */
+  box-shadow: 100px 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+td {
   padding: 10px;
   text-align: center;
   border-width: thin;
   border-bottom: 0.5px solid rgb(207, 207, 207);
 }
-.tr:hover{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  font-weight:500;
+
+.tr {
+  width: 100%;
 }
-.card-main{  
+
+.tr:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+}
+.card-main {
   margin-left: 20px;
   margin-top: 20px;
   background-color: white;
   float: left;
-  width : 80%; 
+  width: 80%;
   height: 70%;
   padding: 10px;
   overflow: auto;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.card-main-button{
+.card-main-button {
   background-color: lightgray;
   padding: 9px;
   border: none;
   border-radius: 10px;
   width: 140px;
 }
-.card-main-button:hover{
+.card-main-button:hover {
   background-color: transparent;
 }
-.card-edit-button{
+.card-edit-button {
   /* color: #43bb63; */
   width: 50px;
   color: white;
@@ -85,101 +106,100 @@ td{
   border: none;
   background-color: rgb(98, 98, 252);
 }
-.card-edit-button:hover{
+.card-edit-button:hover {
   /* background-color: #EDECDF; */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.card-delete-button{
+.card-delete-button {
   color: white;
   padding: 10px;
   border: none;
   background-color: #fb3640;
 }
-.card-delete-button:hover{
+.card-delete-button:hover {
   /* background-color: #EDECDF; */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.card-view-button{
-  color: gray;;
+.card-view-button {
+  color: gray;
   padding: 10px;
   border: none;
   background-color: transparent;
 }
-.card-view-button:hover{
-  background-color: #EDECDF;
+.card-view-button:hover {
+  background-color: #edecdf;
 }
-.list-label{
+.list-label {
+  float: left;
+  width: 100% !important;
+  padding: 10px;
+}
+.search-input {
   float: left;
   width: 30%;
   padding: 10px;
 }
-.search-input{
-  float: left;
-  width: 30%;
-  padding: 10px;
-}
-.search-input input{
+.search-input input {
   background-color: #f4f3f3;
   padding: 10px;
   width: 50%;
   border: none;
   outline: none;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
-.search-input input:hover{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.search-input input:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .search {
-  background-color: #EDECDF;
+  background-color: #edecdf;
   border: transparent;
   padding: 10px;
   margin-left: 5px;
   border-radius: 10px;
 }
-.search:hover{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.search:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.card{
+.card {
   float: left;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.container{
+.container {
   padding: 10px;
 }
-.div-product-td{
-  float: left; 
+.div-product-td {
+  float: left;
   padding: 1px;
   width: 210px;
   overflow: auto;
 }
-.div-edit-td{
-  float: left; 
+.div-edit-td {
+  float: left;
   padding: 1px;
   width: 100px;
   overflow: auto;
 }
-.div-product-td p{
+.div-product-td p {
   padding: 10px;
 }
-.td-avail{
+.td-avail {
   color: #43bb63;
-  font-weight:500;
-  
+  font-weight: 500;
 }
-.modal{
+.modal {
   display: block;
   position: fixed;
   z-index: 1;
   padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4); 
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
-.modal-container{
+.modal-container {
   float: left;
   width: 100%;
   height: 200px;
@@ -187,11 +207,11 @@ td{
   margin: 2px;
   overflow: auto;
 }
-.modal-textarea{
+.modal-textarea {
   height: 100%;
   width: 100%;
 }
-.modal-input{
+.modal-input {
   float: left;
   width: 100%;
   padding: 12px 20px;
@@ -200,7 +220,7 @@ td{
   box-sizing: border-box;
   margin: 5px;
 }
-.edit-modal-input{
+.edit-modal-input {
   float: left;
   width: 100%;
   padding: 12px 20px;
@@ -209,24 +229,24 @@ td{
   box-sizing: border-box;
   margin: 5px;
 }
-.modal-button{
+.modal-button {
   padding: 10px;
   border: none;
   margin: 2px;
 }
-.modal-button-add{
+.modal-button-add {
   padding: 10px;
   border: none;
   color: white;
   background-color: rgb(49, 179, 49);
 }
-.modal-button-add:hover{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.modal-button-add:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.modal-button:hover{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.modal-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.modal-content{
+.modal-content {
   float: left;
   position: absolute;
   height: 500px;
@@ -237,10 +257,10 @@ td{
   border: 1px solid #888;
   width: 40%;
   /* border-radius: 15px; */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   overflow: auto;
 }
-.modal-content-global{
+.modal-content-global {
   float: left;
   position: absolute;
   left: 25%;
@@ -250,66 +270,66 @@ td{
   border: 1px solid #888;
   width: 40%;
   /* border-radius: 15px; */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.content-left{
+.content-left {
   float: left;
   width: 50%;
 }
-.content-right{
+.content-right {
   float: right;
   width: 45%;
   height: 100px;
   overflow: auto;
 }
-.content-full{
+.content-full {
   float: left;
   width: 100%;
 }
-.close-modal{
+.close-modal {
   float: right;
   padding: 10px;
   position: relative;
-  color:#fb3640;
+  color: #fb3640;
   border: none;
   background-color: transparent;
 }
-.close-modal:hover{
-  background-color: #EDECDF;
+.close-modal:hover {
+  background-color: #edecdf;
 }
-.button-mid{
+.button-mid {
   float: left;
   position: relative;
   top: 5px;
   left: 40%;
 }
-.button-mid button{
+.button-mid button {
   margin-left: 1px;
   margin-right: 1px;
 }
-.text-center{
+.text-center {
   text-align: center;
 }
-.li-50{
+.li-50 {
   float: left;
   width: 100px;
   overflow: auto;
 }
-.h-20{
+.h-20 {
   float: left;
   width: 200px;
   overflow: auto;
   margin-bottom: 10px;
 }
-.td-10{
+.td-10 {
   width: 100px;
   overflow: auto;
 }
-.h-30{
+.h-30 {
   float: left;
   padding-top: 30px;
 }
-.li-10{
+.li-10 {
   margin-bottom: 2px;
 }
 .modal-div-right {
@@ -319,24 +339,24 @@ td{
   height: 300px;
   overflow: auto;
 }
-.modal-div-right li{
+.modal-div-right li {
   padding: 10px;
 }
 .info {
   border: none;
   background-color: transparent;
 }
-.info:hover{
-  background-color: #EDECDF;
+.info:hover {
+  background-color: #edecdf;
 }
-.view{
+.view {
   width: 600px;
   overflow: auto;
 }
-.h1-view:hover{
-  font-weight:500;
+.h1-view:hover {
+  font-weight: 500;
 }
-.center{
+.center {
   margin-left: auto;
   margin-right: auto;
   width: 60%;

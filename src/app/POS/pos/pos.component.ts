@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { NgxPrintModule } from 'ngx-print';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
 import { DataService } from 'src/app/services/data.service';
+import { MatAccordion } from '@angular/material/expansion';
 
 
 
@@ -35,6 +36,9 @@ export class POSComponent implements OnInit, AfterContentInit {
 
   tableSelected = "";
   tableOccupied: any = {};
+
+
+  nameInput: any;
 
   constructor(
     public dialog: MatDialog,
@@ -79,6 +83,26 @@ export class POSComponent implements OnInit, AfterContentInit {
       })  
     }
 
+    else if(this.nameInput == "" || this.nameInput == null){  
+      Swal.fire({  
+        icon: 'error',  
+        title: 'Oops...',  
+        text: 'Please Enter name',  
+        
+      })  
+    }
+
+    else if(this.nameInput == "" || this.nameInput == null || this.tableSelected == "" || this.tableSelected == null || this.preOrder.length == 0 || this.cashInput < this.subtotal ){  
+      Swal.fire({  
+        icon: 'error',  
+        title: 'Oops...',  
+        text: 'Please Enter name',  
+        
+      })  
+    }
+
+    
+   
     
 
     else{
@@ -96,9 +120,10 @@ export class POSComponent implements OnInit, AfterContentInit {
           this.orderList.list_order_total = this.subtotal;
           this.orderList.cashChange = this.cashEntered - this.subtotal;
           this.orderList.table_name = this.tableSelected;
+          this.orderList.customer_name = this.nameInput;
 
           this.ds.apiReqPos("addOrderlist", this.orderList).subscribe((data1: any) => {
-
+            console.log(this.orderList);
             if(data1.status.remarks == "success")
             {
               this.orderSubmitted.isSubmitted = 1;
@@ -106,7 +131,7 @@ export class POSComponent implements OnInit, AfterContentInit {
 
               this.ds.apiReqPos("submittedOrder", this.orderSubmitted).subscribe((data2: any) => {
 
-              console.log(data2);
+            
               if(data2.status.remarks == "success")
               {
                 this.tableOccupied.table_name = this.tableSelected;
@@ -150,6 +175,7 @@ export class POSComponent implements OnInit, AfterContentInit {
     this.pullPreOrder();
     this.pullOrder();
     this.availableTables();
+    this.pullCategories();
 
   }
 
@@ -215,7 +241,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   
   products: any = {};
   cardInfo: any = {};
-  inputText: number = 1;
+  inputText= 0;
   cashInput: number = 0;
   cashEntered: number = 0;
   q: any;
@@ -262,7 +288,8 @@ export class POSComponent implements OnInit, AfterContentInit {
 
         this.q = this.inputText;
 
-        console.log(this.orderInfo);
+  
+
         this.ds.apiReqPos("addPreOrderNew", this.orderInfo).subscribe((data: any) => {
     
        if(data.status.remarks == "success"){
@@ -299,13 +326,13 @@ export class POSComponent implements OnInit, AfterContentInit {
 
   }
 
-
+deleteIdentifier: any;
   preOrder: any;
   pullPreOrder() {
     this.ds.apiReqPos("pre", null).subscribe((data: any) => {
       this.preOrder = data.payload;
       
-
+      this.deleteIdentifier = this.preOrder[0].order_code;
     
       this.getSubTotal();
 
@@ -316,14 +343,14 @@ export class POSComponent implements OnInit, AfterContentInit {
   pullProduct() {
     this.ds.apiReqPos("prod", null).subscribe((data: any) => {
       this.product = data.payload;
-      console.log(this.product);
+  
     })
 
   }
   //delete function order
 
   async delPre(e: any) {
-    this.orderInfo.order_ID = e;
+    this.orderInfo.order_code = e;
     Swal.fire({
       title: 'Remove item?',
       icon: 'warning',
@@ -340,14 +367,17 @@ export class POSComponent implements OnInit, AfterContentInit {
       }
     })
   }
+
+
+  defInfo: any = {};
   clearOrder() {
     
+    this.defInfo.order_code = this.deleteIdentifier;
 
-
-    this.ds.apiReqPos("clearOrder", this.orderInfo).subscribe((res: any) => {
+    this.ds.apiReqPos("clearAll", this.defInfo).subscribe((res: any) => {
 
       this.pullPreOrder();
-
+      this.subtotal = 0;
 
     });
   }
@@ -355,8 +385,7 @@ export class POSComponent implements OnInit, AfterContentInit {
   getSubTotal() {
     this.subtotal = 0;
     for (var i = 0; this.preOrder.length > i; i++) {
-      console.log(i)
-      console.log(this.preOrder[i].price);
+ 
       this.subtotal = this.subtotal + this.preOrder[i].price;
     }
 
@@ -368,9 +397,63 @@ export class POSComponent implements OnInit, AfterContentInit {
   {
     this.ds.apiReqPos("availableTables", null).subscribe((data: any) => {
       this.tables = data.payload;
-      console.log(this.tables);
+ 
     })
 
   }
 
+  categCon: any;
+  categ: any = {};
+  categInfo: any = {};
+  categoryMenu1: any;
+  pullCategories(){
+    this.ds.apiReqPos("posCateg", null).subscribe((data: any) => {
+      this.categ = data.payload;
+
+    })
+  }
+
+
+
+ categMenu(categoryMenu) {
+  this.categInfo.product_type =categoryMenu.tab.textLabel;
+  this.categCon = categoryMenu.tab.textLabel;
+  this.ds.apiReqPos("pullByCateg", this.categInfo).subscribe((data: any) => {
+    this.categoryMenu1 = data.payload;
+ 
+   
+  });
+
+  console.log(this.categCon);
 }
+
+
+value = 0;
+
+  handleMinus() {
+    if(this.inputText != 0){
+      this.inputText--;  
+    }
+
+ 
+  }
+  handlePlus() {
+    this.inputText++;    
+  }
+
+  step = 0;
+
+
+
+  
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+}
+
+export class YourClass {
+  isOpen: boolean;
+}
+

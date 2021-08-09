@@ -150,21 +150,31 @@ export class NavbarComponent implements OnInit {
   // ----------- Category -----------------
   // Get List Category 
   getCategories(): void{
-    this.data.getData("all_category", 'NULL').subscribe((results: any) => {
-      this.category = results.payload;
+    // this.data.getData("all_category", 'NULL').subscribe((results: any) => {
+    //   this.category = results.payload;
+    // })
+
+
+    this.data.apiReqPos("categories", null).subscribe((res: any) =>
+    {
+      this.category = res.payload;
+  
     })
+
+    console.log(this.category);
   }
   // Add Category
   addCategory(event: any): void{
     this.inputCategory.name = event.target.input_category_name.value;
-    this.data.getData("add_category", this.inputCategory).subscribe((results: any) => { 
+    this.data.apiReqPos("add_categories", this.inputCategory).subscribe((results: any) => { 
       this.getCategories() 
       event.target.input_category_name.value = "";
     })
   }
   // Delete Category
   deleteCategory(): void{
-    this.data.getData("delete_category", this.categoryDelete).subscribe((results: any) => { 
+
+    this.data.apiReqPos("del_categories", this.categoryDelete).subscribe((results: any) => { 
       this.getCategories();
       this.closeDeleteCatModal(); 
     })
@@ -173,6 +183,6 @@ export class NavbarComponent implements OnInit {
   updateCategory(): void{
     this.updateCategorySend.name = this.updateCategoryInput;
     this.updateCategorySend.id =   this.editCategory.id;
-    this.data.getData("update_category", this.updateCategorySend).subscribe((results: any) => { this.getCategories(); this.closeEditCatModal(); })
+    this.data.apiReqPos("edit_categories", this.updateCategorySend).subscribe((results: any) => { this.getCategories(); this.closeEditCatModal(); })
   }
 }

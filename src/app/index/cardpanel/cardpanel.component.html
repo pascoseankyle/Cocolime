@@ -9,14 +9,16 @@
   </div>
 </div>
 <div class="card-main">
-    <div class="list-label">
-      <h1><i class="fas fa-clipboard-list"></i> Menu</h1>
-    </div>
-    <div>
+    
+
     <table>
+      <div class="list-label">
+        <h1><i class="fas fa-clipboard-list"></i> Menu</h1>
+      </div>
       <tr>
         <th>Name</th>
         <th>Price</th>
+        <th>Category</th>
         <th>Available</th>
         <th>Actions</th>
       </tr>
@@ -29,6 +31,11 @@
         <td (click)="viewModal(menu)">
           ₱ {{ menu.product_price }}
         </td>
+
+        <td (click)="viewModal(menu)">
+          {{ menu.product_type }}
+        </td>
+
         <td (click)="viewModal(menu)" class="td-avail">
           <p *ngIf="menu.available==1">Yes</p>
           <p *ngIf="menu.available==0" style="color: #F55C47">No</p>
@@ -39,7 +46,7 @@
         </td>
       </tr>
     </table>
-  </div>
+  
 </div>
 <div *ngIf = "openEditModal" class="modal">
   <div class="modal-content">
