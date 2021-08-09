@@ -1,0 +1,40 @@
+#addbutton{
+    position: absolute;
+    margin-left: 70%;
+    margin-top: -40px;
+    padding: 3px 20px;
+    background-color: #4A5D23;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+table, th, td {
+    margin-top: 70px;
+    border: 1px solid #8b8989;
+    border-collapse: collapse;
+  }
+
+.search{
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 20px;
+    padding: 3px 20px;
+    border-radius: 10px;
+    border: 1px solid #8b8989;
+}
+.search1{
+    position: absolute;
+    margin-left: 67%;
+    margin-top: 20px;
+}
+
+.deducManage{
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+  }
+  
+  .toolbar-buttons{
+    font-family: Arial, Helvetica, sans-serif;
+  }

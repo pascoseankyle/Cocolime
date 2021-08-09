@@ -87,7 +87,7 @@ const routes: Routes = [
   {
     path: 'home', component: IndeComponent, children:
       [
-        { path: '', component: DashboardpageComponent },
+        { path: '', component: EmployeepageComponent },
       ]
   },
 
