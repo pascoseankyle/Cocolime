@@ -98,7 +98,8 @@
           <mat-list-item> <strong>SubTotal</strong>   <span name="total" ngDefaultControl class="summary1"> {{subtotal - subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span></mat-list-item>
           <mat-list-item > <strong>Tax</strong> <span name="Tax" ngDefaultControl class="summary"> {{subtotal * 0.12 | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
           <mat-list-item > <strong>Total</strong> <span name="subtotal" ngDefaultControl class="summary"> {{subtotal | currency : 'PHP': 'symbol-narrow' : ''}}</span> </mat-list-item>
-          <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" [(ngModel)]="cashInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
+          <mat-list-item > <strong>Cash</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" placeholder="Amount" [(ngModel)]="cashInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
+          <mat-list-item > <strong>Name</strong> <span name="subtotal" ngDefaultControl class="summary"> <input type="text" placeholder="Name" [(ngModel)]="nameInput" style="width: 30%; text-align: right;"></span> </mat-list-item>
           <mat-list-item > <strong>Table</strong> 
             <span name="subtotal" ngDefaultControl class="summary"> 
                 <select class="selectTable" name="tables" id="tables" [(ngModel)]="tableSelected">
@@ -108,6 +109,7 @@
                 </select>
             </span> 
             </mat-list-item>
+           
          </mat-list>
         <mat-grid-list cols="2" rowHeight="2:1">
 

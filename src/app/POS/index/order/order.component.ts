@@ -184,6 +184,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     "Column4",
     "Column5",
     "Column6",
+
    
   
   ];

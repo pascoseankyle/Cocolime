@@ -90,11 +90,20 @@ th {
   border-color: #00796b;
 }
 .search {
-  width: 394px;
+  width: 25%;
+  /* width: 394px;
   display: inline-block;
   margin-left: 73.3%;
   font-family: "Poppins", sans-serif;
-  margin-bottom: -5%;
+  margin-bottom: -5%; */
+}
+
+.search1 {
+  width: 50%;
+  /* width: 394px;
+  display: inline-block;
+  margin-left: 3%;
+  font-family: "Poppins", sans-serif; */
 }
 
 .searchField {
@@ -243,7 +252,6 @@ table {
   color: #282828;
   text-align: center;
   padding: 2%;
-  
 }
 
 .th {
@@ -446,7 +454,7 @@ input.example-right-align {
 .head {
   height: 100%;
 }
-.thead2{
+.thead2 {
   border-bottom: 2px solid #bab583;
   padding: 2%;
   font-family: "Poppins", sans-serif;
@@ -456,3 +464,16 @@ input.example-right-align {
   width: 170px;
 }
 
+.clearBtn {
+  background-color: #3e66db;
+  color: #fbfbfb;
+  margin-left: 5px;
+  font-family: Poppins;
+}
+
+.clearBtn:hover {
+  background-color: #fbfbfb;
+  color: #3e66db;
+  font-family: Poppins;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

@@ -37,6 +37,9 @@ export class POSComponent implements OnInit, AfterContentInit {
   tableSelected = "";
   tableOccupied: any = {};
 
+
+  nameInput: any;
+
   constructor(
     public dialog: MatDialog,
     private ds: DataService,
@@ -80,6 +83,26 @@ export class POSComponent implements OnInit, AfterContentInit {
       })  
     }
 
+    else if(this.nameInput == "" || this.nameInput == null){  
+      Swal.fire({  
+        icon: 'error',  
+        title: 'Oops...',  
+        text: 'Please Enter name',  
+        
+      })  
+    }
+
+    else if(this.nameInput == "" || this.nameInput == null || this.tableSelected == "" || this.tableSelected == null || this.preOrder.length == 0 || this.cashInput < this.subtotal ){  
+      Swal.fire({  
+        icon: 'error',  
+        title: 'Oops...',  
+        text: 'Please Enter name',  
+        
+      })  
+    }
+
+    
+   
     
 
     else{
@@ -97,9 +120,10 @@ export class POSComponent implements OnInit, AfterContentInit {
           this.orderList.list_order_total = this.subtotal;
           this.orderList.cashChange = this.cashEntered - this.subtotal;
           this.orderList.table_name = this.tableSelected;
+          this.orderList.customer_name = this.nameInput;
 
           this.ds.apiReqPos("addOrderlist", this.orderList).subscribe((data1: any) => {
-
+            console.log(this.orderList);
             if(data1.status.remarks == "success")
             {
               this.orderSubmitted.isSubmitted = 1;
