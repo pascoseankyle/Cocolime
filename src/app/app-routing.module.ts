@@ -151,9 +151,6 @@ const routes: Routes = [
     component: ReceiptComponent
   }
 
-
-
-
   ,{ 
     path: '',   
     redirectTo: 'login', 
