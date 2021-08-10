@@ -6,7 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-marketing',
   templateUrl: './marketing.component.html',
@@ -71,11 +71,35 @@ time: any;
 date: any;
 addReservation(){
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 1000,
+    backdrop:  `
+    rgba(0,0,123,0.4)
+  
+  `,
+  width: '100%',
+
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
 
   if(this.time == null || this.time == "" || this.date == null || this.date == "" || this.first_name == null || this.first_name == "" || this.last_name == "" || this.last_name == null || this.phone_no == "" || this.phone_no == null )
   
   {
-    alert("all fields are required");
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'There is an Empty Field',
+      showConfirmButton: false,
+      timer: 980
+    })
   }
 
   else
@@ -109,13 +133,20 @@ addReservation(){
     this.ds.apiReqPos("addReservation", this.reserveInfo).subscribe(data => {
    
       console.log(data);
-      if(data.payload == null)
+      if(data.remarks != "success")
       {
-    
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Phone Number Already Reserved a table',
+          showConfirmButton: false,
+          timer: 980
+        })
       }
   
       if(data.code == 200)
       {
+        
         this.confirmModal();
       }
     })
@@ -170,21 +201,67 @@ startTimer() {
   confirmationInfo: any = {};
 
   confirmRes(){
-    if(this.resCode == "" || this.resCode == null){
 
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+
+    if(this.resCode == "" || this.resCode == null){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Wrong CODE',
+        showConfirmButton: false,
+        timer: 980
+      })
     }
 
     else{
+      
       this.confirmationInfo.status_id = this.reserveInfo.status_id;
       this.confirmationInfo.table_id = this.reserveInfo.table_id;
-      this.confirmationInfo.otp = this.resCode;
+      this.confirmationInfo.otp = this.resCode.toUpperCase();
       this.timeLeft = 60;
-      clearInterval(this.interval);
-
+     
+      console.log(this.confirmationInfo);
       this.ds.apiReqPos("confirmReservation", this.confirmationInfo).subscribe(data => {
+
+
+
         if(data.status.remarks == "success"){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Reservation Success You will be contacted by our management',
+            showConfirmButton: false,
+            timer: 980
+          })
+          clearInterval(this.interval);
           this.pullTables();
+          this.dialog.closeAll();
         }
+
+        else{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Wrong CODE',
+            showConfirmButton: false,
+            timer: 980
+          })
+        }
+
+
+
       })
      
     }

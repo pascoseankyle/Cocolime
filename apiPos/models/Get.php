@@ -17,7 +17,7 @@ class Get{
 	public function availableTables($d)
 	{
 
-		$sql = "SELECT * FROM `crm_tables_tb` WHERE `status_id` = '1'";
+		$sql = "SELECT * FROM `crm_tables_tb` WHERE `status_id` = '1' OR `status_id` = '3'";
 
 		
 		$res = $this->gm->generalQuery($sql, "No records found");
