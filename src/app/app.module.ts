@@ -99,9 +99,9 @@ import { TimekeepingpageComponent } from './DTR/inde/pages/timekeepingpage/timek
 import { TimeinComponent } from './DTR/timein/timein.component';
 import { AttendancepageComponent } from './DTR/inde/pages/attendancepage/attendancepage.component';
 
-import { AdditionpageComponent } from './DTR/inde/pages/additionpage/additionpage.component';
-import { DeductionpageComponent } from './DTR/inde/pages/deductionpage/deductionpage.component';
-import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.component';
+import { AdditionpageComponent } from './PMS/ind/pages/additionpage/additionpage.component';
+import { DeductionpageComponent } from './PMS/ind/pages/deductionpage/deductionpage.component';
+import { WagespageComponent } from './PMS/ind/pages/wagespage/wagespage.component';
 
 @NgModule({
   declarations: [

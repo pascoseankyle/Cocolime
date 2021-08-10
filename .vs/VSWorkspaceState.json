@@ -1,15 +1,19 @@
 {
   "ExpandedNodes": [
     "",
+    "\\apiDtrPms",
+    "\\apiDtrPms\\models",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\DTR\\inde\\pages\\attendancepage",
-    "\\src\\app\\DTR\\inde\\pages\\dailytimerecordpage",
-    "\\src\\app\\DTR\\inde\\pages\\dashboardpage",
+    "\\src\\app\\DTR",
+    "\\src\\app\\DTR\\inde",
+    "\\src\\app\\DTR\\inde\\pages",
     "\\src\\app\\DTR\\inde\\pages\\timekeepingpage",
     "\\src\\app\\PMS",
-    "\\src\\app\\services"
+    "\\src\\app\\PMS\\ind",
+    "\\src\\app\\PMS\\ind\\pages",
+    "\\src\\app\\PMS\\ind\\pages\\wagespage"
   ],
-  "SelectedNode": "\\src\\app\\PMS",
+  "SelectedNode": "\\src\\app\\PMS\\ind\\pages\\deductionpage\\deductionpage.component.html",
   "PreviewInSolutionExplorer": false
 }

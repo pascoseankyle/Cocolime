@@ -183,6 +183,18 @@
 				}
 			break;
 
+    // System Settings
+
+		case 'pullAllDed':
+      $d = json_decode(base64_decode(file_get_contents("php://input")));
+      echo $d;
+      if(count($req)>1) {
+        echo json_encode($get->pullAllDed($d), JSON_PRETTY_PRINT);
+      } else {
+        echo json_encode($get->pullAllDed($d), JSON_PRETTY_PRINT);
+      }
+			break;
+
 		//Dump Operations
 
 		case 'cumDump':

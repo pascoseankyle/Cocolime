@@ -1,5 +1,5 @@
 import { AfterViewInit, ElementRef, Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from 'src/app/DTR/service/data.service';
+import { DataService } from 'src/app/PMS/service/data.service';
 import { DatePipe, Time } from '@angular/common';
 import { LowerCasePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,9 +8,21 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { RouterModule } from '@angular/router';
 import jspdf from 'jspdf';
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+
+
+export interface deTable {
+  ded_no: any;
+  ded_name: any;
+  ded_JSON: dedJSON[];
+}
+
+export interface dedJSON {
+  emp_no: any;
+  ded_rate: any
+  ded_argument: any;
+}
 
 export interface empTable {
   emp_no: any;
@@ -59,9 +71,15 @@ export interface dtrJSON {
 }
 
 export interface aPTable {
-  ap_no: string;
-  ap_name: string;
-  ap_arguments: string;
+  ap_no: any;
+  ap_name: any;
+  ap_JSON: apJSON[];
+}
+
+export interface apJSON {
+  emp_no: any;
+  ap_rate: any
+  ap_argument: any;
 }
 
 
@@ -83,12 +101,15 @@ export class WagespageComponent implements OnInit, AfterViewInit {
 
   downloadPDF() {
     let pdf = new jspdf('l', 'px', 'a2');
-    pdf.html(this.es.nativeElement,{
-      callback: (pdf)=> {
+    pdf.html(this.es.nativeElement, {
+      callback: (pdf) => {
         pdf.save("dtr.pdf");
       }
     });
-  }  
+  }
+
+
+
 
   ngOnInit(): void {
     this.loadDate();
@@ -96,7 +117,7 @@ export class WagespageComponent implements OnInit, AfterViewInit {
     this.pullAllDTR();
     this.dateIndex = this.monthinNum;
     this.buildTable();
-    
+
   }
 
   ngAfterViewInit(): void {
@@ -194,7 +215,7 @@ export class WagespageComponent implements OnInit, AfterViewInit {
 
   startDay: any = '1';
   endDay: any;
-  
+
 
   //Generate Limited Days Array
   getLimitedDaysArray(month: number) {
@@ -202,8 +223,8 @@ export class WagespageComponent implements OnInit, AfterViewInit {
     console.log(this.dayArray + 'From DTR Page: Method getLimitedDaysArray');
     this.buildTable();
 
-  }  
-  
+  }
+
 
   empInfoTable: empTable[] = [];
   dtrInfoTable: dtrTable[] = [];
@@ -278,8 +299,6 @@ export class WagespageComponent implements OnInit, AfterViewInit {
     this.empInfoTableDataSource.filter = filterValue;
   }
 
-
-
   //TABLE BUILDER
 
   attendanceColumns: string[] = [];
@@ -289,6 +308,7 @@ export class WagespageComponent implements OnInit, AfterViewInit {
     this.attendanceColumns.push("emp_name");
     this.attendanceColumns = this.attendanceColumns.concat(this.dayArray);
     this.pullAllAP();
+    this.pullAllDed();
   }
 
 
@@ -301,12 +321,29 @@ export class WagespageComponent implements OnInit, AfterViewInit {
       for (let aPInfoTable of this.aPInfoTable) {
         this.attendanceColumns.push(aPInfoTable.ap_name);
       }
-      this.pushEnding() 
+
+    });
+  }
+
+  deInfoTable: deTable[] = [];
+  deInfoTableJSON: dedJSON[] = [];
+  deInfoTableDataSource = new MatTableDataSource(this.deInfoTable);
+
+
+  pullAllDed() {
+    this.data.sendApiRequest("pullAllDed", null).subscribe((data: any) => {
+      console.log(data.payload)
+      this.deInfoTable = data.payload;
+      this.deInfoTableDataSource.data = this.deInfoTable;
+
+      for (let deInfoTable of this.deInfoTable) {
+        this.attendanceColumns.push(deInfoTable.ded_name);
+      }
+      this.pushEnding()
     });
   }
 
   pushEnding() {
-    this.attendanceColumns.push("cash_advance");
     this.attendanceColumns.push("total_hours");
     this.attendanceColumns.push("daily_rate");
     this.attendanceColumns.push("total_wage");
@@ -357,12 +394,27 @@ export class WagespageComponent implements OnInit, AfterViewInit {
 
   totalWage!: number;
 
+  difference!: number;
+
+  addisSecond: boolean = false;
+  addtoWage(number: any) {
+    this.difference = this.difference + number;
+  }
+
+  subisSecond: boolean = false;
+  subtracttoWage(number: any) {
+    this.difference = this.difference - number;
+  }
+
   getTotalWage() {
-    this.totalWage = this.currentTotal;
+
+    this.totalWage = this.currentTotal + this.difference;
     this.currentTotal = 0;
+    this.difference = 0;
     if (this.totalWage != this.totalWage) {
       this.totalWage = 0;
     }
+
 
     /*this.totalWage = this.totalWage * rate;*/
 
@@ -409,6 +461,8 @@ export class WagespageComponent implements OnInit, AfterViewInit {
   //  this.noti.open("hello", "ok");
   //  console.log("Index Running")
   //}
+
+
 
 
 

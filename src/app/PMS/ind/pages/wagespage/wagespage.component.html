@@ -89,21 +89,25 @@
                   </ng-container>
                 </ng-container>
 
+                <ng-container *ngFor="let deInfoTable of deInfoTable">
+                  <ng-container matColumnDef="{{deInfoTable.ded_name}}" stickyEnd>
+                    <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{deInfoTable.ded_name}}</mat-header-cell>
+                    <mat-cell class="sticky-cell" *matCellDef="let element">
+
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
                 <ng-container *ngFor="let aPInfoTable of aPInfoTable">
                   <ng-container matColumnDef="{{aPInfoTable.ap_name}}" stickyEnd>
                     <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{aPInfoTable.ap_name}}</mat-header-cell>
                     <mat-cell class="sticky-cell" *matCellDef="let element">
 
-                      <p>0</p>
+
+
+                      
                     </mat-cell>
                   </ng-container>
-                </ng-container>
-
-                <ng-container matColumnDef="cash_advance" stickyEnd>
-                  <mat-header-cell *matHeaderCellDef>Cash Advance</mat-header-cell>
-                  <mat-cell class="" *matCellDef="let element">
-                    <p>0</p>
-                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="total_hours" stickyEnd>
