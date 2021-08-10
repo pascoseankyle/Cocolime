@@ -70,7 +70,7 @@ reserveForm = (tables) => {
 time: any;
 date: any;
 addReservation(){
-
+this.timeLeft = 60;
   const Toast = Swal.mixin({
     toast: true,
     position: 'center',
@@ -182,7 +182,13 @@ startTimer() {
         this.dialog.closeAll();
         clearInterval(this.interval);
         console.log(this.reserveInfo);
-    
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Failed to Enter code you can request another reservation after 24hrs',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       }
     },1000)
@@ -230,12 +236,12 @@ startTimer() {
       this.confirmationInfo.status_id = this.reserveInfo.status_id;
       this.confirmationInfo.table_id = this.reserveInfo.table_id;
       this.confirmationInfo.otp = this.resCode.toUpperCase();
-      this.timeLeft = 60;
+    
      
       console.log(this.confirmationInfo);
       this.ds.apiReqPos("confirmReservation", this.confirmationInfo).subscribe(data => {
 
-
+        console.log(data);
 
         if(data.status.remarks == "success"){
           Swal.fire({
@@ -248,6 +254,16 @@ startTimer() {
           clearInterval(this.interval);
           this.pullTables();
           this.dialog.closeAll();
+        }
+
+        else if(data == null){
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Wrong CODE',
+            showConfirmButton: false,
+            timer: 980
+          })
         }
 
         else{

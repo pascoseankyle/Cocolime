@@ -71,23 +71,23 @@ public function addreservation($dt)
                 $data = array(); $code = 0; $errmsg= ""; $remarks = "";
                 try {
 
-                        $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
-                        if ($result == "")
-                        {
-                            // echo "iTexMo: No response from server!!!
-                            // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
-                            // Please CONTACT US for help. ";	
-                        }
-                        else if ($result == 0)
-                        {
-                            // echo $contact;
-                            // echo $msg;
-                            // echo "Message Sent!";
-                        }
-                        else
-                        {	
-                            // echo "Error Num ". $result . " was encountered!";
-                        }
+                        // $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
+                        // if ($result == "")
+                        // {
+                        //     // echo "iTexMo: No response from server!!!
+                        //     // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                        //     // Please CONTACT US for help. ";	
+                        // }
+                        // else if ($result == 0)
+                        // {
+                        //     // echo $contact;
+                        //     // echo $msg;
+                        //     // echo "Message Sent!";
+                        // }
+                        // else
+                        // {	
+                        //     // echo "Error Num ". $result . " was encountered!";
+                        // }
                     
                     $res = $this->pdo->query($sql)->fetchAll();
                         foreach ($res as $rec) { array_push($data, $rec); }
@@ -118,6 +118,17 @@ public function addreservation($dt)
 
     return $this->gm->sendPayload($payload, $remarks, $message, $code);
 
+
+    }
+
+    public function otp_check($otpSent, $otpOnDb)
+    {
+        if($otpSent === $otpOnDb)
+        {
+            return true;
+        }
+
+        return false;
 
     }
 
@@ -154,6 +165,14 @@ public function addreservation($dt)
                         return $this->gm->sendPayload($payload, $remarks, $message, $code);
 
                 }
+    }
+
+    else{
+                    $payload = null; 
+					$remarks = "failed"; 
+					$message = "Incorrect username or password";
+                    $code = 200;
+                    return $this->gm->sendPayload($payload, $remarks, $message, $code);
     }
         
     
