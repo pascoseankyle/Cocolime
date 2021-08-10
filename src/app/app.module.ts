@@ -69,6 +69,8 @@ import { EditStockComponent } from './modals/edit-stock/edit-stock.component';
 import { EditServiceService } from './services/editService/edit-service.service';
 import { ItemHistoryComponent } from './components/item-history/item-history.component';
 import { CdkTableExporterModule, MatTableExporterModule } from 'mat-table-exporter';
+
+
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CRMmainComponent } from './CRM/main/main.component';
 import { DiningComponent } from './CRM/dining/dining.component';
@@ -80,33 +82,42 @@ import { ReservationsComponent } from './CRM/reservations/reservations.component
 import { OrderComponent } from './POS/index/order/order.component';
 import { POSComponent } from './POS/pos/pos.component'; 
 import { ReceiptComponent } from './POS/receipt/receipt.component';
-import {NgxPrintModule} from 'ngx-print';
+import { NgxPrintModule} from 'ngx-print';
 import { MarketingComponent } from './marketing/marketing.component';
-import { IndeComponent } from './DTR/inde/inde.component';
-import { DashboardpageComponent } from './DTR/inde/pages/dashboardpage/dashboardpage.component';
 
+//DTR POS
+//Providers
 import { DatePipe } from '@angular/common';
 import { LowerCasePipe } from '@angular/common';
+//DTRIndex
+import { IndeComponent } from './DTR/inde/inde.component';
+
+//POS Index
+import { IndComponent } from './PMS/ind/ind.component';
 import { EmployeepageComponent } from './DTR/inde/pages/employeepage/employeepage.component';
 import { TimekeepingpageComponent } from './DTR/inde/pages/timekeepingpage/timekeepingpage.component';
-import { AttendancepageComponent } from './DTR/inde/pages/attendancepage/attendancepage.component';
-import { DailytimerecordpageComponent } from './DTR/inde/pages/dailytimerecordpage/dailytimerecordpage.component';
 import { TimeinComponent } from './DTR/timein/timein.component';
+import { AttendancepageComponent } from './DTR/inde/pages/attendancepage/attendancepage.component';
+
 import { AdditionpageComponent } from './DTR/inde/pages/additionpage/additionpage.component';
 import { DeductionpageComponent } from './DTR/inde/pages/deductionpage/deductionpage.component';
 import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.component';
 
 @NgModule({
   declarations: [
-    AdditionpageComponent,
-    DeductionpageComponent,
-    WagespageComponent,
-    DailytimerecordpageComponent,
+
+    //DTR PMS
+
+    IndeComponent,
+    IndComponent,
     TimeinComponent,
     AttendancepageComponent,
     TimekeepingpageComponent,
     EmployeepageComponent,
-    DashboardpageComponent,
+    AdditionpageComponent,
+    DeductionpageComponent,
+    WagespageComponent,
+
     NavbarComponent,
     IndexComponent,
     LoginComponent,
@@ -144,8 +155,9 @@ import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.compone
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-  //Material Cons Imports
-   MatDatepickerModule,
+
+    //Material Cons Imports
+    MatDatepickerModule,
     MatButtonModule,
     MatFormFieldModule,
     MatNativeDateModule,
@@ -184,12 +196,14 @@ import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.compone
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+
     // Mat-Table Exporter
     MatTableExporterModule,
     CdkTableExporterModule,
-       // HTTP
-       HttpClientModule,
-      NgxPrintModule
+
+    // HTTP
+    HttpClientModule,
+    NgxPrintModule
   ],
   exports: [MatFormFieldModule,
     MatInputModule,

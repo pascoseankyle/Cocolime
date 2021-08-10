@@ -1,0 +1,51 @@
+<mat-card class="dtrCard mat-elevation-z5">
+  <br>
+  <div style="margin: auto; width : 50%; margin-top: 100px; padding: 10px;">
+    <p class="clock mat-elevation-z12">{{time | date: 'h:mm:ss a'}}</p>
+  </div>  
+
+  <div class="row">
+    <div class="column">
+      <img src="./assets/logo.png" style="margin: auto; width: auto; height: 15vh; margin-bottom: -2%;" >
+      <h1 style="font-size: 36px; color: white;">DAILY TIME RECORD</h1>
+    </div>
+
+    <div class="column2">
+      <br><br><br>
+      <mat-form-field class="mat-elevation-z5" appearance="fill" style="background-color: white; border-radius: 20px;">
+        <mat-icon class="icon" matPrefix>person</mat-icon>
+        <input class="input" type="text" [(ngModel)]="emp_id" matInput placeholder="Employee ID here...">
+      </mat-form-field><br /><br />
+      <button mat-raised-button class="timein-btn" (click)="onTimeClick(emp_id, 'time_in')"><mat-icon>alarm_add</mat-icon>TIME IN</button>
+      <button mat-raised-button class="timeout-btn" (click)="onTimeClick(emp_id, 'time_out')"><mat-icon>alarm_minus</mat-icon>TIME OUT</button>
+
+    </div>
+  </div>
+</mat-card>
+
+<!--<mat-card class="dtrCard2 mat-elevation-z5">
+  <p class="sign">error or okay sign</p>
+  <table class="mat-elevation-z5" style="width:70%; margin-left: 15%; background-color: whitesmoke;">
+    <tr>
+      <th>EMPLOYEE NAME</th>
+      <th>TIME IN</th>
+      <th>TIME OUT</th>
+    </tr>-->
+    <!--sample lang-->
+    <!--<tr>
+      <td>SAMPLE</td>
+      <td>SAMPLE</td>
+      <td>SAMPLE</td>
+
+    </tr>
+    <tr>
+      <td>SAMPLE</td>
+      <td>SAMPLE</td>
+      <td>SAMPLE</td>
+
+    </tr>
+  </table>
+
+</mat-card>-->
+
+
