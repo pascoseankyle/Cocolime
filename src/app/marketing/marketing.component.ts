@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { DataService } from '../services/data.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -60,21 +60,135 @@ export class MarketingComponent implements OnInit {
 reserveForm = (tables) => {
  
 
-  this.tblInfo.table_id1 = tables.table_id;
+  this.reserveInfo.table_id = tables.table_id;
   this.tblInfo.table_name1    = tables.table_name;
   this.tblInfo.table_capacity1    = tables.table_capacity;
   this.tblInfo.status_id1 = tables.status_id;   
 }
+
+
+time: any;
+date: any;
 addReservation(){
-  this.reserveInfo.first_name1 = this.first_name;
-  this.reserveInfo.last_name1    = this.last_name;
-  this.reserveInfo.phone_no1    = this.phone_no;
-  console.log(this.reserveInfo);
+
+
+  if(this.time == null || this.time == "" || this.date == null || this.date == "" || this.first_name == null || this.first_name == "" || this.last_name == "" || this.last_name == null || this.phone_no == "" || this.phone_no == null )
+  
+  {
+    alert("all fields are required");
+  }
+
+  else
+  {
+    var timeSplit = this.time.split(':'),
+    hours,
+    minutes,
+    meridian;
+  hours = timeSplit[0];
+  minutes = timeSplit[1];
+  if (hours > 12) {
+    meridian = 'PM';
+    hours -= 12;
+  } else if (hours < 12) {
+    meridian = 'AM';
+    if (hours == 0) {
+      hours = 12;
+    }
+  } else {
+    meridian = 'PM';
+  }
+  
+  
+    this.reserveInfo.first_name = this.first_name;
+    this.reserveInfo.last_name   = this.last_name;
+    this.reserveInfo.phone_no    = this.phone_no;
+    this.reserveInfo.reservation_date = this.date;
+    this.reserveInfo.reservation_time = hours + ':' + minutes + ' ' + meridian;
+    this.reserveInfo.status_id = "3"; 
+  
+    this.ds.apiReqPos("addReservation", this.reserveInfo).subscribe(data => {
+   
+      console.log(data);
+      if(data.payload == null)
+      {
+    
+      }
+  
+      if(data.code == 200)
+      {
+        this.confirmModal();
+      }
+    })
+  }
+  
+console.log(this.reserveInfo);
+ 
+
+
 }
+
+
 pullTables() {
   this.ds.sendApiRequest("tables", null).subscribe(data => {
     this.tables = data.data;
   })
 }
+
+
+codE: any;
+
+timeLeft: number = 60;
+  interval;
+
+timerOn = false;
+
+startTimer() {
+
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.dialog.closeAll();
+        clearInterval(this.interval);
+        console.log(this.reserveInfo);
+    
+
+      }
+    },1000)
+  }
+
+  @ViewChild('confirmation', { static: true }) confirmation: TemplateRef<any>;
+
+  confirmModal() {
+    this.startTimer();
+    this.dialog.open(this.confirmation);
+
+    
+  }
+
+  resCode: any;
+  confirmationInfo: any = {};
+
+  confirmRes(){
+    if(this.resCode == "" || this.resCode == null){
+
+    }
+
+    else{
+      this.confirmationInfo.status_id = this.reserveInfo.status_id;
+      this.confirmationInfo.table_id = this.reserveInfo.table_id;
+      this.confirmationInfo.otp = this.resCode;
+      this.timeLeft = 60;
+      clearInterval(this.interval);
+
+      this.ds.apiReqPos("confirmReservation", this.confirmationInfo).subscribe(data => {
+        if(data.status.remarks == "success"){
+          this.pullTables();
+        }
+      })
+     
+    }
+  }
+
 
 }

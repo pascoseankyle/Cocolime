@@ -484,7 +484,7 @@
         }
 
         function actionReservation($d){
-            $sql = "UPDATE crm_reservations_tb SET status_id='$d->status_id' WHERE id = '$d->id'";
+            $sql = "UPDATE crm_reservations_tb SET status_id='$d->status_id' WHERE res_id = '$d->res_id'";
             $this->conn->query($sql);
             return $this->select('reservations', null);
         }

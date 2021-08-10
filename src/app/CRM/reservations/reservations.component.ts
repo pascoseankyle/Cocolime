@@ -46,7 +46,7 @@ export class ReservationsComponent implements OnInit {
 
     async acceptReservation(e) {
 
-      this.action.id = e;
+      this.action.res_id = e;
       this.action.status_id = 1;
       console.log(this.action);
       await this.ds.sendApiRequest("actionReservation", this.action).subscribe((res:any) => {
@@ -55,7 +55,7 @@ export class ReservationsComponent implements OnInit {
     }
     async rejectReservation(e) {
 
-      this.action.id = e;
+      this.action.res_id = e;
       this.action.status_id = 3;
       console.log(this.action);
       await this.ds.sendApiRequest("actionReservation", this.action).subscribe((res:any) => {

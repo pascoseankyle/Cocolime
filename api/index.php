@@ -153,7 +153,7 @@
 					
 				// break;
 				case 'reservations':
-					echo json_encode($post->generalQuery("SELECT crm_reservations_tb.id,crm_reservations_tb.reservation_no,crm_tables_tb.table_name,
+					echo json_encode($post->generalQuery("SELECT crm_reservations_tb.res_id,crm_tables_tb.table_name,
 														crm_reservations_tb.first_name,crm_reservations_tb.last_name,
 														crm_reservations_tb.reservation_date,crm_reservations_tb.reservation_time,
 														crm_reservations_tb.status_id,crm_reservations_tb.phone_no 

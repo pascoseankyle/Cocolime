@@ -80,7 +80,7 @@
                       
                                   <tr *ngFor="let reservations of reservations">
                       
-                                  <th class=" align-middle" scope="row">{{ reservations?.reservation_no}}</th>
+                                  <th class=" align-middle" scope="row">{{ reservations?.res_id}}</th>
                                   <th class=" align-middle" scope="row">{{ reservations?.table_name}}</th>
                                   <td class=" align-middle">{{ reservations?.first_name }}</td>
                                   <td class=" align-middle">{{ reservations?.last_name }}</td>
@@ -94,13 +94,13 @@
                                   </td>
                                   
                                   <td class=" align-middle">
-                                      <button *ngIf="reservations?.status_id == '2'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.id)">
+                                      <button *ngIf="reservations?.status_id == '2'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.res_id)">
                                         Accept
                                       </button>
-                                      <button *ngIf="reservations?.status_id == '3'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.id)">
+                                      <button *ngIf="reservations?.status_id == '3'" type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations.res_id)">
                                         Accept
                                     </button>
-                                    <button *ngIf="reservations?.status_id == '1'" type="button" class="btnpad btn btn-danger" (click)="rejectReservation(reservations.id)">
+                                    <button *ngIf="reservations?.status_id == '1'" type="button" class="btnpad btn btn-danger" (click)="rejectReservation(reservations.res_id)">
                                         Reject
                                     </button>
 
