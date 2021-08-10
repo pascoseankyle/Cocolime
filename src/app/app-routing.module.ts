@@ -20,48 +20,32 @@ import { OrderComponent } from './POS/index/order/order.component';
 import { ReceiptComponent } from './POS/receipt/receipt.component';
 import { MarketingComponent } from './marketing/marketing.component';
 
+//DTR PMS
+
 import { IndeComponent } from './DTR/inde/inde.component';
-import { DashboardpageComponent } from './DTR/inde/pages/dashboardpage/dashboardpage.component';
 import { EmployeepageComponent } from './DTR/inde/pages/employeepage/employeepage.component';
 import { TimekeepingpageComponent } from './DTR/inde/pages/timekeepingpage/timekeepingpage.component';
 import { AttendancepageComponent } from './DTR/inde/pages/attendancepage/attendancepage.component';
-import { DailytimerecordpageComponent } from './DTR/inde/pages/dailytimerecordpage/dailytimerecordpage.component';
 import { TimeinComponent } from './DTR/timein/timein.component';
+
+import { IndComponent } from './PMS/ind/ind.component';
 import { AdditionpageComponent } from './DTR/inde/pages/additionpage/additionpage.component';
-import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.component';
 import { DeductionpageComponent } from './DTR/inde/pages/deductionpage/deductionpage.component';
+import { WagespageComponent } from './DTR/inde/pages/wagespage/wagespage.component';
 
 
-const routes: Routes = [
+const routes: Routes = [  
+  
 
+  //DTR ROUTES
   {
-    path: 'deduction', component: IndeComponent,
-    children: [
-      { path: '', component: DeductionpageComponent }
-    ]
+    path: 'DTR', component: IndeComponent, children:
+      [
+        { path: '', component: EmployeepageComponent },
+      ]
   },
   {
-    path: 'addition', component: IndeComponent,
-    children: [
-      { path: '', component: AdditionpageComponent }
-    ]
-  },
-  {
-    path: 'wages', component: IndeComponent,
-    children: [
-      { path: '', component: WagespageComponent }
-    ]
-  },
-
-  {
-    path: 'timein', component:TimeinComponent
-  },
-
-  {
-    path: 'dailytimerecord', component: IndeComponent,
-    children: [
-      { path: '', component: DailytimerecordpageComponent }
-    ]
+    path: 'timein', component: TimeinComponent
   },
   {
     path: 'attendance', component: IndeComponent,
@@ -69,7 +53,6 @@ const routes: Routes = [
       { path: '', component: AttendancepageComponent }
     ]
   },
-
   {
     path: 'employee', component: IndeComponent,
     children: [
@@ -78,18 +61,59 @@ const routes: Routes = [
   },
   {
     path: 'timekeeping', component: IndeComponent, children:
-      [        
+      [
         { path: '', component: TimekeepingpageComponent },
       ]
   },
 
-
+  //PMS ROUTES
   {
-    path: 'home', component: IndeComponent, children:
+    path: 'PMS', component: IndComponent, children:
       [
         { path: '', component: EmployeepageComponent },
       ]
   },
+  {
+    path: 'pms-attendance', component: IndComponent,
+    children: [
+      { path: '', component: AttendancepageComponent }
+    ]
+  },
+  {
+    path: 'pms-employee', component: IndComponent,
+    children: [
+      { path: '', component: EmployeepageComponent }
+    ]
+  },
+  {
+    path: 'pms-timekeeping', component: IndComponent,
+    children: [
+        { path: '', component: TimekeepingpageComponent },
+      ]
+  },
+  {
+    path: 'pms-addition', component: IndComponent,
+    children: [
+      { path: '', component: AdditionpageComponent },
+    ]
+  },
+  {
+    path: 'pms-deduction', component: IndComponent,
+    children: [
+      { path: '', component: DeductionpageComponent },
+    ]
+  },
+  {
+    path: 'pms-wages', component: IndComponent,
+    children: [
+      { path: '', component: WagespageComponent },
+    ]
+  },
+
+
+
+
+
 
   {
     path: 'main', 

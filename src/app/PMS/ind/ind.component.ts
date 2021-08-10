@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/DTR/service/data.service';
+import { DataService } from 'src/app/PMS/service/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
-  selector: 'app-inde',
-  templateUrl: './inde.component.html',
-  styleUrls: ['./inde.component.css']
+  selector: 'app-ind',
+  templateUrl: './ind.component.html',
+  styleUrls: ['./ind.component.css']
 })
-export class IndeComponent implements OnInit {
+export class IndComponent implements OnInit {
 
   constructor(public router: Router, public data: DataService, public snackBar: MatSnackBar) { }
   ngOnInit(): void {

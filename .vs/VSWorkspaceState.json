@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\app\\modals\\edit-stock"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\DTR\\inde\\pages\\attendancepage",
+    "\\src\\app\\DTR\\inde\\pages\\dailytimerecordpage",
+    "\\src\\app\\DTR\\inde\\pages\\dashboardpage",
+    "\\src\\app\\DTR\\inde\\pages\\timekeepingpage",
+    "\\src\\app\\PMS",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\app\\PMS",
   "PreviewInSolutionExplorer": false
 }
