@@ -507,8 +507,8 @@ Seafood Rice Noodle.............................................................
                   <p id="status{{ tables?.status_id }}"></p>
               </div>
               </div>
-            <div *ngIf="tables?.status_id == 2">
-                <div id ="box-{{ tables?.status_id }}" class = "box" disabled>
+            <div *ngIf="tables?.status_id == 2 || tables?.status_id == 4">
+                <div id ="box-2" class = "box" disabled>
                    <h2> {{ tables?.table_name }} </h2>
               
                      <p>  Availability: <span class="oc"> Occupied </span></p>
@@ -596,7 +596,7 @@ Seafood Rice Noodle.............................................................
           </div>
           <div class="form-group col-md-6">
             <label for="table_name">Phone Number</label>
-            <input name="table_name" type="text" class="form-control" id="phone_no" placeholder="Phone Number" [(ngModel)]="phone_no" required>
+            <input name="table_name" type="number" maxlength="11" class="form-control" id="phone_no" placeholder="Phone Number" [(ngModel)]="phone_no" required>
           </div>
         </div>
 
@@ -646,7 +646,7 @@ Seafood Rice Noodle.............................................................
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="table_name">Code</label>
-            <input name="table_name" type="text" class="form-control" id="first_name" placeholder="xxxx" [(ngModel)]="resCode" required>
+            <input name="table_name" type="text" maxlength="4" class="form-control" id="first_name" placeholder="xxxx" [(ngModel)]="resCode" required>
           </div>
       
         </div>

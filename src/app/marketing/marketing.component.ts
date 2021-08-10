@@ -125,7 +125,7 @@ this.timeLeft = 60;
   
     this.reserveInfo.first_name = this.first_name;
     this.reserveInfo.last_name   = this.last_name;
-    this.reserveInfo.phone_no    = this.phone_no;
+    this.reserveInfo.phone_no    = "0"+this.phone_no;
     this.reserveInfo.reservation_date = this.date;
     this.reserveInfo.reservation_time = hours + ':' + minutes + ' ' + meridian;
     this.reserveInfo.status_id = "3"; 
