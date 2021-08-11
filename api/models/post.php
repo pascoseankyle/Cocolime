@@ -484,11 +484,64 @@
         }
 
         function actionReservation($d){
-            $sql = "UPDATE crm_reservations_tb SET status_id='$d->status_id' WHERE id = '$d->id'";
+            $sql = "UPDATE crm_reservations_tb SET status_id='$d->status_id' WHERE res_id = '$d->res_id'";
             $this->conn->query($sql);
-            return $this->select('reservations', null);
+            // return $this->select('reservations', null);
+
+            $this->data = $d;
+
+       
+                $this->status = $this->success_stat;
+             
+            
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Staff',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
         }
 
+        
+        function rejectAction($d){
+            $sql = "UPDATE crm_tables_tb SET status_id='$d->status_id' WHERE table_name = '$d->table_name'";
+            $this->conn->query($sql);
+            // return $this->select('reservations', null);
+
+            $this->data = $d;
+
+       
+                $this->status = $this->success_stat;
+             
+            
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Staff',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
+        }
+
+
+
+        function acceptAction($d){
+            $sql = "UPDATE crm_tables_tb SET status_id='$d->status_id' WHERE table_name = '$d->table_name'";
+            $this->conn->query($sql);
+            // return $this->select('reservations', null);
+
+            $this->data = $d;
+
+       
+                $this->status = $this->success_stat;
+             
+            
+            return array(
+                'status'=>$this->status,
+                'payload'=>$this->data,
+                'prepared_by'=>'CRM Staff',
+                'timestamp'=>date('D M j, Y h:i:s e')
+            );
+        }
 
         //------------------------------------------END OF CRM-------------------------------------------------
 
@@ -498,6 +551,41 @@
         function selectMYpos($data){
         
 			$this->sql = "SELECT * FROM pos_preorder_tb WHERE MONTH(list_order_date) = '$data->selectedMonth' AND YEAR(list_order_date) = '$data->selectedYear'";
+			if($result = $this->conn->query($this->sql)){
+				if($result->num_rows>0){
+					while($res = $result->fetch_assoc()){
+						array_push($this->data, $res);
+					}
+					$this->status = $this->success_stat;
+					http_response_code(200);
+				}
+			}
+			return array(
+				'status'=>$this->status,
+				'payload'=>$this->data,
+				'prepared_by'=>'Inventory bois',
+				'timestamp'=>date('D M j, Y G:i:s T')
+			);
+		}
+
+
+        function selectMYcrm($data){
+        
+			$this->sql = "SELECT crm_reservations_tb.res_id, 
+            crm_tables_tb.table_name, 
+            crm_reservations_tb.first_name, 
+            crm_reservations_tb.last_name, 
+            crm_reservations_tb.reservation_date, 
+            crm_reservations_tb.reservation_time, 
+            crm_reservations_tb.status_id, 
+            crm_reservations_tb.phone_no 
+            FROM crm_reservations_tb 
+            INNER JOIN crm_tables_tb 
+            on crm_reservations_tb.table_id = crm_tables_tb.table_id 
+            WHERE MONTH(crm_reservations_tb.reservation_date) = '$data->selectedMonth' 
+            And YEAR(crm_reservations_tb.reservation_date) = '$data->selectedYear' ORDER BY crm_reservations_tb.reservation_date DESC";
+
+
 			if($result = $this->conn->query($this->sql)){
 				if($result->num_rows>0){
 					while($res = $result->fetch_assoc()){

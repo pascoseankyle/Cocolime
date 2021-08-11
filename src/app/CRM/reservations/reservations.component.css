@@ -1,166 +1,349 @@
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+}
+
+.itemHistory {
+  margin-left: -13%;
+  margin-right: 10px;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+  height: 100%;
+  background-color: #fbfbfb;
+}
+
+mat-sidenav {
+  padding: 0px;
+  background-color: whitesmoke;
+  color: #404040;
+}
+
+mat-sidenav {
+  width: 240px;
+}
+
+.admin-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.dashboard {
+  margin-left: -75px;
+  margin-right: 10px;
+}
+
+.orders {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.stocks {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+
+.supply {
+  margin-left: -100px;
+  margin-right: 10px;
+}
+.accepted {
+  color: darkgreen;
+}
+.pending {
+  color: dimgray;
+}
+.rejected {
+  color: firebrick;
+}
+.inventory-logo {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 185px;
+  height: 70px;
+}
+
+.sidenavbar {
+  height: 100%;
+}
+
+.sidebarcontent {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidenav {
+  border-right: 0.75px solid #ececec;
+}
+
+.navbar {
+  background-color: #bfba87;
+  font-size: 23px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.roundbtn {
+  border-radius: 7rem;
+}
+
+.btnpad {
+  margin: 1%;
+}
+
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+
+.dark-modal .close {
+  color: white;
+}
+
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+
+/* modal animation */
+
+.modalFade {
+  animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  /* Firefox */
+  -webkit-animation: fadeIn 2s;
+  /* Safari and Chrome */
+  -o-animation: fadeIn 2s;
+  /* Opera */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .poppins-regular {
-    font-family: "Poppins", sans-serif;
+  to {
+    opacity: 1;
   }
-  
-  .itemHistory {
-    margin-left: -13%;
-    margin-right: 10px;
+}
+
+@-moz-keyframes fadeIn {
+  /* Firefox */
+  from {
+    opacity: 0;
   }
-  
-  mat-sidenav-container,
-  mat-sidenav-content {
-    height: 100%;
-    background-color: #fbfbfb;
+  to {
+    opacity: 1;
   }
-  
-  mat-sidenav {
-    padding: 0px;
-    background-color: whitesmoke;
-    color: #404040;
+}
+
+@-webkit-keyframes fadeIn {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
   }
-  
-  mat-sidenav {
-    width: 240px;
+  to {
+    opacity: 1;
   }
-  
-  .admin-name {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
+}
+
+@-o-keyframes fadeIn {
+  /* Opera */
+  from {
+    opacity: 0;
   }
-  
-  .dashboard {
-    margin-left: -75px;
-    margin-right: 10px;
+  to {
+    opacity: 1;
   }
-  
-  .orders {
-    margin-left: -100px;
-    margin-right: 10px;
-  }
-  
-  .stocks {
-    margin-left: -100px;
-    margin-right: 10px;
-  }
-  
-  .supply {
-    margin-left: -100px;
-    margin-right: 10px;
-  }
-  .accepted{
-    color:darkgreen;
-  }
-  .pending{
-    color:dimgray;
-  }
-  .rejected{
-    color:firebrick;
-  }
-  .inventory-logo {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 185px;
-    height: 70px;
-  }
-  
-  .sidenavbar {
-    height: 100%;
-  }
-  
-  .sidebarcontent {
-    width: 100%;
-    padding: 8px;
-    font-size: 15px;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .sidenav {
-    border-right: 0.75px solid #ececec;
-  }
-  
-  .navbar {
-    background-color: #bfba87;
-    font-size: 23px;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-  }
-  
-  .roundbtn {
-    border-radius: 7rem;
-  }
-  
-  .btnpad {
-    margin: 1%;
-  }
-  
-  .dark-modal .modal-content {
-    background-color: #292b2c;
-    color: white;
-  }
-  
-  .dark-modal .close {
-    color: white;
-  }
-  
-  .light-blue-backdrop {
-    background-color: #5cb3fd;
-  }
-  
-  /* modal animation */
-  
-  .modalFade {
-    animation: fadeIn 2s;
-    -moz-animation: fadeIn 2s;
-    /* Firefox */
-    -webkit-animation: fadeIn 2s;
-    /* Safari and Chrome */
-    -o-animation: fadeIn 2s;
-    /* Opera */
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @-moz-keyframes fadeIn {
-    /* Firefox */
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @-webkit-keyframes fadeIn {
-    /* Safari and Chrome */
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @-o-keyframes fadeIn {
-    /* Opera */
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+}
+
+.newTable {
+  width: 90% !important;
+}
+
+table {
+  width: 100%;
+  height: 90%;
+}
+
+.mat-column-Column1 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-Column2 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-Column3 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-Column4 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-Column5 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-Column6 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-Column7 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-Column8 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-Column9 {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.filters {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchField {
+  height: 25px;
+  width: 50%;
+}
+
+.clearBtn {
+  background-color: #3e66db;
+  color: #fbfbfb;
+  margin-left: 5px;
+  font-family: Poppins;
+}
+
+.clearBtn:hover {
+  background-color: #fbfbfb;
+  color: #3e66db;
+  font-family: Poppins;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

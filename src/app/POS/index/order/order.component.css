@@ -477,3 +477,34 @@ input.example-right-align {
   font-family: Poppins;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.stats-container {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.stat-cards {
+  display: flex;
+  gap: 1em;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.stat-text-container {
+  display: flex;
+  align-items: center;
+}
+
+.cards .cards-content {
+  margin: 20px 55px;
+  padding: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px 10px 10px 10px;
+  background-color: #FFFFFF;
+}
+
+p{
+  font-size: 14px;
+  
+  font-family: "Poppins", sans-serif;
+}

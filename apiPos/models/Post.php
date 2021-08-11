@@ -13,6 +13,180 @@ class Post{
 // ADD PRODUCT
 
 
+
+// CRM NEW FUNCTIONS
+
+
+public function checkNumber($newNum, $existingNum)
+{
+
+			if($newNum===$existingNum){
+				return true;
+			}
+			return false;
+}
+
+
+
+
+public function sendOTP($number, $message, $apiCode, $apiPass)
+{
+        
+            $url = 'https://www.itexmo.com/php_api/api.php';
+            $itexmo = array('1' => $number, '2' => $message, '3' => $apiCode, 'passwd' => $apiPass);
+            $param = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($itexmo),
+            ),
+        );
+        $context  = stream_context_create($param);
+        return file_get_contents($url, false, $context);
+    
+}
+
+
+public function addreservation($dt)
+{
+    $phone_no = $dt->phone_no;
+    $payload = "";
+    $message = "";
+   
+ 
+    $sql = "SELECT * FROM crm_reservations_tb WHERE phone_no='$phone_no'";
+    $res = $this->gm->generalQuery($sql, "Failed");
+
+   
+    if($res['code'] != 200) {
+        $otp = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+        $apiCode = "TR-CJRAM929662_PHH7Q";
+		$apiPass = "{2h@#q]!w%";
+        $contact = $dt->phone_no;
+        $msg = "You Reservation Confirmation Code is ".$otp."\n\nCocolime Management\n\n\n";
+       
+        $sql = "INSERT INTO crm_reservations_tb(first_name,last_name,reservation_date,reservation_time,phone_no,otp, status_id, table_id) 
+        VALUES ('$dt->first_name','$dt->last_name','$dt->reservation_date','$dt->reservation_time','$dt->phone_no','$otp', '$dt->status_id', '$dt->table_id')";
+
+                $data = array(); $code = 0; $errmsg= ""; $remarks = "";
+                try {
+
+                        // $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
+                        // if ($result == "")
+                        // {
+                        //     // echo "iTexMo: No response from server!!!
+                        //     // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                        //     // Please CONTACT US for help. ";	
+                        // }
+                        // else if ($result == 0)
+                        // {
+                        //     // echo $contact;
+                        //     // echo $msg;
+                        //     // echo "Message Sent!";
+                        // }
+                        // else
+                        // {	
+                        //     // echo "Error Num ". $result . " was encountered!";
+                        // }
+                    
+                    $res = $this->pdo->query($sql)->fetchAll();
+                        foreach ($res as $rec) { array_push($data, $rec); }
+                        $res = null; 
+                        $code = 200; 
+                        $message = "Successfully Registered"; 
+                        $remarks = "success";
+                        $payload = array("code"=>200, "remarks"=>"success");
+
+                        return array("code"=>200, "remarks"=>"success");
+
+
+
+                    
+                } catch (\PDOException $e) {
+                    $errmsg = $e->getMessage();
+                    $code = 403;
+                }
+
+        }
+
+        else{
+            $code = 200;
+            $payload = null;
+            $remarks = "Failed";
+            $message = "Failed";
+        }
+
+    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+
+    }
+
+    public function otp_check($otpSent, $otpOnDb)
+    {
+        if($otpSent === $otpOnDb)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+
+
+
+    public function confirmReservation($d)
+    {
+        
+    $payload = "";
+    $message = "";
+
+
+    
+    $sql = "SELECT * FROM crm_reservations_tb WHERE otp='$d->otp'";
+    $res = $this->gm->generalQuery($sql, "Failed");
+
+
+    if($res['code']==200) {
+  
+        $sql = "UPDATE `crm_tables_tb` SET `status_id` = '$d->status_id' WHERE `table_id` = '$d->table_id'";
+        $res = $this->gm->generalQuery($sql, "Failed");
+               
+                    if($res['code']!=200) {
+                        // $res = $this->gm->update('pos_order_tb', $isSubmitted, "order_code = '$order_code'");
+                        // if ($res['code'] == 200) {
+                        $code = 200;
+                        $payload = $res;
+                        $remarks = "success";
+                        $message = "Successfully retrieved data";
+                        // }
+                        
+                        return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+                }
+    }
+
+    else{
+                    $payload = null; 
+					$remarks = "failed"; 
+					$message = "Incorrect username or password";
+                    $code = 200;
+                    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+    }
+        
+    
+                    
+    
+
+    }
+
+
+// END OF CRM
+
+
+
+
 public function checkPreOrderItem($product_name, $existingItem)
 {
 

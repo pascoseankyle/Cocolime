@@ -173,6 +173,21 @@
 								$d = json_decode(base64_decode(file_get_contents("php://input")));
 								echo json_encode($post->del_categories($d), JSON_PRETTY_PRINT);
 							break;
+
+
+							// CRM REQUEST (NEW)
+
+							
+							case 'addReservation':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->addReservation($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'confirmReservation':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->confirmReservation($d), JSON_PRETTY_PRINT);
+							break;
+								
 								
 			}
 		break;

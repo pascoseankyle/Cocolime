@@ -110,7 +110,7 @@ export class POSComponent implements OnInit, AfterContentInit {
       this.cashEntered = this.cashInput;
       this.orderCode.order_code = this.reciptCode;  
       this.orderCode.cashChange = this.cashEntered - this.subtotal;
- 
+      var newtable = this.tableSelected.replace(' (Reserved)','');
 
       this.ds.apiReqPos("pushCode", this.orderCode).subscribe((data: any) => {
     
@@ -119,7 +119,7 @@ export class POSComponent implements OnInit, AfterContentInit {
           this.orderList.list_order_code = this.reciptCode;
           this.orderList.list_order_total = this.subtotal;
           this.orderList.cashChange = this.cashEntered - this.subtotal;
-          this.orderList.table_name = this.tableSelected;
+          this.orderList.table_name = newtable;
           this.orderList.customer_name = this.nameInput;
 
           this.ds.apiReqPos("addOrderlist", this.orderList).subscribe((data1: any) => {
@@ -134,13 +134,13 @@ export class POSComponent implements OnInit, AfterContentInit {
             
               if(data2.status.remarks == "success")
               {
-                this.tableOccupied.table_name = this.tableSelected;
+                this.tableOccupied.table_name = newtable;
                 this.ds.apiReqPos("tableOccupied", JSON.parse(JSON.stringify(this.tableOccupied))).subscribe((data3: any) => {
                   
                   if(data3.status.remarks == "success")
                   {
 
-                    this.route.navigate(['/receipt', this.reciptCode, this.cashEntered, this.tableSelected]);
+                    this.route.navigate(['/receipt', this.reciptCode, this.cashEntered, newtable]);
 
                   }
 

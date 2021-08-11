@@ -153,13 +153,28 @@
 					
 				// break;
 				case 'reservations':
-					echo json_encode($post->generalQuery("SELECT crm_reservations_tb.id,crm_reservations_tb.reservation_no,crm_tables_tb.table_name,
-														crm_reservations_tb.first_name,crm_reservations_tb.last_name,
-														crm_reservations_tb.reservation_date,crm_reservations_tb.reservation_time,
-														crm_reservations_tb.status_id,crm_reservations_tb.phone_no 
-														FROM crm_reservations_tb
-														INNER JOIN crm_tables_tb on crm_reservations_tb.table_id = crm_tables_tb.table_id"));
+					echo json_encode($post->generalQuery("SELECT crm_reservations_tb.res_id,crm_tables_tb.table_name,
+					crm_reservations_tb.first_name,crm_reservations_tb.last_name,
+					crm_reservations_tb.reservation_date,crm_reservations_tb.reservation_time,
+					crm_reservations_tb.status_id,crm_reservations_tb.phone_no 
+					FROM crm_reservations_tb
+					INNER JOIN crm_tables_tb on crm_reservations_tb.table_id = crm_tables_tb.table_id
+					ORDER BY reservation_date DESC"));
 				break;
+
+				case 'rejectAction':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->rejectAction($d));
+				break;
+
+
+
+				case 'acceptAction':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->acceptAction($d));
+				break;
+
+
 				case 'addTable':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->addTable($d));
@@ -189,6 +204,11 @@
 				case 'selectMYpos':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->selectMYpos($d));
+				break;
+
+				case 'selectMYcrm':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->selectMYcrm($d));
 				break;
 				
 				default:
