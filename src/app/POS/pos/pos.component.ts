@@ -347,6 +347,14 @@ deleteIdentifier: any;
     })
 
   }
+  bestSeller: any ;
+  pullbestSeller() {
+    this.ds.apiReqPos("bestSeller", null).subscribe((data: any) => {
+      this.bestSeller = data.payload;
+       
+    })
+
+  }
   //delete function order
 
   async delPre(e: any) {

@@ -273,7 +273,7 @@
                   </div>
                   <div class="stat-text-container">
                       <div class="stat-text">
-                          <p> <!-- {{product}}--></p>
+                          <p> Pochero Beef Soup</p>
                           <p>Chef's Pick</p>
                       </div>
                   </div>
@@ -286,8 +286,8 @@
                       <img src="../assets/best-seller.png" style="height: 64px;" />
                   </div>
                   <div class="stat-text-container">
-                      <div class="stat-text">
-                          <p> <!-- {{product}}--></p>
+                      <div class="stat-text" *ngFor ="let bestSeller of bestSeller">
+                          <p> {{bestSeller.best_seller}}</p>
                           <p>All Time Favorite</p>
                       </div>
                   </div>
