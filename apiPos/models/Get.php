@@ -199,6 +199,25 @@ class Get{
 	   }
 
 
+
+	   public function bestSeller($d) {     
+		$sql = "SELECT product_name, COUNT(product_name) AS best_seller FROM pos_order_tb GROUP BY product_name ORDER BY best_seller DESC LIMIT 1";            
+			
+		$res = $this->gm->generalQuery($sql, "No records found");        
+		if ($res['code'] == 200) {            
+			$payload = $res['data'];            
+			$remarks = "success";            
+			$message = "Successfully retrieved requested data";        
+		 } 
+		 else {            
+			 $payload = null;            
+			 $remarks = "failed";            
+			 $message = $res['errmsg'];       
+		  }        
+			 return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);  
+	   }
+
+
 	//  MENU SUBSYSTEM REQUESTS
 
 	

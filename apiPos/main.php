@@ -138,6 +138,11 @@
 							break;
 
 
+							case 'bestSeller':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($get->bestSeller($d), JSON_PRETTY_PRINT);
+							break;
+
 
 
 							// PULLING OF AVAILABLE TABLES
