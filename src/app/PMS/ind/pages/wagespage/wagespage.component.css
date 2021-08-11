@@ -3533,6 +3533,11 @@ mat-header-cell {
   justify-content: left;
 }
 
+mat-footer-cell {
+  border: dotted 1px;
+  justify-content: left;
+}
+
 mat-cell {
 
   font-size: 14px;
@@ -3554,7 +3559,7 @@ mat-cell {
 
 
 
-.mat-column-total_hours {
+.mat-column-total_wage {
   min-width: 100px;
   flex: 5% !important;
   max-width: 100px;
@@ -3579,7 +3584,7 @@ mat-cell {
   justify-content: center;
 }
 
-.mat-column-total_wage {
+.mat-column-total_salary {
   min-width: 100px;
   flex: 5% !important;
   max-width: 100px;

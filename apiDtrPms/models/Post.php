@@ -117,6 +117,23 @@ class Post{
 		return $this->gm->sendPayload($payload, $remarks, $message, $code);
     }
 
+    public function editAP($d) {
+      $code = 0;
+      $data = $d;
+      $ap_no = $data->ap_no;
+      $res = $this->gm->edit('added_payments_tb', $data, "ap_no = '$ap_no'");
+      if ($res['code'] == 200) {
+        $payload = $res['data'];
+        $remarks = "success";
+        $message = "Successfully retrieved requested data";
+      } else {
+        $payload = null;
+        $remarks = "failed";
+        $message = $res['errmsg'];
+      }
+      return $this->gm->sendPayload($payload, $remarks, $message, $code);
+    }
+
     //CHEATSHEETS
 
     public function addReq($data) {

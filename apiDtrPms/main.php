@@ -183,6 +183,12 @@
 				}
 			break;
 
+
+    case 'editAP':
+      $d = json_decode(base64_decode(file_get_contents("php://input")));
+      echo json_encode($post->editAP($d), JSON_PRETTY_PRINT);
+      break;
+
     // System Settings
 
 		case 'pullAllDed':

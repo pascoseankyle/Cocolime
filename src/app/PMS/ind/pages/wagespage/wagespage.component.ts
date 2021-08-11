@@ -257,40 +257,7 @@ export class WagespageComponent implements OnInit, AfterViewInit {
 
   attendanceTableInfo: attendanceTable[] = [];
 
-  //COMMENTS HERE ARE SOOO LONG
-
-  getHours(emp_no: any, date: any) {
-    for (let dtrInfoTable of this.dtrInfoTable) {
-      if (dtrInfoTable.emp_no == emp_no) {
-        var attendanceDate: Date;
-        var attendanceHour: number;
-
-        for (let dtrContent of dtrInfoTable.dtr_content) {
-          attendanceDate = dtrContent.date
-          attendanceHour = dtrContent.mhrs
-          if (attendanceDate === date) {
-            if (attendanceHour < 0) {
-              attendanceHour = -1
-            }
-            return <any>(attendanceHour)
-          }
-        }
-        ; break
-      }
-    }
-  }
-
-  getWage(hours: any, rate: any) {
-    var wage;
-    wage = hours * rate;
-    if (wage != wage) {
-      wage = 0;
-    }
-    if (wage < 0) {
-      wage = 0;
-    }
-    return <any>(wage);
-  }
+  
 
   ////Filter 
 
@@ -306,6 +273,7 @@ export class WagespageComponent implements OnInit, AfterViewInit {
   buildTable() {
     this.attendanceColumns = [];
     this.attendanceColumns.push("emp_name");
+    this.attendanceColumns.push("daily_rate");
     this.attendanceColumns = this.attendanceColumns.concat(this.dayArray);
     this.pullAllAP();
     this.pullAllDed();
@@ -344,9 +312,8 @@ export class WagespageComponent implements OnInit, AfterViewInit {
   }
 
   pushEnding() {
-    this.attendanceColumns.push("total_hours");
-    this.attendanceColumns.push("daily_rate");
     this.attendanceColumns.push("total_wage");
+    this.attendanceColumns.push("total_salary");
   }
 
 
@@ -363,68 +330,113 @@ export class WagespageComponent implements OnInit, AfterViewInit {
 
   //Calculations
 
+  //COMMENTS HERE ARE SOOO LONG
 
+  getHours(emp_no: any, date: any) {
+    for (let dtrInfoTable of this.dtrInfoTable) {
+      if (dtrInfoTable.emp_no == emp_no) {
+        var attendanceDate: Date;
+        var attendanceHour: number;
 
-  currentTotal: number = 0;
-
-  addtoTotal(value: number) {
-
-    if (value != value) {
-      value = 0;
+        for (let dtrContent of dtrInfoTable.dtr_content) {
+          attendanceDate = dtrContent.date
+          attendanceHour = dtrContent.mhrs
+          if (attendanceDate === date) {
+            if (attendanceHour < 0) {
+              attendanceHour = -1
+            }
+            return <any>(attendanceHour)
+          }
+        }
+        ; break
+      }
     }
-
-    /*console.log(value);*/
-    this.currentTotal = this.currentTotal + value;
-    /*console.log(this.currentTotal);*/
-
-  }
-
-  //from attendance page modified to take rate
-
-  totalHours!: number;
-
-  getTotalHours() {
-    this.totalHours = this.currentTotal;
-    if (this.totalHours != this.totalHours) {
-      this.totalHours = 0;
-    }
-
-    return (this.totalHours)
-  }
-
-  totalWage!: number;
-
-  difference!: number;
-
-  addisSecond: boolean = false;
-  addtoWage(number: any) {
-    this.difference = this.difference + number;
-  }
-
-  subisSecond: boolean = false;
-  subtracttoWage(number: any) {
-    this.difference = this.difference - number;
-  }
-
-  getTotalWage() {
-
-    this.totalWage = this.currentTotal + this.difference;
-    this.currentTotal = 0;
-    this.difference = 0;
-    if (this.totalWage != this.totalWage) {
-      this.totalWage = 0;
-    }
-
-
-    /*this.totalWage = this.totalWage * rate;*/
-
-    return (this.totalWage)
   }
 
   getDailyRate(rate: number) {
     var daily;
     daily = rate * 8;
     return (daily);
+  }
+
+  getWage(hours: any, rate: any) {
+    var wage;
+    wage = hours * rate;
+    if (wage != wage) {
+      wage = 0;
+    }
+    if (wage < 0) {
+      wage = 0;
+    }
+    return <any>(wage);
+  }  
+
+  currentTotal: number = 0;
+
+  addtoTotal(value: number) {
+    if (value != value) {
+      value = 0;
+    }
+    this.currentTotal = this.currentTotal + value;
+  }
+
+  totalWage: number = 0;
+
+  getTotalWage() {
+    this.totalWage = this.currentTotal;
+    if (this.totalWage != this.totalWage) {
+      this.totalWage = 0;
+    }
+    return (this.totalWage)
+  }  
+
+  difference: number = 0;
+
+  addtoWage(number: any) {
+    this.difference = this.difference + number;
+  }
+
+  subtracttoWage(number: any) {
+    this.difference = this.difference - number;
+  }
+
+  totalSalary: number = 0
+
+  getTotalSalary() {
+    this.totalSalary = this.totalWage + this.difference;    
+
+    if (this.totalWage != this.totalWage) {
+      this.totalWage = 0;
+    }
+
+    return (this.totalSalary)
+  }  
+
+  resetCalc() {
+
+    this.totalWage = 0
+    this.currentTotal = 0;
+    this.difference = 0;
+
+  }  
+
+  currentGrossTotal: number = 0;
+
+  addToGrossTotal(value: number) {
+
+    if (value != value) {
+      value = 0;
+    }
+    this.currentGrossTotal = this.currentGrossTotal + value;
+  }
+
+  getGrossTotal() {
+    var grossTotal = this.currentGrossTotal
+    return (grossTotal)   
+  }
+
+  resetGrossTotal() {
+    this.currentGrossTotal = 0;
   }
 
 

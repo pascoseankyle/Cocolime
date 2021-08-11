@@ -64,16 +64,16 @@
           <ng-template matTabContent>
             <div class="div-container mat-elevation-z4">
               <mat-table class="mat-elevation-z4 attendance-table" [dataSource]="empInfoTableDataSource" matSort style="max-width:300vh;">
-
   
 
                 <div id="content" #content>
                 <ng-container matColumnDef="emp_name" sticky>
                   <mat-header-cell *matHeaderCellDef>Employee Name</mat-header-cell>
-                  <mat-cell class="" *matCellDef="let element">
+                  <mat-cell *matCellDef="let element">
                     <p>{{element.emp_firstname}}</p> &nbsp;
                     <p>{{element.emp_lastname}}</p>
                   </mat-cell>
+                  <mat-footer-cell *matFooterCellDef sticky>Total Wage</mat-footer-cell>
                 </ng-container>
                  </div>
               
@@ -83,18 +83,34 @@
                     <mat-header-cell class="attendance-cell" style="justify-content:center" *matHeaderCellDef>{{dayArray | date : 'EE'}}<br />{{dayArray | date : 'MMM d'}}</mat-header-cell>
                     <mat-cell class="attendance-cell" *matCellDef="let element" [style.background-color]="getHours(element.emp_no, dayArray) < 0 ? 'red' : null || getHours(element.emp_no, dayArray) > 12 ? 'green' : null">
 
-                      {{addtoTotal(getWage(getHours(element.emp_no, dayArray), element.emp_rate))}}
+                      <ng-container>
+                         {{addtoTotal(getWage(getHours(element.emp_no, dayArray), element.emp_rate))}}
+                      </ng-container>
+                      
                       <p>{{getWage(getHours(element.emp_no, dayArray), element.emp_rate)}}</p>
                     </mat-cell>
+                    <mat-footer-cell class="attendance-cell" *matFooterCellDef></mat-footer-cell>
                   </ng-container>
+                </ng-container>
+
+                <ng-container matColumnDef="daily_rate" sticky>
+                  <mat-header-cell *matHeaderCellDef>Daily Rate</mat-header-cell>
+                  <mat-cell class="" *matCellDef="let element">
+                    <p>{{getDailyRate(element.emp_rate)}}</p>
+                  </mat-cell>
+                  <mat-footer-cell *matFooterCellDef stickyEnd></mat-footer-cell>
                 </ng-container>
 
                 <ng-container *ngFor="let deInfoTable of deInfoTable">
                   <ng-container matColumnDef="{{deInfoTable.ded_name}}" stickyEnd>
                     <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{deInfoTable.ded_name}}</mat-header-cell>
                     <mat-cell class="sticky-cell" *matCellDef="let element">
-
+                      <ng-container>
+                        {{subtracttoWage(1000)}}
+                      </ng-container>
+                      <p>1000</p>
                     </mat-cell>
+                    <mat-footer-cell class="sticky-cell" *matFooterCellDef stickyEnd></mat-footer-cell>
                   </ng-container>
                 </ng-container>
 
@@ -102,26 +118,13 @@
                   <ng-container matColumnDef="{{aPInfoTable.ap_name}}" stickyEnd>
                     <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{aPInfoTable.ap_name}}</mat-header-cell>
                     <mat-cell class="sticky-cell" *matCellDef="let element">
-
-
-
-                      
+                      <ng-container>
+                        {{addtoWage(100)}}
+                      </ng-container>
+                      <p>100</p>
                     </mat-cell>
+                    <mat-footer-cell class="sticky-cell" *matFooterCellDef stickyEnd></mat-footer-cell>
                   </ng-container>
-                </ng-container>
-
-                <ng-container matColumnDef="total_hours" stickyEnd>
-                  <mat-header-cell *matHeaderCellDef>Computed Wage</mat-header-cell>
-                  <mat-cell class="" *matCellDef="let element">
-                    <p>{{getTotalHours()}}</p>
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="daily_rate" stickyEnd>
-                  <mat-header-cell *matHeaderCellDef>Daily Rate</mat-header-cell>
-                  <mat-cell class="" *matCellDef="let element">
-                    <p>{{getDailyRate(element.emp_rate)}}</p>
-                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="total_wage" stickyEnd>
@@ -129,14 +132,36 @@
                   <mat-cell class="" *matCellDef="let element">
                     <p>{{getTotalWage()}}</p>
                   </mat-cell>
+                  <mat-footer-cell *matFooterCellDef stickyEnd></mat-footer-cell>
+                </ng-container>
+
+                
+
+                <ng-container matColumnDef="total_salary" stickyEnd>
+                  <mat-header-cell *matHeaderCellDef>Gross Wage</mat-header-cell>
+                  <mat-cell class="" *matCellDef="let element">
+                    <ng-container>
+                      {{addToGrossTotal(getTotalSalary())}}
+                    </ng-container>
+                    <p>{{getTotalSalary() | currency:"PHP":"symbol"}}</p>
+                    <ng-container>
+                      {{resetCalc()}}
+                    </ng-container>
+                  </mat-cell>
+                  <mat-footer-cell *matFooterCellDef stickyEnd>
+                    <ng-container>
+                      <p>{{getGrossTotal() | currency:"PHP":"symbol"}}</p>
+                    </ng-container>
+                    <ng-container>
+                      {{resetGrossTotal()}}
+                    </ng-container>
+                  </mat-footer-cell>
                 </ng-container>
 
                 <!--Row Definitions-->
                 <mat-header-row *matHeaderRowDef="attendanceColumns; sticky: true"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: attendanceColumns;"></mat-row>
-
-                <!--<mat-footer-row *matFooterRowDef="attendanceColumns; sticky: true"></mat-footer-row>
-                <mat-row *matFooterRowDef="let row; columns: attendanceColumns;"></mat-row>-->
+                <mat-row *matRowDef="let row; columns: attendanceColumns;"></mat-row>                                                                                              
+                <mat-footer-row *matFooterRowDef="attendanceColumns; sticky: true"></mat-footer-row>
 
               </mat-table>
 
