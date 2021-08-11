@@ -43,51 +43,7 @@
                     </button>
                     </mat-toolbar>
                 </div>
-                <div class="stats-container">
-                  <!-- Pending orders card -->
-                  <div class="cards stat-cards" style="border-radius: 20px;">
-                      <div class="cards-content stat-cards">
-                          <div class="stat-img">
-                              <img src="../assets/best-seller-month.png" style="height: 64px;"/>
-                          </div>
-                          <div class="stat-text-container">
-                              <div class="stat-text">
-                                  <p>10</p>
-                                  <p>Best Seller of The Month</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-          
-                  <div class="cards stat-cards" style="border-radius: 20px;">
-                      <div class="cards-content stat-cards" >
-                          <div class="stat-img">
-                              <img src="../assets/chef.png" style="height: 64px;" />
-                          </div>
-                          <div class="stat-text-container">
-                              <div class="stat-text">
-                                  <p></p>
-                                  <p>Chef's Pick</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-          
-                  <div class="cards stat-cards" style="border-radius: 20px;">
-                      <div class="cards-content stat-cards">
-                          <div class="stat-img">
-                              <img src="../assets/best-seller.png" style="height: 64px;" />
-                          </div>
-                          <div class="stat-text-container">
-                              <div class="stat-text">
-                                  <p></p>
-                                  <p>All Time Favorite</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-          
-              </div>
+               
             <div style="display: flex; flex-direction: row; width: 100%; justify-content: center; align-items: center; margin-bottom: -2rem;">
               <div [formGroup] = "datePicker"  class="search1" >
                 <label style="font-family: Poppins; font-size: 15px; font-weight: bold; margin-right: 1rem;">Select</label>
@@ -151,7 +107,7 @@
 
     <!-- Table -->
     <ng-container matColumnDef="Column4" class="thead">
-      <th class="th" mat-header-cell *matHeaderCellDef> Date </th>
+      <th class="th" mat-header-cell *matHeaderCellDef> Table </th>
       <td class="td" mat-cell *matCellDef="let element"> {{element.table_name}} </td>
     </ng-container>
 

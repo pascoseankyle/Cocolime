@@ -184,7 +184,7 @@
          
           <!-- <mat-tab label="From The Grill">  
             <ng-template mat-tab-label>
-              <img src="assets/faveIcon/Grill.png" style="height: 60px; width: 70px;">
+              <img src="assets/faveIcon/Grill.png" style="height: 60px; width: 70px ;">
               <span style="margin-left: 40px;" >From The Grill</span>
           </ng-template>
           <mat-accordion style="display: inline-flex; margin-bottom: 10px; text-align: center; margin-top: 10px;" *ngFor="let product of product" >
@@ -250,7 +250,51 @@
           </mat-tab>
            -->
         </mat-tab-group>
-        
+        <div class="stats-container">
+          <!-- Best Seller cards -->
+          <div class="cards stat-cards" style="border-radius: 20px;">
+              <div class="cards-content stat-cards">
+                  <div class="stat-img">
+                      <img src="../assets/best-seller-month.png" style="height: 64px;"/>
+                  </div>
+                  <div class="stat-text-container">
+                      <div class="stat-text">
+                          <p> <!-- {{product}}--> </p>
+                          <p>Best Seller of The Month</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="cards stat-cards" style="border-radius: 20px;">
+              <div class="cards-content stat-cards" >
+                  <div class="stat-img">
+                      <img src="../assets/chef.png" style="height: 64px;" />
+                  </div>
+                  <div class="stat-text-container">
+                      <div class="stat-text">
+                          <p> <!-- {{product}}--></p>
+                          <p>Chef's Pick</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="cards stat-cards" style="border-radius: 20px;">
+              <div class="cards-content stat-cards">
+                  <div class="stat-img">
+                      <img src="../assets/best-seller.png" style="height: 64px;" />
+                  </div>
+                  <div class="stat-text-container">
+                      <div class="stat-text">
+                          <p> <!-- {{product}}--></p>
+                          <p>All Time Favorite</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+      </div>
       </div>
     </div>
   </div>
