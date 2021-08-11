@@ -413,7 +413,7 @@ deleteIdentifier: any;
     })
   }
 
-
+ 
 
  categMenu(categoryMenu) {
   this.categInfo.product_type =categoryMenu.tab.textLabel;
