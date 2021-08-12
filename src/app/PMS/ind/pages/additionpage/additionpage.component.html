@@ -19,18 +19,6 @@
         </mat-form-field>
 
       </div>
-      <!--Import & Export Buttons-->
-      <button mat-button class="toolbar-buttons" [matMenuTriggerFor]="Import">Import &nbsp;<mat-icon>south</mat-icon></button>
-      <mat-menu #Import="matMenu">
-        <button mat-menu-item>JSON</button>
-        <button mat-menu-item>CSV</button>
-      </mat-menu>
-      <button mat-button class="toolbar-buttons" [matMenuTriggerFor]="Export">Export &nbsp;<mat-icon>north</mat-icon></button>
-      <mat-menu #Export="matMenu">
-        <button mat-menu-item>JSON</button>
-        <button mat-menu-item>CSV</button>
-      </mat-menu>
-      <button mat-button class="toolbar-buttons" matTooltip="Print Employee Table"> Print &nbsp; <mat-icon>print</mat-icon></button>
     </mat-toolbar>
   </mat-card-title>
   <mat-card-content>
@@ -48,7 +36,6 @@
                 <tr>
                   <th>Emp Name</th>
                   <th>Additionals Rate</th>
-                  <th>Additionals Function</th>
                 </tr>
                 <ng-container *ngFor="let empInfoTable of empInfoTable">
                   <tr>
@@ -56,14 +43,7 @@
                     <td>
                       <input placeholder="{{getAPRate(aPInfoTable.ap_name, empInfoTable.emp_no)}}"
                              type="text"
-                             (keyup)="updateList(aPInfoTable.ap_name, empInfoTable.emp_no, $event, getAPRate(aPInfoTable.ap_name, empInfoTable.emp_no))"
-                             matInput
-                             matTooltip="{{getAPRate(aPInfoTable.ap_name, empInfoTable.emp_no)}}">                        
-                    </td>
-                    <td>
-                      <input placeholder="{{getAPFunction(aPInfoTable.ap_name, empInfoTable.emp_no)}}"
-                             type="text"
-                             (keyup)="updateList(aPInfoTable.ap_name, empInfoTable.emp_no, $event, getAPRate(aPInfoTable.ap_name, empInfoTable.emp_no))"
+                             (keyup)="updateRate(aPInfoTable.ap_name, empInfoTable.emp_no, $event)"
                              matInput
                              matTooltip="{{getAPRate(aPInfoTable.ap_name, empInfoTable.emp_no)}}">                        
                     </td>

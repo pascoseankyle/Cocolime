@@ -101,14 +101,14 @@
                   <mat-footer-cell *matFooterCellDef stickyEnd></mat-footer-cell>
                 </ng-container>
 
-                <ng-container *ngFor="let deInfoTable of deInfoTable">
-                  <ng-container matColumnDef="{{deInfoTable.ded_name}}" stickyEnd>
-                    <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{deInfoTable.ded_name}}</mat-header-cell>
+                <ng-container *ngFor="let dedInfoTable of dedInfoTable">
+                  <ng-container matColumnDef="{{dedInfoTable.ded_name}}" stickyEnd>
+                    <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{dedInfoTable.ded_name}}</mat-header-cell>
                     <mat-cell class="sticky-cell" *matCellDef="let element">
                       <ng-container>
-                        {{subtracttoWage(1000)}}
+                        {{subtracttoWage(getDedRate(dedInfoTable.ded_name, element.emp_no))}}
                       </ng-container>
-                      <p>1000</p>
+                      <p>{{getDedRate(dedInfoTable.ded_name, element.emp_no)}}</p>
                     </mat-cell>
                     <mat-footer-cell class="sticky-cell" *matFooterCellDef stickyEnd></mat-footer-cell>
                   </ng-container>
@@ -119,9 +119,9 @@
                     <mat-header-cell class="sticky-cell" style="justify-content:center" *matHeaderCellDef>{{aPInfoTable.ap_name}}</mat-header-cell>
                     <mat-cell class="sticky-cell" *matCellDef="let element">
                       <ng-container>
-                        {{addtoWage(100)}}
+                        <!--{{addtoWage(getAPRate(aPInfoTable.ap_name, element.emp_no))}}-->
                       </ng-container>
-                      <p>100</p>
+                      <p>{{getAPRate(aPInfoTable.ap_name, element.emp_no)}}</p>
                     </mat-cell>
                     <mat-footer-cell class="sticky-cell" *matFooterCellDef stickyEnd></mat-footer-cell>
                   </ng-container>
@@ -133,9 +133,7 @@
                     <p>{{getTotalWage()}}</p>
                   </mat-cell>
                   <mat-footer-cell *matFooterCellDef stickyEnd></mat-footer-cell>
-                </ng-container>
-
-                
+                </ng-container>                    
 
                 <ng-container matColumnDef="total_salary" stickyEnd>
                   <mat-header-cell *matHeaderCellDef>Gross Wage</mat-header-cell>

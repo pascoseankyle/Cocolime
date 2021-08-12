@@ -1,15 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/DTR/service/data.service';
-import { DatePipe, Time } from '@angular/common';
-import { LowerCasePipe } from '@angular/common';
 
-
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-
-import { RouterModule } from '@angular/router';
 
 export interface empTable {
   emp_no: any;
@@ -31,7 +22,7 @@ export interface empTable {
   emp_last_mod_by: any;
 }
 
-export interface deTable {
+export interface dedTable {
   ded_no: any;
   ded_name: any;
   ded_JSON: dedJSON[];
@@ -39,8 +30,7 @@ export interface deTable {
 
 export interface dedJSON {
   emp_no: any;
-  ded_rate: any
-  ded_argument: any;
+  ded_rate: any;
 }
 
 @Component({
@@ -53,28 +43,26 @@ export class DeductionpageComponent implements OnInit {
   constructor(public data: DataService) { }
 
   ngOnInit(): void {
-    this.buildTable();
-    this.pullAllDed();
     this.pullAllEmp();
+    this.pullAllDed();
+    
 
   }
 
-  deInfoTable: deTable[] = [];
-  deInfoTableJSON: dedJSON[] = [];
-  deInfoTableDataSource = new MatTableDataSource(this.deInfoTable);
+  dedInfoTable: dedTable[] = [];
+  dedInfoTableJSON: dedJSON[] = [];
 
   jsonData: any;
 
   pullAllDed() {
     this.data.sendApiRequest("pullAllDed", null).subscribe((data: any) => {
       console.log(data.payload)
-      this.deInfoTable = data.payload;
-      this.deInfoTableDataSource.data = this.deInfoTable;
+      this.dedInfoTable = data.payload;
 
-      for (let deInfoTable of this.deInfoTable) {
-        this.jsonData = deInfoTable.ded_JSON;
-        this.deInfoTableJSON = JSON.parse(this.jsonData);
-        deInfoTable.ded_JSON = this.deInfoTableJSON;
+      for (let dedInfoTable of this.dedInfoTable) {
+        this.jsonData = dedInfoTable.ded_JSON;
+        this.dedInfoTableJSON = JSON.parse(this.jsonData);
+        dedInfoTable.ded_JSON = this.dedInfoTableJSON;
       }
 
     });
@@ -82,68 +70,27 @@ export class DeductionpageComponent implements OnInit {
 
   //Table Columns
 
-  displayedColumns: string[] = ['Employee No', 'Added Payments Name', 'Added Payments Arguments'];
-
   empInfoTable: empTable[] = [];
-  empInfoTableDataSource = new MatTableDataSource(this.empInfoTable);
 
   pullAllEmp() {
     this.data.sendApiRequest("pullAllEmp", null).subscribe((data: any) => {
       console.log("PULLING DATA");
       this.empInfoTable = data.payload;
-      this.empInfoTableDataSource.data = this.empInfoTable;
-      console.log(this.empInfoTableDataSource.data);
       console.log("DATA PULLED")
-
-      //for (let aPInfoTable of this.aPInfoTable) {
-      //  console.log(this.checkIfHasEmp(aPInfoTable.emp_no))
-      //  this.checkIfHasEmp(aPInfoTable.emp_no);
-
-      //}
-
 
     });
   }
 
-  getEmpName(emp_no: any) {
-    for (let empInfoTable of this.empInfoTable) {
-      if (emp_no == empInfoTable.emp_no) {
-        console.log(empInfoTable.emp_firstname)
-      }
-    }
-  }
 
-  //checkIfHasEmp(emp_no: any, ap_name: any) {
-  //  var hasEmp: boolean = false;
-  //  console.log(ap_name)
-  //  for (let aPInfoTable of this.aPInfoTable) {
-  //    if (aPInfoTable.ap_name === ap_name) {
-  //      for (let ap_json of aPInfoTable.ap_JSON) {
-  //        if (ap_json.emp_no == emp_no ) {
-  //          console.log('maaaaaaaaaaaatch');
-  //          hasEmp = true;
-  //          ;break
-  //        }
-  //      }
-  //    }      
-  //  }
-  //  if (hasEmp == false) {
-  //    console.log('No maaaaaaaaaaaatch');
-  //    /*this.generateEmpty(this.aPInfoTableJSON, ap_name, emp_no);*/
-  //  }  
+  getDedRate(ded_name: any, emp_no: any) {
 
-  //}
+    var rate = 0
 
-  getAPRate(emp_no: any, ap_name: any) {
-    var rate = null;
-    console.log(ap_name)
-    for (let aPInfoTable of this.deInfoTable) {
-      if (aPInfoTable.ded_name === ap_name) {
-        for (let ap_json of aPInfoTable.ded_JSON) {
-          if (ap_json.emp_no == emp_no) {
-            /*console.log('maaaaaaaaaaaatch');*/
-            rate = ap_json.ded_rate;
-            ; break
+    for (let dedInfoTable of this.dedInfoTable) {
+      if (dedInfoTable.ded_name == ded_name) {
+        for (let dedInfoTableJSON of dedInfoTable.ded_JSON) {
+          if (emp_no == dedInfoTableJSON.emp_no) {
+            rate = dedInfoTableJSON.ded_rate
           }
         }
       }
@@ -151,129 +98,62 @@ export class DeductionpageComponent implements OnInit {
     return (rate)
   }
 
-  getAPFunction(emp_no: any, ap_name: any) {
-    var arg = null;
-    console.log(ap_name)
-    for (let aPInfoTable of this.deInfoTable) {
-      if (aPInfoTable.ded_name === ap_name) {
-        for (let ap_json of aPInfoTable.ded_JSON) {
-          if (ap_json.emp_no == emp_no) {
-            /*console.log('maaaaaaaaaaaatch');*/
-            arg = ap_json.ded_argument;
-            ; break
+  updateRate(ap_name: any, emp_no: any, event: any) {
+    console.log(event.target.value)
+    var hasMatch = false;
+
+    console.log(ap_name, emp_no, event.target.value)
+
+    for (let dedInfoTable of this.dedInfoTable) {
+      console.log('xxxxxxxxxxxxxxxxxxxxxxx')
+      if (ap_name === dedInfoTable.ded_name) {
+        for (let aPInfoTableJSON of dedInfoTable.ded_JSON) {
+          /*console.log(ap_name, emp_no, event.target.value)*/
+          if (aPInfoTableJSON.emp_no == emp_no) {
+            console.log('matched')
+            aPInfoTableJSON.ded_rate = event.target.value;
+            this.editAP(dedInfoTable.ded_no);
+            console.log(aPInfoTableJSON)
+            hasMatch = true
           }
+          console.log(dedInfoTable.ded_JSON)
         }
+
       }
     }
-    return (arg)
+    if (hasMatch == false) {
+      console.log('NO matched xxxxxxxxxxxxxxxxxxxxxxxx')
+      this.pushJSON(emp_no, ap_name)
+    }
+
   }
 
-  additionsColumns: string[] = [];
+  pushJSON(emp_no: any, ded_name: any) {
+    console.log('Trying to add one')
+    for (let dedInfoTable of this.dedInfoTable) {
+      if (dedInfoTable.ded_name === ded_name) {
+        console.log('Will add one')
+        dedInfoTable.ded_JSON.push({ "emp_no": emp_no, "ded_rate": "0" })
 
-  buildTable() {
-    this.additionsColumns = [];
-    this.additionsColumns.push("emp_name");
-    this.additionsColumns.push("ap_rate");
-    this.additionsColumns.push("ap_argument");
-    /* this.additionsColumns.push("actions");*/
-  }
-
-  aPInfoTableCopy: deTable[] = [];
-
-  //generateEmpty(aPJSON : any, ap_name: any, emp_no : any) {
-  //  console.log(emp_no);
-  //  this.aPInfoTableCopy = this.aPInfoTable;
-  //  console.log(this.aPInfoTableCopy);
-  //  for (let aPInfoTableCopy of this.aPInfoTableCopy) {
-  //    console.log(aPInfoTableCopy)
-  //    aPInfoTableCopy.ap_JSON.push({ "emp_no": emp_no, "ap_rate": "0", "ap_argument": "none" })
-  //  }
-
-  //  console.log(this.aPInfoTableCopy[0].ap_JSON + 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-  //  console.log(this.aPInfoTable[0].ap_JSON);
-
-
-  //  //for (let aPInfoTableCopy of this.aPInfoTableCopy) {
-  //  //  if (aPInfoTableCopy.ap_name === ap_name) {
-  //  //    aPInfoTableCopy.ap_JSON.push({ "emp_no": emp_no, "ap_rate": "0", "ap_argument": "none" });
-  //  //    console.log()
-  //  //    /*this.compileAP(aPInfoTableCopy.ap_JSON, aPInfoTableCopy.ap_no);*/
-  //  //  }      
-  //  //}
-
-
-  //}
-
-  updateList(event: any) {
-    console.log(event + '+++++++++ From DTR Page: Method updateList');
-    //for (let dtrJSONTable of this.dtrJSONTable) {
-    //  if (dtrJSONTable.date == date) {
-    //    console.log('Date Matched');
-    //    switch (argument) {
-    //      case "am_time_in": {
-    //        dtrJSONTable.am_time_in = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "am_time_out": {
-    //        dtrJSONTable.am_time_out = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "pm_time_in": {
-    //        dtrJSONTable.pm_time_in = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "pm_time_out": {
-    //        dtrJSONTable.pm_time_out = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "ot_time_in": {
-    //        dtrJSONTable.ot_time_in = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "ot_time_out": {
-    //        dtrJSONTable.ot_time_out = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "mhrs": {
-    //        dtrJSONTable.mhrs = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //      case "remarks": {
-    //        dtrJSONTable.remarks = event.target.value;
-    //        console.log(argument + ': Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-
-    //      default: {
-    //        console.log(argument + ': No Valid Argumments From DTR Page: Method updateList');
-    //        break;
-    //      }
-    //    }
-    //  }
-    //}
-    //this.editDTR(this.dtrJSONTable, dtr_id);
+      }
+    }
+    console.log(this.dedInfoTableJSON)
   }
 
 
-  aPInfo: any = {};
-  async compileAP(aPJSON: any, ap_no: any) {
-    this.aPInfo = {};
-    this.aPInfo.ap_no = ap_no;
-    this.aPInfo.ap_JSON = JSON.stringify(aPJSON);
+  dedInfo: any = {};
 
-    console.log(this.aPInfo.ap_JSON)
-    //this.data.sendApiRequest("editAP", this.aPInfo).subscribe((data: any) => {
-    //});
-  }
+  async editAP(ded_no: any) {
+    for (let aPInfoTable of this.dedInfoTable) {
+      if (aPInfoTable.ded_no == ded_no) {
+        this.dedInfo.ded_no = ded_no;
+        this.dedInfo.ded_JSON = JSON.stringify(aPInfoTable.ded_JSON);
+        console.log(this.dedInfo);
+      }
+    }
 
-  editAP() {
+    this.data.sendApiRequest("editDed", this.dedInfo).subscribe((data: any) => {
+    });
 
   }
 

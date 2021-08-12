@@ -40,8 +40,7 @@ export interface aPTable {
 
 export interface apJSON {
   emp_no: any;
-  ap_rate: any
-  ap_argument: any;
+  ap_rate: any;
 }
 
 
@@ -120,70 +119,66 @@ export class AdditionpageComponent implements OnInit {
     return (rate)
   }
 
-  getAPFunction(ap_name: any, emp_no: any) {
-
-    var arg = ""
-
-    for (let aPInfoTable of this.aPInfoTable) {
-      if (aPInfoTable.ap_name == ap_name) {
-        for (let aPInfoTableJSON of aPInfoTable.ap_JSON) {
-          if (emp_no == aPInfoTableJSON.emp_no) {
-            arg = aPInfoTableJSON.ap_argument
-          }
-        }
-      }
-    }
-    return (arg)
-  }
-
-  //getEmpName(emp_no : any) {
-  //  for (let empInfoTable of this.empInfoTable) {
-  //    if (emp_no == empInfoTable.emp_no) {
-  //      console.log(empInfoTable.emp_firstname)
-  //    }
-  //  }
-  //}
-
-  //checkIfHasEmp(emp_no: any) {
-  //  var hasEmp : boolean = false
-  //  for (let empInfoTable of this.empInfoTable) {
-  //    console.log(empInfoTable.emp_no)
-  //    if (emp_no == empInfoTable.emp_no) {
-  //      console.log('match found')
-  //      hasEmp = true;
-  //      ;break
-  //    }
-  //    hasEmp = false;
-  //  }
-  //  return(hasEmp)
-  //}
-
-  updateList(ap_name: any, emp_no: any, event: any, rate: any) {
+  updateRate(ap_name: any, emp_no: any, event: any) {
     console.log(event.target.value)
+    var hasMatch = false;
+
+    console.log(ap_name, emp_no, event.target.value)
+
     for (let aPInfoTable of this.aPInfoTable) {
+      console.log('xxxxxxxxxxxxxxxxxxxxxxx')
       if (ap_name === aPInfoTable.ap_name) {
         for (let aPInfoTableJSON of aPInfoTable.ap_JSON) {
+          /*console.log(ap_name, emp_no, event.target.value)*/          
           if (aPInfoTableJSON.emp_no == emp_no) {            
             console.log('matched')
             aPInfoTableJSON.ap_rate = event.target.value;
-            /*console.log(aPInfoTableJSON)*/
             this.editAP(aPInfoTable.ap_no);
-          }
-          if (aPInfoTableJSON.emp_no != emp_no) {
-            this.pushJSON(emp_no, ap_name)
-          }
-          console.log(aPInfoTableJSON)
-          
-          
+            console.log(aPInfoTableJSON)
+            hasMatch = true            
+          }        
+          console.log(aPInfoTable.ap_JSON)
         }
+        
       }
-    }    
+    }
+    if (hasMatch == false) {
+      console.log('NO matched xxxxxxxxxxxxxxxxxxxxxxxx')
+      this.pushJSON(emp_no, ap_name)
+    } 
+
   }
 
+  //updateFunc(ap_name: any, emp_no: any, event: any, func: any) {
+  //  console.log(event.target.value)
+  //  for (let aPInfoTable of this.aPInfoTable) {
+  //    if (ap_name === aPInfoTable.ap_name) {
+  //      for (let aPInfoTableJSON of aPInfoTable.ap_JSON) {
+  //        if (aPInfoTableJSON.emp_no == emp_no) {
+  //          console.log('matched')
+  //          aPInfoTableJSON.ap_argument = event.target.value;
+  //          /*console.log(aPInfoTableJSON)*/
+  //          this.editAP(aPInfoTable.ap_no);
+  //        }
+  //        if (aPInfoTableJSON.emp_no != emp_no) {
+  //          this.pushJSON(emp_no, ap_name)
+  //        }
+  //        /*console.log(aPInfoTableJSON)*/
+
+
+  //      }
+  //    }
+  //  }
+  //}
+
   pushJSON(emp_no: any, ap_name: any) {
+    console.log('Trying to add one') 
     for (let aPInfoTable of this.aPInfoTable) {
-      if (aPInfoTable.ap_name === ap_name)
-      aPInfoTable.ap_JSON.push({ "emp_no": emp_no, "ap_rate": "0", "ap_argument": "" })
+      if (aPInfoTable.ap_name === ap_name) {
+            console.log('Will add one')        
+            aPInfoTable.ap_JSON.push({ "emp_no": emp_no , "ap_rate": "0" })         
+        
+      }     
     }
     console.log(this.aPInfoTableJSON)
   }
@@ -193,74 +188,18 @@ export class AdditionpageComponent implements OnInit {
 
   async editAP(ap_no: any) {
     for (let aPInfoTable of this.aPInfoTable) {
-      if (aPInfoTable.ap_name == ap_no) {
+      if (aPInfoTable.ap_no == ap_no) {
         this.APInfo.ap_no = ap_no;
         this.APInfo.ap_JSON = JSON.stringify(aPInfoTable.ap_JSON);
         console.log(this.APInfo);
       }        
     }        
       
-      //this.data.sendApiRequest("editAP", this.APInfo).subscribe((data: any) => {
-      //});   
-
+    this.data.sendApiRequest("editAP", this.APInfo).subscribe((data: any) => {
+    });   
+     
   }
 
-  //updateList(dtr_id: any, event: any, argument: string, date: any) {
-  //  console.log(event + 'From DTR Page: Method updateList');
-  //  for (let dtrJSONTable of this.dtrJSONTable) {
-  //    if (dtrJSONTable.date == date) {
-  //      console.log('Date Matched');
-  //      switch (argument) {
-  //        case "am_time_in": {
-  //          dtrJSONTable.am_time_in = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "am_time_out": {
-  //          dtrJSONTable.am_time_out = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "pm_time_in": {
-  //          dtrJSONTable.pm_time_in = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "pm_time_out": {
-  //          dtrJSONTable.pm_time_out = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "ot_time_in": {
-  //          dtrJSONTable.ot_time_in = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "ot_time_out": {
-  //          dtrJSONTable.ot_time_out = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "mhrs": {
-  //          dtrJSONTable.mhrs = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //        case "remarks": {
-  //          dtrJSONTable.remarks = event.target.value;
-  //          console.log(argument + ': Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-
-  //        default: {
-  //          console.log(argument + ': No Valid Argumments From DTR Page: Method updateList');
-  //          break;
-  //        }
-  //      }
-  //    }
-  //  }
-  //  this.editDTR(this.dtrJSONTable, dtr_id);
-  //}
 
 
 

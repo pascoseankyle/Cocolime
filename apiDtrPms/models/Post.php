@@ -134,6 +134,23 @@ class Post{
       return $this->gm->sendPayload($payload, $remarks, $message, $code);
     }
 
+		public function editDed($d) {
+      $code = 0;
+      $data = $d;
+      $ded_no = $data->ded_no;
+      $res = $this->gm->edit('deductibles_tb', $data, "ded_no = '$ded_no'");
+      if ($res['code'] == 200) {
+        $payload = $res['data'];
+        $remarks = "success";
+        $message = "Successfully retrieved requested data";
+      } else {
+        $payload = null;
+        $remarks = "failed";
+        $message = $res['errmsg'];
+      }
+      return $this->gm->sendPayload($payload, $remarks, $message, $code);
+    }
+
     //CHEATSHEETS
 
     public function addReq($data) {

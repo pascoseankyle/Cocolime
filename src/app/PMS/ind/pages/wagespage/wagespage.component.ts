@@ -12,7 +12,19 @@ import html2canvas from 'html2canvas';
 
 
 
-export interface deTable {
+export interface aPTable {
+  ap_no: any;
+  ap_name: any;
+  ap_JSON: apJSON[];
+}
+
+export interface apJSON {
+  emp_no: any;
+  ap_rate: any;
+}
+
+
+export interface dedTable {
   ded_no: any;
   ded_name: any;
   ded_JSON: dedJSON[];
@@ -21,7 +33,6 @@ export interface deTable {
 export interface dedJSON {
   emp_no: any;
   ded_rate: any
-  ded_argument: any;
 }
 
 export interface empTable {
@@ -70,17 +81,6 @@ export interface dtrJSON {
   remarks: string;
 }
 
-export interface aPTable {
-  ap_no: any;
-  ap_name: any;
-  ap_JSON: apJSON[];
-}
-
-export interface apJSON {
-  emp_no: any;
-  ap_rate: any
-  ap_argument: any;
-}
 
 
 
@@ -275,40 +275,98 @@ export class WagespageComponent implements OnInit, AfterViewInit {
     this.attendanceColumns.push("emp_name");
     this.attendanceColumns.push("daily_rate");
     this.attendanceColumns = this.attendanceColumns.concat(this.dayArray);
-    this.pullAllAP();
     this.pullAllDed();
+    this.pullAllAP();
+    
+    
   }
 
 
   aPInfoTable: aPTable[] = [];
 
+  aPInfoTableJSON: apJSON[] = [];
+
   pullAllAP() {
     this.data.sendApiRequest("pullAllAP", null).subscribe((data: any) => {
       this.aPInfoTable = data.payload;
       console.log(this.aPInfoTable + ' From DTR Page: Method pullAllAP');
+
+      for (let aPInfoTable of this.aPInfoTable) {
+        this.jsonData = aPInfoTable.ap_JSON;
+        this.aPInfoTableJSON = JSON.parse(this.jsonData);
+        aPInfoTable.ap_JSON = this.aPInfoTableJSON;
+      }
+
       for (let aPInfoTable of this.aPInfoTable) {
         this.attendanceColumns.push(aPInfoTable.ap_name);
       }
+      this.pushEnding()
 
     });
   }
 
-  deInfoTable: deTable[] = [];
-  deInfoTableJSON: dedJSON[] = [];
-  deInfoTableDataSource = new MatTableDataSource(this.deInfoTable);
+  getAPRate(ap_name: any, emp_no: any) {
+
+    var rate: number = 0
+
+    for (let aPInfoTable of this.aPInfoTable) {
+      if (aPInfoTable.ap_name == ap_name) {
+        for (let aPInfoTableJSON of aPInfoTable.ap_JSON) {
+          if (emp_no == aPInfoTableJSON.emp_no) {
+            rate = aPInfoTableJSON.ap_rate
+          }
+        }
+      }
+    }
+
+    if (rate != rate) {
+      rate = 0
+    }
+
+    return (rate)
+  }
+
+  dedInfoTable: dedTable[] = [];
+  dedInfoTableJSON: dedJSON[] = [];
 
 
   pullAllDed() {
     this.data.sendApiRequest("pullAllDed", null).subscribe((data: any) => {
       console.log(data.payload)
-      this.deInfoTable = data.payload;
-      this.deInfoTableDataSource.data = this.deInfoTable;
+      this.dedInfoTable = data.payload;
 
-      for (let deInfoTable of this.deInfoTable) {
-        this.attendanceColumns.push(deInfoTable.ded_name);
+      for (let dedInfoTable of this.dedInfoTable) {
+        this.jsonData = dedInfoTable.ded_JSON;
+        this.dedInfoTableJSON = JSON.parse(this.jsonData);
+        dedInfoTable.ded_JSON = this.dedInfoTableJSON;
       }
-      this.pushEnding()
+
+      for (let dedInfoTable of this.dedInfoTable) {
+        this.attendanceColumns.push(dedInfoTable.ded_name);
+      }
+
+      
     });
+  }
+
+  getDedRate(ded_name: any, emp_no: any) {
+
+    var rate: number = 0
+
+    for (let dedInfoTable of this.dedInfoTable) {
+      if (dedInfoTable.ded_name == ded_name) {
+        for (let dedInfoTableJSON of dedInfoTable.ded_JSON) {
+          if (emp_no == dedInfoTableJSON.emp_no) {
+            rate = dedInfoTableJSON.ded_rate
+          }
+        }
+      }
+    }
+
+    if (rate != rate) {
+      rate = 0
+    }
+    return (rate)
   }
 
   pushEnding() {
