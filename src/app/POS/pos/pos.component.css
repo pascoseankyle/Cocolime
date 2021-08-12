@@ -621,7 +621,7 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: space-between;
   position: absolute;
   bottom: 0;
-  margin-left: 100px;
+  margin-left: 70px;
   margin-bottom: 30px;
 }
 
@@ -640,7 +640,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .cards .cards-content {
   justify-content: space-between;
-  padding: 50px 100px 50px 70px;
+
+  padding: 50px 90px 50px 70px;
   border-color: #72a411;
   border-style: hidden hidden hidden solid;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
