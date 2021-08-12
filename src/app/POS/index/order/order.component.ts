@@ -166,7 +166,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   logout(){
     localStorage.clear();
-  this.router.navigate(['']);
+    this.router.navigate(['']);
   }
   
   @ViewChild(MatPaginator) paginator !: MatPaginator;

@@ -290,7 +290,7 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     }
   
 
-  logoutFunction(){
+  logout(){
     localStorage.clear();
     this.router.navigate(['']);
   }

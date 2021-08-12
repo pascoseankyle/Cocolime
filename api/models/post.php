@@ -376,8 +376,9 @@
 			$this->conn->query($sql);
 			return $this->select('inventory_tb', null); 
 		}
+
 		function selectMY($data){
-			$this->sql = "SELECT * FROM inventory_tb WHERE MONTH(date_acquired) = '$data->selectedMonth' AND YEAR(date_acquired) = '$data->selectedYear'";
+			$this->sql = "SELECT * FROM inventory_tb WHERE MONTH(date_expiry) = '$data->selectedMonth' AND YEAR(date_expiry) = '$data->selectedYear'";
 			if($result = $this->conn->query($this->sql)){
 				if($result->num_rows>0){
 					while($res = $result->fetch_assoc()){
@@ -394,6 +395,7 @@
 				'timestamp'=>date('D M j, Y G:i:s T')
 			);
 		}
+
 		function selectM($data){
 			$this->sql = "SELECT * FROM inventory_tb WHERE DATE_FORMAT(date_acquired, '%M') = '$data->selectedMonth'";
 			if($result = $this->conn->query($this->sql)){
