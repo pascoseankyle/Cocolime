@@ -58,7 +58,9 @@ export class DiningComponent implements OnInit {
   
   constructor(private ds: DataService, public router: Router, private modalService: NgbModal,public dialog: MatDialog) { }
 
+  
   orderReserveModal(contentOrderReserve) {
+
     this.dialog.open(contentOrderReserve); 
     
   }
@@ -90,14 +92,77 @@ export class DiningComponent implements OnInit {
   }
     //EDIT FUNCTION
 
+    first_name: any;
+
+    last_name:any;
+   phone_no: any;
+   time: any;
+   date:any;
  
-    async reserveTable(){
-      this.tblInfo.status_id1 = 3;
-      console.log(this.tblInfo.modifiedBy1);
-      await this.ds.sendApiRequest("editTable", this.tblInfo).subscribe(res => {
-        this.pullTables();
-      })
+    async reserveTable(i, contentReserve){
+
+      console.log(i);
+      this.dialog.open(contentReserve); 
+      this.newRes.table_id = i.table_id1;
+      
+
+      // this.tblInfo.status_id1 = 3;
+      // console.log(this.tblInfo.modifiedBy1);
+      // await this.ds.sendApiRequest("editTable", this.tblInfo).subscribe(res => {
+      //   this.pullTables();
+      // })
     }
+
+    newRes: any = {};
+    reserveNew(){
+      var timeSplit = this.time.split(':'),
+      hours,
+      minutes,
+      meridian;
+    hours = timeSplit[0];
+    minutes = timeSplit[1];
+    if (hours > 12) {
+      meridian = 'PM';
+      hours -= 12;
+    } else if (hours < 12) {
+      meridian = 'AM';
+      if (hours == 0) {
+        hours = 12;
+      }
+    } else {
+      meridian = 'PM';
+    }
+    
+
+
+      this.newRes.status_id = 4;
+      this.newRes.first_name = this.first_name;
+      this.newRes.last_name = this.last_name;
+      this.newRes.phone_no = this.phone_no;
+      this.newRes.reservation_time = hours + ':' + minutes + ' ' + meridian;
+      this.newRes.reservation_date = this.date;
+
+
+      this.ds.apiReqPos("resNew", this.newRes).subscribe(data => {
+        if(data.code == 200)
+        {
+        
+          this.ds.apiReqPos("newRes", this.newRes).subscribe(data => {
+            this.pullTables();
+          })
+        }
+      })
+
+
+    }
+
+
+
+
+
+
+
+
     async checkoutTable(){
       this.tblInfo.status_id1 = 1;
       console.log(this.tblInfo.modifiedBy1);

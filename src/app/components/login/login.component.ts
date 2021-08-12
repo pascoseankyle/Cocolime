@@ -68,78 +68,91 @@ export class LoginComponent implements OnInit {
       this.name = res.payload.fname;
 
 
+
+      if (this.logPword == null || this.logUname == null)
+      {
+      
+        Toast.fire({
+          icon: 'error',
+          title: 'There is an  empty field'
+        }) 
+      }   
+   
+      else  if (this.role == null)
+      {
+      
+        Toast.fire({
+          icon: 'error',
+          title: 'Wrong Username or Password'
+        }) 
+      }   
+  
+  
+      else
+      {
+  
+        Toast.fire({
+          icon: 'success',
+          title: 'Welcome ' + this.name + '!'
+        }) 
+   
+          if(this.role == 1)
+          {
+            // username: ToCRM password: 1234
+            console.log("TO CRM");
+            this.route.navigate(['crm']);
+          }
+          else if(this.role == 2)
+          {
+            // username: ToMenu password: 123
+            console.log("TO MENU");
+            this.route.navigate(['menu']);
+          }
+          else if(this.role == 3)
+          {
+            // username: ToInventory password: asdasdasd
+            console.log("TO Inventory");
+            this.route.navigate(['stocks']);
+          }
+          else if(this.role == 4)
+          {
+            // username: ToPOS password: 123
+            console.log("TO POS"); 
+            this.route.navigate(['pos'])
+    
+          }
+  
+          else if(this.role == 5)
+          {
+            // username: ToPOS password: 123
+            console.log("TO POS"); 
+            this.route.navigate(['DTR'])
+    
+          }
+  
+          else if(this.role == 6)
+          {
+            // username: ToPOS password: 123
+            console.log("TO POS"); 
+            this.route.navigate(['PMS'])
+    
+          }
+    
+    
+  
+      }
+  
+  
+  
+  
+    
+
+
+
     });
 
   
-    if (this.logPword == null || this.logUname == null)
-    {
     
-      Toast.fire({
-        icon: 'error',
-        title: 'There is an  empty field'
-      }) 
-    }   
- 
-    else  if (this.role == null)
-    {
-    
-      Toast.fire({
-        icon: 'error',
-        title: 'Wrong Username or Password'
-      }) 
-    }   
-
-
-    else
-    {
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Welcome ' + this.name + '!'
-      }) 
- 
-        if(this.role == 1)
-        {
-          // username: ToCRM password: 1234
-          console.log("TO CRM");
-          this.route.navigate(['crm']);
-        }
-        else if(this.role == 2)
-        {
-          // username: ToMenu password: 123
-          console.log("TO MENU");
-          this.route.navigate(['menu']);
-        }
-        else if(this.role == 3)
-        {
-          // username: ToInventory password: asdasdasd
-          console.log("TO Inventory");
-          this.route.navigate(['stocks']);
-        }
-        else if(this.role == 4)
-        {
-          // username: ToPOS password: 123
-          console.log("TO POS"); 
-          this.route.navigate(['pos'])
-  
-        }
-
-        else if(this.role == 5)
-        {
-          // username: ToPOS password: 123
-          console.log("TO POS"); 
-          this.route.navigate(['home'])
-  
-        }
-  
-  
-
-    }
-
-
-
-
   }
-   
   
 }

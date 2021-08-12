@@ -140,7 +140,7 @@
             <button *ngIf="tblInfo.status_id1 == 3" type="button" class="btn btn-warning" (click)="checkoutTable()" mat-dialog-close>Cancel Reservation</button>
 
 
-            <button *ngIf="tblInfo.status_id1 == 1" type="button" class="btn btn-info" (click)="reserveTable()" mat-dialog-close>Reserve Table</button><br>
+            <button *ngIf="tblInfo.status_id1 == 1" type="button" class="btn btn-info" (click)="reserveTable(tblInfo, contentReserve)" mat-dialog-close>Reserve Table</button><br>
 
             <button type="button" class="btn btn-success" (click)="getOrder()" mat-dialog-close>Take Order</button>
 
@@ -170,4 +170,58 @@
 
 </mat-dialog-content>
 </ng-template>
+
+
+<!--REQUEST RESERVATION MODAL-->
+<ng-template #contentReserve let-modal class=" modalFade">
+    <mat-dialog-content style="width: 100%;">
+      <div class="modal-header">
+        <h4 class="modal-title"><b>Reserve a Table</b></h4>
+        <button type="button" class="close" aria-label="Close" mat-dialog-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="table_name">First Name</label>
+              <input name="table_name" type="text" class="form-control" id="first_name" placeholder="First Name" [(ngModel)]="first_name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="table_name">Last Name</label>
+              <input name="table_name" type="text" class="form-control" id="last_name" placeholder=" Last Name" [(ngModel)]="last_name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="table_name">Phone Number</label>
+              <input name="table_name" type="number" maxlength="11" class="form-control" id="phone_no" placeholder="Phone Number" [(ngModel)]="phone_no" required>
+            </div>
+          </div>
+  
+          
+          <div class="form-row" >
+            <div class="form-group col-md-6">
+              <label for="appt">Select a time:</label>
+              <input  class="form-control" type="time" id="appt" name="appt"  [(ngModel)]="time" required>
+            </div>
+            <div class="form-group col-md-6">
+              <mat-form-field appearance="outline"  style="padding-top: 1rem; width: 100%;" >
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="date" required >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+     
+      </div>
+      </mat-dialog-content>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" mat-dialog-close>Close</button>
+        <button type="submit" class="btn btn-primary" (click)="reserveNew();"  mat-dialog-close>Confirm</button>
+      </div>
+    </ng-template>
+
+
+
 </body>

@@ -188,6 +188,16 @@
 								echo json_encode($post->addReservation($d), JSON_PRETTY_PRINT);
 							break;
 
+							case 'resNew':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->resNew($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'newRes':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->newRes($d), JSON_PRETTY_PRINT);
+							break;
+
 							case 'confirmReservation':
 								$d = json_decode(base64_decode(file_get_contents("php://input")));
 								echo json_encode($post->confirmReservation($d), JSON_PRETTY_PRINT);
