@@ -20,17 +20,8 @@
         </mat-form-field>
       </div>
       <!--Import & Export Buttons-->
-      <button mat-button class="toolbar-buttons" [matMenuTriggerFor]="Import">Import &nbsp;<mat-icon>south</mat-icon></button>
-      <mat-menu #Import="matMenu">
-        <button mat-menu-item>JSON</button>
-        <button mat-menu-item>CSV</button>
-      </mat-menu>
-      <button mat-button class="toolbar-buttons" [matMenuTriggerFor]="Export">Export &nbsp;<mat-icon>north</mat-icon></button>
-      <mat-menu #Export="matMenu">
-        <button mat-menu-item>JSON</button>
-        <button mat-menu-item>CSV</button>
-      </mat-menu>
-      <button (click)="downloadPDF()" mat-button class="toolbar-buttons" matTooltip="Print Employee Table"> Print &nbsp; <mat-icon>print</mat-icon></button>
+      
+      <!--<button (click)="downloadPDF()" mat-button class="toolbar-buttons" matTooltip="Print Employee Table"> Print &nbsp; <mat-icon>print</mat-icon></button>-->
     </mat-toolbar>
   </mat-card-title>
 

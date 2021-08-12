@@ -7,6 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { RouterModule } from '@angular/router';
+
+import { NgxPrintModule } from 'ngx-print';
+
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 
