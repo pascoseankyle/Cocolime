@@ -294,4 +294,13 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     localStorage.clear();
     this.router.navigate(['']);
   }
+
+  voidInfo: any = {};
+  voidReservation(reservations){
+ this.voidInfo.res_id = reservations.res_id;
+ this.ds.apiReqPos("voidRes", this.voidInfo).subscribe((res:any) => {
+  this.pullReservations();
+});
+  }
+
 }

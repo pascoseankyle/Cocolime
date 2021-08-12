@@ -122,25 +122,29 @@
                         <div *ngIf="element.status_id == '2'" class="accepted">Accepted</div>
                                     <div *ngIf="element.status_id == '3'" class="pending">Pending</div>
                                     <div *ngIf="element.status_id == '1'" class="rejected">Rejected</div>
-                                    <div *ngIf="element.status_id == '4'" class="rejected">Canceled</div>
+                                    <div *ngIf="element.status_id == '5'" class="rejected">Not Confirmed</div>
                       
                       
                       </td>
                     </ng-container>
 
                     <ng-container matColumnDef="Column8">
-                      <th mat-header-cell *matHeaderCellDef> Action </th>
-                      <td mat-cell *matCellDef="let element">
-                        <button *ngIf="element.status_id == '2'" type="button" class="btnpad btn btn-success" (click)="cancelReservation(reservations)">
-                          Cancel
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Action </th>
+                      <td mat-cell *matCellDef="let element" style=" align-items: center; justify-content: center;">
+                        <button *ngIf="element.status_id == '5'" type="button" class="btnpad btn btn-danger" (click)="voidReservation(element)">
+                          Void
                         </button>
                         <span  *ngIf="element.status_id == '3'" >
-                          <button type="button" class="btnpad btn btn-success" (click)="acceptReservation(reservations)">
+                          <button type="button" class="btnpad btn btn-success" (click)="acceptReservation(element)">
                             Accept
                         </button>
-                        <button type="button" class="btnpad btn btn-danger" (click)="rejectReservation(reservations)">
+                        <button type="button" class="btnpad btn btn-danger" (click)="rejectReservation(element)">
                             Reject
                         </button>
+                        <!-- <button type="button" class="btnpad btn btn-danger" (click)="voidReservation(element)">
+                          Void
+                        </button> -->
+                        
                         </span>
                       </td>
                     </ng-container>

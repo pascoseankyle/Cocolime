@@ -17,6 +17,56 @@ class Post{
 // CRM NEW FUNCTIONS
 
 
+public function notConfirmed($dt)
+{
+
+    $code = 401;
+    $payload = null;
+    $remarks = "failed";
+    $message = "Unable to retrieve data";
+
+
+
+    $sql = "UPDATE `crm_reservations_tb` SET `status_id` = '5' WHERE phone_no = '$dt->phone_no'  AND status_id = '3'";
+    $res = $this->gm->generalQuery1($sql, "");
+
+    if($res['code']!=200) {
+  
+        $code = 200;
+        $payload = $res;
+        $remarks = "success";
+        $message = "Successfully retrieved data";
+    }
+        
+    
+    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+
+}
+
+
+
+
+public function voidRes($d) { 
+    $res_id = $d->res_id;
+     $res = $this->gm->delete('crm_reservations_tb', $d, "res_id = '$res_id'"); 
+     
+     
+     if ($res['code'] == 200) 
+     {  
+        $payload = $res['data'];            
+        $remarks = "success";            
+        $message = "Successfully retrieved requested data";        
+    } 
+    else
+     {            
+         $payload = null;            
+         $remarks = "failed";            
+         $message = $res['errmsg'];        
+        } 
+    }
+
+
+
 public function checkNumber($newNum, $existingNum)
 {
 
@@ -44,6 +94,61 @@ public function sendOTP($number, $message, $apiCode, $apiPass)
         $context  = stream_context_create($param);
         return file_get_contents($url, false, $context);
     
+}
+
+
+public function addNewRes($dt){
+
+    $otp = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+    $apiCode = "TR-CJRAM929662_PHH7Q";
+    $apiPass = "{2h@#q]!w%";
+    $contact = $dt->phone_no;
+    $msg = "You Reservation Confirmation Code is ".$otp."\n\nCocolime Management\n\n\n";
+   
+    $sql = "INSERT INTO crm_reservations_tb(first_name,last_name,reservation_date,reservation_time,phone_no,otp, status_id, table_id) 
+    VALUES ('$dt->first_name','$dt->last_name','$dt->reservation_date','$dt->reservation_time','$dt->phone_no','$otp', '$dt->status_id', '$dt->table_id')";
+
+            $data = array(); $code = 0; $errmsg= ""; $remarks = "";
+            try {
+
+                    // $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
+                    // if ($result == "")
+                    // {
+                    //     // echo "iTexMo: No response from server!!!
+                    //     // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                    //     // Please CONTACT US for help. ";	
+                    // }
+                    // else if ($result == 0)
+                    // {
+                    //     // echo $contact;
+                    //     // echo $msg;
+                    //     // echo "Message Sent!";
+                    // }
+                    // else
+                    // {	
+                    //     // echo "Error Num ". $result . " was encountered!";
+                    // }
+                
+                $res = $this->pdo->query($sql)->fetchAll();
+                    foreach ($res as $rec) { array_push($data, $rec); }
+                    $res = null; 
+                    $code = 200; 
+                    $message = "Successfully Registered"; 
+                    $remarks = "success";
+                    $payload = array("code"=>200, "remarks"=>"success");
+
+                    return array("code"=>200, "remarks"=>"success");
+
+
+
+                
+            } catch (\PDOException $e) {
+                $errmsg = $e->getMessage();
+                $code = 403;
+            }
+
+
+
 }
 
 
@@ -109,17 +214,139 @@ public function addreservation($dt)
 
         }
 
+        if($res['code'] == 200) {
+            $sql = "SELECT * FROM crm_reservations_tb WHERE phone_no='$phone_no' AND status_id = '3' or status_id = '5' ORDER BY res_id DESC LIMIT 1";
+            $res = $this->gm->generalQuery($sql, "Failed");
+
+            if($res['code'] != 200){
+                $otp = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+                $apiCode = "TR-CJRAM929662_PHH7Q";
+                $apiPass = "{2h@#q]!w%";
+                $contact = $dt->phone_no;
+                $msg = "You Reservation Confirmation Code is ".$otp."\n\nCocolime Management\n\n\n";
+               
+                $sql = "INSERT INTO crm_reservations_tb(first_name,last_name,reservation_date,reservation_time,phone_no,otp, status_id, table_id) 
+                VALUES ('$dt->first_name','$dt->last_name','$dt->reservation_date','$dt->reservation_time','$dt->phone_no','$otp', '$dt->status_id', '$dt->table_id')";
+        
+                        $data = array(); $code = 0; $errmsg= ""; $remarks = "";
+                        try {
+        
+                                // $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
+                                // if ($result == "")
+                                // {
+                                //     // echo "iTexMo: No response from server!!!
+                                //     // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                                //     // Please CONTACT US for help. ";	
+                                // }
+                                // else if ($result == 0)
+                                // {
+                                //     // echo $contact;
+                                //     // echo $msg;
+                                //     // echo "Message Sent!";
+                                // }
+                                // else
+                                // {	
+                                //     // echo "Error Num ". $result . " was encountered!";
+                                // }
+                            
+                            $res = $this->pdo->query($sql)->fetchAll();
+                                foreach ($res as $rec) { array_push($data, $rec); }
+                                $res = null; 
+                                $code = 200; 
+                                $message = "Successfully Registered"; 
+                                $remarks = "success";
+                                $payload = array("code"=>200, "remarks"=>"success");
+        
+                                return array("code"=>200, "remarks"=>"success");
+        
+        
+        
+                            
+                        } catch (\PDOException $e) {
+                            $errmsg = $e->getMessage();
+                            $code = 403;
+                        }
+            }
+            else if($res['code'] == 200){
+                $sql = "SELECT * FROM crm_reservations_tb WHERE phone_no='$phone_no' AND status_id = '1' or status_id = '2' ORDER BY res_id DESC LIMIT 1";
+                $res = $this->gm->generalQuery($sql, "Failed");
+    
+                if($res['code'] == 200){
+                    $otp = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+                    $apiCode = "TR-CJRAM929662_PHH7Q";
+                    $apiPass = "{2h@#q]!w%";
+                    $contact = $dt->phone_no;
+                    $msg = "You Reservation Confirmation Code is ".$otp."\n\nCocolime Management\n\n\n";
+                   
+                    $sql = "INSERT INTO crm_reservations_tb(first_name,last_name,reservation_date,reservation_time,phone_no,otp, status_id, table_id) 
+                    VALUES ('$dt->first_name','$dt->last_name','$dt->reservation_date','$dt->reservation_time','$dt->phone_no','$otp', '$dt->status_id', '$dt->table_id')";
+            
+                            $data = array(); $code = 0; $errmsg= ""; $remarks = "";
+                            try {
+            
+                                    // $result = $this->sendOTP($contact,$msg ,$apiCode, $apiPass);
+                                    // if ($result == "")
+                                    // {
+                                    //     // echo "iTexMo: No response from server!!!
+                                    //     // Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                                    //     // Please CONTACT US for help. ";	
+                                    // }
+                                    // else if ($result == 0)
+                                    // {
+                                    //     // echo $contact;
+                                    //     // echo $msg;
+                                    //     // echo "Message Sent!";
+                                    // }
+                                    // else
+                                    // {	
+                                    //     // echo "Error Num ". $result . " was encountered!";
+                                    // }
+                                
+                                $res = $this->pdo->query($sql)->fetchAll();
+                                    foreach ($res as $rec) { array_push($data, $rec); }
+                                    $res = null; 
+                                    $code = 200; 
+                                    $message = "Successfully Registered"; 
+                                    $remarks = "success";
+                                    $payload = array("code"=>200, "remarks"=>"success");
+            
+                                    return array("code"=>200, "remarks"=>"success");
+            
+            
+            
+                                
+                            } catch (\PDOException $e) {
+                                $errmsg = $e->getMessage();
+                                $code = 403;
+                            }
+
+            }
+            
+            else if($res['code'] != 200){
+                $code = 200;
+                $payload = null;
+                $remarks = "Failed";
+                $message = "Failed";
+                return $this->gm->sendPayload($payload, $remarks, $message, $code);
+            }
+
+
+        }
+
+
         else{
             $code = 200;
             $payload = null;
             $remarks = "Failed";
             $message = "Failed";
+            return $this->gm->sendPayload($payload, $remarks, $message, $code);
         }
 
-    return $this->gm->sendPayload($payload, $remarks, $message, $code);
+    
 
 
     }
+}
 
     public function otp_check($otpSent, $otpOnDb)
     {

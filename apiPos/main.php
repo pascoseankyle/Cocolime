@@ -193,6 +193,16 @@
 								echo json_encode($post->confirmReservation($d), JSON_PRETTY_PRINT);
 							break;
 								
+
+							case 'voidRes':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->voidRes($d), JSON_PRETTY_PRINT);
+							break;
+
+							case 'notConfirmed':
+								$d = json_decode(base64_decode(file_get_contents("php://input")));
+								echo json_encode($post->notConfirmed($d), JSON_PRETTY_PRINT);
+							break;
 								
 			}
 		break;

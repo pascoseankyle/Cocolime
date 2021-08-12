@@ -181,6 +181,11 @@ startTimer() {
       } else {
         this.dialog.closeAll();
         clearInterval(this.interval);
+        this.reserveInfo.status_id = 5;
+        this.ds.apiReqPos("notConfirmed", this.reserveInfo).subscribe(data => {
+        })
+
+
         console.log(this.reserveInfo);
         Swal.fire({
           position: 'center',
