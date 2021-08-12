@@ -109,7 +109,7 @@ class Get{
 
 
 	public function pullOrder ($d) {     
-	   $sql = "SELECT * FROM pos_preorder_tb";            
+	   $sql = "SELECT * FROM pos_preorder_tb ORDER BY list_order_date DESC";            
 	       
 	   $res = $this->gm->generalQuery($sql, "No records found");        
 	   if ($res['code'] == 200) {            
