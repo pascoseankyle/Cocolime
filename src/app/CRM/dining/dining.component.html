@@ -94,8 +94,8 @@
 
 
 
-                            <div *ngIf="tables?.status_id == 2">
-                                <div id ="box-{{ tables?.status_id }}" class = "box" (click)="editForm(tables); checkoutModal(contentCheckout);" >
+                            <div *ngIf="tables?.status_id == 2 || tables?.status_id == 4">
+                                <div id ="box-2" class = "box" (click)="editForm(tables); checkoutModal(contentCheckout);" >
                                    <h2> {{ tables?.table_name }} </h2>
                               
                                      <p>  Availability: <span class="oc"> Occupied </span></p>

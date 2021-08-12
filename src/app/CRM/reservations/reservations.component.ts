@@ -80,7 +80,7 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     "Column7",
     "Column8",
     "Column9",
-
+    "Column10",
 
    
   

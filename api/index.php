@@ -159,7 +159,7 @@
 					crm_reservations_tb.status_id,crm_reservations_tb.phone_no 
 					FROM crm_reservations_tb
 					INNER JOIN crm_tables_tb on crm_reservations_tb.table_id = crm_tables_tb.table_id
-					ORDER BY reservation_date DESC"));
+					ORDER BY res_id DESC"));
 				break;
 
 				case 'rejectAction':
