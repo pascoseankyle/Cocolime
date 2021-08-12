@@ -102,9 +102,15 @@
                         
                       </mat-card>
                       <br>
-                      <div class="btnCnt">
-                        <button  [useExistingCss]="true" printTitle="MyTitle" style="width: 50vh; border-radius: 5px; margin-top: 1px;"  printSectionId="print-section"  ngxPrint><img src="../assets/print.png"  style=" display: flex; margin: auto;"></button>
+                     
+                      <div class="btnCnt" style="margin-bottom: 10px;">
+                        <button  [useExistingCss]="true" printTitle="MyTitle" style="width: 50vh; border-radius: 5px; margin-top: 1px;height: 80px; "  printSectionId="print-section"  ngxPrint><img src="../assets/print.png"  style=" display: flex; margin: auto;"></button>
+                        
                       </div>
+                      <div class="btnCnt">
+                        <button  routerLink="/pos" class="success" style="width: 50vh; border-radius: 5px; margin-top: 1px; background-color: #449D44;" > <h1 style="color: white;"> New Order </h1></button>
+                      </div>
+                     
                 </div>
                       
 
