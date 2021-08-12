@@ -201,7 +201,7 @@ class Get{
 
 
 	   public function bestSeller($d) {     
-		$sql = "SELECT product_name, COUNT(product_name) AS best_seller FROM pos_order_tb GROUP BY product_name ORDER BY best_seller DESC LIMIT 1";            
+		$sql = "SELECT product_name, COUNT(product_name) AS best_seller FROM pos_order_tb GROUP BY product_name ORDER BY best_seller DESC LIMIT 3";            
 			
 		$res = $this->gm->generalQuery($sql, "No records found");        
 		if ($res['code'] == 200) {            

@@ -182,6 +182,7 @@ export class POSComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(){
     this.generateCode();
+    this.pullbestSeller();
   }
 
 
@@ -351,6 +352,7 @@ deleteIdentifier: any;
   pullbestSeller() {
     this.ds.apiReqPos("bestSeller", null).subscribe((data: any) => {
       this.bestSeller = data.payload;
+      console.log(this.bestSeller);
        
     })
 

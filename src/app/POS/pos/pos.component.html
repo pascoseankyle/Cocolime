@@ -252,21 +252,21 @@
         </mat-tab-group>
         <div class="stats-container">
           <!-- Best Seller cards -->
-          <div class="cards stat-cards" style="border-radius: 20px;">
+          <!-- <div class="cards stat-cards" style="border-radius: 20px;">
               <div class="cards-content stat-cards">
                   <div class="stat-img">
                       <img src="../assets/best-seller-month.png" style="height: 64px;"/>
                   </div>
                   <div class="stat-text-container">
-                      <div class="stat-text">
-                          <p> <!-- {{product}}--> </p>
-                          <p>Best Seller of The Month</p>
+                      <div class="stat-text"> -->
+                       
+                          <!-- <p>Best Seller of The Month</p>
                       </div>
                   </div>
               </div>
           </div>
-  
-          <div class="cards stat-cards" style="border-radius: 20px;">
+   -->
+          <!-- <div class="cards stat-cards" style="border-radius: 20px;">
               <div class="cards-content stat-cards" >
                   <div class="stat-img">
                       <img src="../assets/chef.png" style="height: 64px;" />
@@ -278,22 +278,24 @@
                       </div>
                   </div>
               </div>
-          </div>
-  
-          <div class="cards stat-cards" style="border-radius: 20px;">
+          </div> -->
+ 
+          <div class="cards stat-cards" style="border-radius: 20px;" *ngFor ="let bestSeller of bestSeller; index as i">
               <div class="cards-content stat-cards">
                   <div class="stat-img">
-                      <img src="../assets/best-seller.png" style="height: 64px;" />
+                      <img src="../assets/best-seller2.png" style="height: 64px;" />
                   </div>
                   <div class="stat-text-container">
-                      <div class="stat-text" *ngFor ="let bestSeller of bestSeller">
-                          <p> {{bestSeller.best_seller}}</p>
-                          <p>All Time Favorite</p>
+                      <div class="stat-text" >
+                          <p style="font-weight: bold;"> {{bestSeller.product_name}}</p>
+                          <p *ngIf="i == 0">Top pick</p>
+                          <p *ngIf="i == 1">Second pick</p>
+                          <p *ngIf="i == 2">Third pick</p>
                       </div>
                   </div>
               </div>
           </div>
-  
+      
       </div>
       </div>
     </div>
