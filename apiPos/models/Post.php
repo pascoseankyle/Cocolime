@@ -271,7 +271,7 @@ public function addreservation($dt)
                 $sql = "SELECT * FROM crm_reservations_tb WHERE phone_no='$phone_no' AND status_id = '1' or status_id = '2' ORDER BY res_id DESC LIMIT 1";
                 $res = $this->gm->generalQuery($sql, "Failed");
     
-                if($res['code'] == 200){
+                if($res['code'] != 200){
                     $otp = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
                     $apiCode = "TR-CJRAM929662_PHH7Q";
                     $apiPass = "{2h@#q]!w%";
@@ -322,7 +322,7 @@ public function addreservation($dt)
 
             }
             
-            else if($res['code'] != 200){
+            else if($res['code'] == 200){
                 $code = 200;
                 $payload = null;
                 $remarks = "Failed";
