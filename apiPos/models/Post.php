@@ -681,20 +681,17 @@ public function addOrderlist($dt)
     $payload = null;
     $remarks = "failed";
     $message = "Unable to retrieve data";
-    // $isSubmitted = $dt->isSubmitted;
-    // $order_code = $dt->order_code;
+
 
     $res = $this->gm->insert('pos_preorder_tb', $dt);
 
     if($res['code']==200) {
-        // $res = $this->gm->update('pos_order_tb', $isSubmitted, "order_code = '$order_code'");
-        // if ($res['code'] == 200) {
+    
         $code = 200;
         $payload = $res;
         $remarks = "success";
         $message = "Successfully retrieved data";
-        // }
-        
+     
     
     return $this->gm->sendPayload($payload, $remarks, $message, $code);
 

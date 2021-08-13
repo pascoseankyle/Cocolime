@@ -378,7 +378,7 @@
 		}
 
 		function selectMY($data){
-			$this->sql = "SELECT * FROM inventory_tb WHERE MONTH(date_expiry) = '$data->selectedMonth' AND YEAR(date_expiry) = '$data->selectedYear'";
+			$this->sql = "SELECT * FROM inventory_tb WHERE MONTH(date_acquired) = '$data->selectedMonth' AND YEAR(date_acquired) = '$data->selectedYear'";
 			if($result = $this->conn->query($this->sql)){
 				if($result->num_rows>0){
 					while($res = $result->fetch_assoc()){
